@@ -1,0 +1,86 @@
+{% load cmain_extras %}
+
+<nav class="block w-full py-2 mx-auto text-white bg-white shadow-md rounded-md lg:py-3 ">
+    <div class="container flex flex-wrap items-center justify-between mx-auto text-slate-800">
+      <a href="#"
+        class="mr-4 block cursor-pointer py-1.5 text-base text-slate-800 font-semibold">
+        IPT - T-OEM
+      </a>
+      <div class="hidden lg:block">
+        {% if user.is_authenticated %}
+        <ul class="flex flex-col mt-2  gap-x-1 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+            {% if request.user|has_group:"NOC,OTC,DAT" %}
+                <li class="font-semibold flex items-center p-1 gap-x-2 text-sm text-slate-600">
+                    <a href="{% url 'lista_cct' %}" class="flex items-center">
+                    Circuitos
+                    </a>
+                </li>
+            {% endif %}
+            {% if request.user|has_group:"NOC,FOE" %}
+                <li class="font-semibold flex items-center p-1 gap-x-2 text-sm text-slate-600">
+                    <a href="#" class="flex items-center">
+                    Circuitos FOE
+                    </a>
+                </li>
+            {% endif %} 
+            {% if request.user|has_group:"OTC,DAT" %}
+                <li class="font-semibold flex items-center p-1 gap-x-2 text-sm text-slate-600">
+                    <a href="#" class="flex items-center">
+                    Cartas
+                    </a>
+                </li>
+            {% endif %}    
+            <li class="flex items-center p-1  gap-x-2 text-sm text-slate-600">
+                <a href="{% url 'userlogout' %}" class="flex items-center">
+                    Logout
+                </a>
+            </li>
+            {% else %}
+            <li class="flex items-center p-1 text-sm gap-x-2 text-slate-600">
+                <a href="{% url 'userlogout' %}" class="flex items-center">
+                    Login
+                </a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+{% comment %}       <button
+        class="relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle text-xs font-medium uppercase text-inherit transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
+        type="button">
+        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </span>
+      </button> {% endcomment %}
+    </div>
+  </nav>
+
+
+{% comment %} <nav class="navbar navbar-expand-lg me-auto">
+    <div class="container-xxl px-lg-5 rounded " style="background-color: #00aaf8 " >
+        <a class="navbar-brand mb-0 h1" href="#!">T-OTC</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse bg:ipt" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if request.user|has_group:"NOC,OTC,DAT" %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lista_cct' %}">Circuitos</a></li> 
+                    {% endif %}
+                    {% if request.user|has_group:"NOC,FOE" %}
+                    <li class="nav-item"><a class="nav-link" href="">Circuitos FOE</a></li> 
+                    {% endif %}
+                    {% if request.user|has_group:"OTC,DAT" %}
+                    <li class="nav-item"><a class="nav-link" href="">Cartas</a></li> 
+                    {% endif %}
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'userlogout' %}">Logout</a></li> 
+                </ul>
+            {% else %}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'userlogin' %}">Login</a></li> 
+                </ul> 
+            {% endif %}
+        </div>
+    </div>
+</nav> {% endcomment %}

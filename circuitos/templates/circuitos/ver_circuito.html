@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card border-primary mx-auto" style="width: 90%">
+    <h2 class="card-header" style="width: 100%"><center>{{circuito.N_Circuito}}</center></h2>
+    <div class="card-body mx-auto" style="width: 100%">
+        <div class="row">
+            <p><strong>Data Rate:</strong> &nbsp;{{ circuito.Data_Rate }} &nbsp; &nbsp; <strong>Estado Circuito:</strong>&nbsp;{{ circuito.Estado_Cct}}
+            <br><strong>Data Pedido:</strong> &nbsp;{{ circuito.Data_Inst }} &nbsp; &nbsp; <strong>Data Entrega:</strong>&nbsp;{{ circuito.Data_Activ}}
+        </div>
+        
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 100%">
+                        <h5 class="card-header">Terminação 1</h5>
+                        <div class="card-body">
+                            <p><strong>Entidade:</strong>&nbsp;{{circuito.Entidade_PTR1}}
+                            <br><strong>Morada:</strong>&nbsp;{{circuito.Morada_PTR1}}
+                            <br><strong>Equipamento:</strong>&nbsp;{{circuito.Equip_PTR1}}
+                            <br><strong>Slot:</strong>&nbsp;{{circuito.Slot_PTR1}}&nbsp;&nbsp;<strong>Porto;</strong>&nbsp;{{circuito.Trib_PTR1}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h5 class="card-header">Terminação 2</h5>
+                        <div class="card-body">
+                            <p><strong>Entidade:</strong>&nbsp;{{circuito.Entidade_PTR2}}
+                            <br><strong>Morada:</strong>&nbsp;{{circuito.Morada_PTR2}}
+                            <br><strong>Equipamento:</strong>&nbsp;{{circuito.Equip_PTR2}}
+                            <br><strong>Slot:</strong>&nbsp;{{circuito.Slot_PTR2}}&nbsp;&nbsp;<strong>Porto;</strong>&nbsp;{{circuito.Trib_PTR2}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <p><strong>Cliente:</strong> &nbsp;{{ circuito.User_Cct }} &nbsp; &nbsp; <strong>Propriedade circuito:</strong>&nbsp;{{ circuito.Propriedade_Cct}}
+                <br><strong>Observações:</strong> &nbsp;{{ circuito.Outras_Ref }}
+            </div>
+
+
+
+    </div>
+</div>
+<br>
+<a href="{% url 'lista_cct' %}" class="btn btn-secondary">Voltar &nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+&nbsp;
+{% if perms.circuitos.change_circuitos %}
+<a href="" class="btn btn-secondary">Editar &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></a>
+{% endif %}
+{% endblock %}
+
