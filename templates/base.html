@@ -5,19 +5,19 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width">
         <title>Cadastro de Circuitos</title>
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-        <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'iptelecom.css' %}" rel="stylesheet" type="text/css">
     </head>
-    <body class="bg-primary bg-opacity-50">
-
-        {% include 'navbar.html' %}
-
+    <body class="bg-primary bg-opacity-65">
+        {% if user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% endif %}
         {% block content %}
 
         {% endblock content %}
        
     </body>
-    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+
 </html>
