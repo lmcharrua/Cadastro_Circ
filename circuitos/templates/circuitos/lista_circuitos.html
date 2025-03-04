@@ -48,6 +48,12 @@
                         {% endif %}
                                 <td scope="row" class="px-3 py-1 font-medium whitespace-nowrap">
                                     <a class="btn btn-success btn-sm" href="{% url 'ver_circuito' circuito.id %}">{{circuito.N_Circuito}}</a>
+                                            <button 
+          class="text-blue-500"
+          onclick="openModal({{ circuito.id }}, '{{ Circuito.N_Circuito }}')">
+          Edit
+        </button>
+
                                 </td>
                                 <td class="px-3 py-1 text-sm">
                                     {{circuito.Data_Rate}}
@@ -78,6 +84,47 @@
         </table>
     </div>
 </div>
+
+
+<!-- Modal Structure -->
+<div id="editModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto fixed top-0 left-0 right-0 z-50 w-full p-4">
+  <div class="relative w-full max-w-2xl mx-auto">
+    <div class="relative bg-white rounded-lg shadow-lg">
+      <div class="flex justify-between items-center p-4">
+        <h3 class="text-xl font-medium">Edit Record</h3>
+        <button type="button" class="text-gray-400 hover:text-gray-900" onclick="closeModal()">
+          <span class="sr-only">Close</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9.293l4.707-4.707a1 1 0 011.414 1.414L11.414 10l4.707 4.707a1 1 0 01-1.414 1.414L10 11.414l-4.707 4.707a1 1 0 01-1.414-1.414L8.586 10 3.879 5.293A1 1 0 015.293 3.879L10 8.586z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+      <div class="p-6">
+        <form method="POST" action="{% url 'update_record' %}">
+          {% csrf_token %}
+          <input type="hidden" id="id" name="id">
+          <div class="mb-4">
+            <label for="N_Circuito" class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" id="N_Circuito" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+          </div>
+          <div class="flex justify-end">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save</button>
+            <button type="button" class="ml-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-md" onclick="closeModal()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(recordId, recordName) {
+    document.getElementById('id').value = id;
+    document.getElementById('N_Circuito').value = N_Circuito;
+document.getElementById('editModal').classList.remove('hidden');
+  }
+function closeModal() {
+    document.getElementById('editModal').classList.add('hidden');
+  }
+</script>
 
 
 
