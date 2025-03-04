@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <!-- Nova tabela -->
+    <div class="container my-4 min-w-full">
+    <div class="h-svh border-separate overflow-clip rounded-md flex flex-col">
+        <table class="w-full table-fixed text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-white uppercase bg-ipt-main">
+                <tr>
+                    <th scope="col" class="px-3 py-3 whitespace-nowrap">
+                        Nº Circuito
+                    </th>
+                    <th scope="col" class="px-3 py-3 whitespace-nowrap">
+                        Data Rate
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Cliente
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Estado
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Entidade PTR1
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Morada PTR1
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Entidade PTR2
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Morada PTR2
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <div class="flex-1 overflow-y-auto scroll-m-0">
+            <table class="w-full table-fixed">
+            <tbody>
+                {% if circuitos %}
+                    {% for circuito in circuitos %}
+                        {% if "Activo" in circuito.Estado_Cct %}
+                            <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+                        {% else %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                        {% endif %}
+                                <td scope="row" class="px-3 py-1 font-medium whitespace-nowrap">
+                                    <a class="btn btn-success btn-sm" href="{% url 'ver_circuito' circuito.id %}">{{circuito.N_Circuito}}</a>
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Data_Rate}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.User_Cct}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Estado_Cct}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Entidade_PTR1}}
+                                </td>                        
+                                <td class="px-3 py-1 text-xs">
+                                    {{circuito.Morada_PTR1}}
+                                </td>                                
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Entidade_PTR2}}
+                                </td>                                
+                                <td class="px-3 py-1 text-xs">
+                                    {{circuito.Morada_PTR2}}
+                                </td>
+                            </tr>
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

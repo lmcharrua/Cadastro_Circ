@@ -1,0 +1,48 @@
+{% load cmain_extras %}
+{% load static %}
+
+<nav class="mx-auto text-white bg-white rounded-md shadow-md lg:py-3 bg-ipt-main">
+    <div class="flex justify-between text-slate-800 mx-3">
+      <img class="h-8" src="{% static 'img/Logo_IPT_invertido.png' %}" alt="IPTelecom">
+      <div class="hidden lg:block">
+        {% if user.is_authenticated %}
+        <ul class="flex flex-col mt-2  gap-x-1 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-right">
+            {% if request.user|has_group:"NOC,OTC,DAT" %}
+                <li class="font-semibold flex items-right p-1 gap-x-2 text-white">
+                    <a class="text-white flex items-center" href="{% url 'lista_cct' %}">
+                    Circuitos
+                    </a>
+                </li>
+            {% endif %}
+            {% if request.user|has_group:"NOC,FOE" %}
+                <li class="font-semibold flex items-center p-1 gap-x-2text-white">
+                    <a href="#" class="text-white flex items-center">
+                    Circuitos FOE
+                    </a>
+                </li>
+            {% endif %} 
+            {% if request.user|has_group:"OTC,DAT" %}
+                <li class="font-semibold flex items-center p-1 gap-x-2 text-white">
+                    <a href="#" class="flex items-center">
+                    Cartas
+                    </a>
+                </li>
+            {% endif %}    
+            <li class="flex items-center p-1  gap-x-2 text text-white">
+                <a href="{% url 'userlogout' %}" class="flex items-center">
+                    Logout
+                </a>
+            </li>
+            {% else %}
+            <li class="flex items-center p-1 text gap-x-2 text-white">
+                <a href="{% url 'userlogout' %}" class="flex items-center">
+                    Login
+                </a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+

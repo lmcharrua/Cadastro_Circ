@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<div class="grid grid-cols-2 gap-2 p-10">
+    <div class="col-span-2 rounded-lg border border-gray-400 p-2">
+        <h2 class="" style="width: 100%"><center>{{circuito.N_Circuito}}</center></h2>
+        <p><strong>Data Rate:</strong> &nbsp;{{ circuito.Data_Rate }} &nbsp; &nbsp; <strong>Estado Circuito:</strong>&nbsp;{{ circuito.Estado_Cct}}
+        <br><strong>Data Pedido:</strong> &nbsp;{{ circuito.Data_Inst }} &nbsp; &nbsp; <strong>Data Entrega:</strong>&nbsp;{{ circuito.Data_Activ}}
+    </div>
+    <div class="rounded-lg border border-black p-2">
+        <h5 class="r">Terminação 1</h5>
+        <p><strong>Entidade:</strong>&nbsp;{{circuito.Entidade_PTR1}}
+        <br><strong>Morada:</strong>&nbsp;{{circuito.Morada_PTR1}}
+        <br><strong>Equipamento:</strong>&nbsp;{{circuito.Equip_PTR1}}
+        <br><strong>Slot:</strong>&nbsp;{{circuito.Slot_PTR1}}&nbsp;&nbsp;<strong>Porto;</strong>&nbsp;{{circuito.Trib_PTR1}}
+    </div>
+    <div class="rounded-lg border border-black p-2">
+        <h5 class="">Terminação 2</h5>
+        <p><strong>Entidade:</strong>&nbsp;{{circuito.Entidade_PTR2}}
+        <br><strong>Morada:</strong>&nbsp;{{circuito.Morada_PTR2}}
+        <br><strong>Equipamento:</strong>&nbsp;{{circuito.Equip_PTR2}}
+        <br><strong>Slot:</strong>&nbsp;{{circuito.Slot_PTR2}}&nbsp;&nbsp;<strong>Porto;</strong>&nbsp;{{circuito.Trib_PTR2}}
+    </div>
+    <div class="col-span-2 rounded-lg border border-black p-2">
+        <p><strong>Cliente:</strong> &nbsp;{{ circuito.User_Cct }} &nbsp; &nbsp; <strong>Propriedade circuito:</strong>&nbsp;{{ circuito.Propriedade_Cct}}
+        <br><strong>Observações:</strong> &nbsp;{{ circuito.Outras_Ref }}
+    </div>
+</div>
+</div>
+<br>
+<a href="{% url 'lista_cct' %}" class="btn btn-secondary">Voltar &nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+&nbsp;
+{% if perms.circuitos.change_circuitos %}
+<a href="" class="btn btn-secondary">Editar &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></a>
+{% endif %}
+{% endblock %}
+

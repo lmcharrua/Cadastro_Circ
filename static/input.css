@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+
+.bg-ipt-main {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 170 248 / var(--tw-bg-opacity, 1));
+}
