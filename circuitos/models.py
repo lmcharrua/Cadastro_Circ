@@ -26,6 +26,7 @@ class Circuitos(models.Model):
     Propriedade_Cct = models.TextField(max_length=150, default='')
     Outras_Ref = models.TextField(max_length=150, default='')
  
+ 
     
     class Meta:
         ordering = ['N_Circuito']
