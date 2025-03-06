@@ -29,7 +29,7 @@ def editar_circuito(request, pk):
             form.save()
             messages.success(request, "O circuito foi actualizado com sucesso!")
             return redirect("main")   
-    context = {'form':form}
+    context = {'circuito':circuito}
     return render(request, 'circuitos/editar_circuito.html', context=context)
 
 
