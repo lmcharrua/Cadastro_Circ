@@ -29,7 +29,7 @@ class CreateCircuitoForm(forms.ModelForm):
                   'Outras_Ref'
                   ]
         
-class UpdateCircuitoForm(forms.ModelForm):
+class CircuitoForm(forms.ModelForm):
     class Meta:
         model = Circuitos
         fields = ['N_Circuito', 
@@ -52,7 +52,8 @@ class UpdateCircuitoForm(forms.ModelForm):
                   'Trib_PTR2',
                   'User_Cct',
                   'Propriedade_Cct',
-                  'Outras_Ref'
-                  ]
+                  'Outras_Ref']
+        
 
+        widget = { 'Estado_Cct': ChoiceWidget(choices=[('Activo', 'Activo'), ('Desligado', 'Desligado'), ('Definido', 'Definido')])}
 

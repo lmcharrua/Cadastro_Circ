@@ -127,6 +127,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -143,4 +145,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-settings.DATE_INPUT_FORMATS = ['%d-%m-%Y']
+DATE_INPUT_FORMATS = [
+    '%Y-%m-%d',
+    '%d/%m/%Y',
+    '%m/%d/%Y',
+    '%Y/%m/%d',
+] 
