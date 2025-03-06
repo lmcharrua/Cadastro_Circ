@@ -5,7 +5,8 @@
 @source "../node_modules/flowbite-datepicker/";
 
 
-.bg-ipt-main {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 170 248 / var(--tw-bg-opacity, 1));
+
+@theme {
+  --color-ipt-main: #00AAF8; 
 }
+
