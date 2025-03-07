@@ -25,7 +25,6 @@ def editar_circuito(request, pk):
     form = CircuitoForm(instance=cct)
     if request.method == 'POST':
         form = CircuitoForm(request.POST,instance=cct)
-        print(form.errors) 
         if form.is_valid():
             form.save()
             messages.success(request, "O circuito foi actualizado com sucesso!")
