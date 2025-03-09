@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <!-- Nova tabela -->
+    <div class="container my-4 min-w-full">
+    <div class="h-svh border-separate overflow-clip rounded-md flex flex-col">
+        <table class="w-full table-fixed text-sm text-center rtl:text-right text-gray-500">
+            <thead class="text-xs text-white uppercase bg-ipt-main">
+                <tr>
+                    <th scope="col" class="px-3 py-3 whitespace-nowrap">
+                        Nº Circuito
+                    </th>
+                    <th scope="col" class="px-3 py-3 whitespace-nowrap">
+                        Data Rate
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Cliente
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Estado
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Entidade PTR1
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Morada PTR1
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Entidade PTR2
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Morada PTR2
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                        Acções
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <div class="flex-1 overflow-y-auto scroll-m-0">
+            <table class="w-full table-fixed text-center">
+            <tbody>
+                {% if circuitos %}
+                    {% for circuito in circuitos %}
+                        {% if "Activo" in circuito.Estado_Cct %}
+                            <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+                        {% else %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                        {% endif %}
+                                <td scope="row" class="px-3 py-1 font-medium whitespace-nowrap">
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_circuito' circuito.id %}">{{circuito.N_Circuito}}</a>
+                                            
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Data_Rate}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.User_Cct}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Estado_Cct}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Entidade_PTR1}}
+                                </td>                        
+                                <td class="px-3 py-1 text-xs">
+                                    {{circuito.Morada_PTR1}}
+                                </td>                                
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Entidade_PTR2}}
+                                </td>                                
+                                <td class="px-3 py-1 text-xs">
+                                    {{circuito.Morada_PTR2}}
+                                </td>
+                                <td class="px-3 py-1 text-sm items-center justify-center">
+                                    <i onclick="openModal( '{{ circuito.id }}', '{{ circuito.N_Circuito }}')" class="fa-regular fa-pen-to-square"></i>
+                                    <i onclick="openModal1( '{{ circuito.id }}', '{{ circuito.N_Circuito }}')" class="fa-regular fa-eye"></i>
+
+
+
+                                </td>
+
+                            </tr>
+
+                            
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="editModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto fixed top-0 left-0 right-0 z-50 w-full p-4">
+  <div class="relative w-full max-w-2xl mx-auto">
+    <div class="relative bg-white border rounded-lg shadow-lg">
+      <div class="flex justify-between items-center p-4">
+        <h3 id="ti" class="text-xl font-medium"></h3>
+        <button type="button" class="text-gray-400 hover:text-gray-900" onclick="closeModal()">
+          <span class="sr-only">Close</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9.293l4.707-4.707a1 1 0 011.414 1.414L11.414 10l4.707 4.707a1 1 0 01-1.414 1.414L10 11.414l-4.707 4.707a1 1 0 01-1.414-1.414L8.586 10 3.879 5.293A1 1 0 015.293 3.879L10 8.586z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+      <div class="p-6">
+        <form method="POST" id="f" >
+          {% csrf_token %}
+          <input type="hidden" id="id" name="id" >
+          <div class="mb-4">
+            <label for="N_Circuito" class="block text-sm font-medium text-gray-700">N_Circuito</label>
+            <input type="text" id="N_Circuito" name="N_Circuito" class="mt-1 block w-full px-3 "py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+          </div>
+          <div class="flex justify-end">
+            <button id="but" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md" hidden>Save</button>
+            <button  type="button" class="ml-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-md" onclick="closeModal()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(cid, cN_Circuito) {
+    document.getElementById('id').value = cid;
+    str = "{% url 'editar_circuito' 0 %}".replace('0', cid);
+    document.getElementById('N_Circuito').value = cN_Circuito;
+    document.getElementById('f').value = str;
+    document.getElementById('ti').innerHTML = 'Edit Circuit';
+    document.getElementById('but').hidden = false;
+document.getElementById('editModal').classList.remove('hidden');
+  }
+    function openModal1(cid, cN_Circuito) {
+    document.getElementById('id').value = cid;
+    str = "{% url 'ver_circuito' 0 %}".replace('0', cid);
+    document.getElementById('N_Circuito').value = cN_Circuito;
+    document.getElementById('f').value = str;
+    document.getElementById('ti').innerHTML = 'View Circuit';
+    document.getElementById('but').hidden = true;
+document.getElementById('editModal').classList.remove('hidden');
+  }
+function closeModal() {
+    document.getElementById('editModal').classList.add('hidden');
+
+  }
+</script>
+
+
+
+{% endblock %}

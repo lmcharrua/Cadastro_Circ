@@ -1,0 +1,28 @@
+default
+if (document.getElementById("default-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+    const dataTable = new simpleDatatables.DataTable("#default-table", {
+        searchable: true,
+        paging: true,
+        perPage: 5,
+        perPageSelect: [5, 10, 15, 20, 25],
+        sortable: true,
+    });
+}
+
+search
+if (document.getElementById("search-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+    const dataTable = new simpleDatatables.DataTable("#search-table", {
+        searchable: true,
+        sortable: false
+    });
+}
+
+pagination
+if (document.getElementById("pagination-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+    const dataTable = new simpleDatatables.DataTable("#pagination-table", {
+        paging: true,
+        perPage: 5,
+        perPageSelect: [5, 10, 15, 20, 25],
+        sortable: false
+    });
+}
