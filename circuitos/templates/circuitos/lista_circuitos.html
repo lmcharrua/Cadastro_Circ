@@ -1,61 +1,70 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 
 
     <!-- Nova tabela -->
-    <div class="container my-4 min-w-full">
-    
-        <table id="lista-circuitos" class="w-full  text-sm  text-gray-500">
-            <thead class="text-xs text-white uppercase bg-ipt-main">
+
+        <table id="lista_circuitos" class="display compact order-column">
+            <thead >
                 <tr>
-                    <th scope="col" class="px-3 py-3">
+                    <th>
+                        Nº Circuito
+                    </th>
+                    <th>
                         <span class="flex items-center">
-                        Nº Circuito<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        Data Rate
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
                     </span>
-
                     </th>
-                    <th scope="col" class="px-3 py-3 whitespace-nowrap">
+                    <th>
                         <span class="flex items-center">
-                        Data Rate<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
+                            Cliente
+                                <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                                </svg>
                         </span>
                     </th>
-                    <th scope="col" class="px-3 py-3">
-                        Cliente<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <th>
+                        <span class="flex items-center">
+                        Estado
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                    </span>
+                    </th>
+                    <th>
+                        Entidade PTR1
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
                     </th>
-                    <th scope="col" class="px-3 py-3">
-                        Estado<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <th>
+                        Morada PTR1
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
                     </th>
-                    <th scope="col" class="px-3 py-3">
-                        Entidade PTR1<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <th>
+                        Entidade PTR2
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
                     </th>
-                    <th scope="col" class="px-3 py-3">
-                        Morada PTR1<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <th>
+                        Morada PTR2
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
                     </th>
-                    <th scope="col" class="px-3 py-3">
-                        Entidade PTR2<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
-                    </th>
-                    <th scope="col" class="px-3 py-3">
-                        Morada PTR2<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
-                    </th>
+
                 </tr>
             </thead>
+
+
             <tbody>
                 {% if circuitos %}
                     {% for circuito in circuitos %}
@@ -90,7 +99,6 @@
                                     {{circuito.Morada_PTR2}}
                                 </td>
 
-
                             </tr>
 
                             
@@ -98,29 +106,25 @@
                     {% endfor %}
                 {% endif %}
             </tbody>
-            </table>
-            
-        
+        </table>
+    
 </div>
 
 
-<!-- Modal Structure -->
-
-<script>
-
-
-if (document.getElementById("lista-circuitos") && typeof simpleDatatables.DataTable !== 'undefined') {
-    const dataTable = new simpleDatatables.DataTable("#lista-circuitos", {
-        sortable: true,
-        searchable: true,
+        <script>
+            new simpleDatatables.DataTable("#lista_circuitos", {
+                searchable: true,
         paging: true,
-        perPage: 10,
+        perPage: 12,
         perPageSelect: [5, 10, 15, 20, 25],
-        firstLast: true,
-        prevNext: true,
-    });
-}
-</script>
+        sortable: true,
+        locale: "pt-PT",
+        sortable: true,
+        deferRender: true
+            });
+        </script>
+
+
 
 
 

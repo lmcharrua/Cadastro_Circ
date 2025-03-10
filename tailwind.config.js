@@ -10,6 +10,10 @@ module.exports = {
   theme: {
         colors: {
           'ipt-main': '#00AAF8',
+          'ip-main': '#1E9D8B',
+          'ipe-main': '#698392',
+          'ipp-main': '#7F3B3A',
+          'gil-main': '#CF7600',
 
         },
       }
