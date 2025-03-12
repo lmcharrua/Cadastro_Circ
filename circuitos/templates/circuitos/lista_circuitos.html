@@ -6,71 +6,47 @@
 
     <!-- Nova tabela -->
 
-        <table id="lista_circuitos" class="display compact order-column" style="display:none">
-            <thead >
+        <table id="lista_circuitos" class="display compact order-column table-fixed" style="display:none">
+            <thead class="bg-ip-main">
                 <tr>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Nº Circuito
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
-                        </span>
+                    </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Data Rate
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
                     </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                             Cliente
-                                <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                                </svg>
                         </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Estado
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
                     </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Entidade PTR1
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
                     </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Morada PTR1
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
                     </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Entidade PTR2
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
                     </span>
                     </th>
-                    <th>
+                    <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
                         Morada PTR2
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
-                    </svg>
                     </span>
                     </th>
 
@@ -86,7 +62,7 @@
                         {% else %}
                             <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
                         {% endif %}
-                                <td scope="row" class="px-3 py-1 font-medium whitespace-nowrap">
+                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
                                     <a class="btn btn-success btn-sm" href="{% url 'editar_circuito' circuito.id %}">{{circuito.N_Circuito}}</a>
                                             
                                 </td>
