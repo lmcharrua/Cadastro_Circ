@@ -8,11 +8,21 @@
         {% if user.is_authenticated %}
         <ul class="flex flex-col mt-2  gap-x-1 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-right">
             {% if request.user|has_group:"NOC,OTC,DAT" %}
-                <li class="font-semibold flex items-right p-1 gap-x-2 text-white">
-                    <a class="text-white flex items-center" href="{% url 'lista_cct' %}">
+                <li id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 gap-x-2 text-white">
+                    
                     Circuitos
-                    </a>
+                    
                 </li>
+                <div id="dropdownDelay" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                    <li>
+                        <a href="{% url 'lista_cct' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'criar_circuito' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
+                    </li>
+                    </ul>
+                </div>
             {% endif %}
             {% if request.user|has_group:"NOC,FOE" %}
                 <li class="font-semibold flex items-center p-1 gap-x-2 text-white">
