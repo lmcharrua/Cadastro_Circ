@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+
 
 
     <!-- Nova tabela -->
@@ -10,7 +10,12 @@
             <thead >
                 <tr>
                     <th>
+                        <span class="flex items-center">
                         Nº Circuito
+                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                        </span>
                     </th>
                     <th>
                         <span class="flex items-center">
@@ -37,28 +42,36 @@
                     </span>
                     </th>
                     <th>
+                        <span class="flex items-center">
                         Entidade PTR1
                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
+                    </span>
                     </th>
                     <th>
+                        <span class="flex items-center">
                         Morada PTR1
                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
+                    </span>
                     </th>
                     <th>
+                        <span class="flex items-center">
                         Entidade PTR2
                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
+                    </span>
                     </th>
                     <th>
+                        <span class="flex items-center">
                         Morada PTR2
                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
                     </svg>
+                    </span>
                     </th>
 
                 </tr>
@@ -109,9 +122,11 @@
         </table>
     
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 
         <script>
+
+
             new simpleDatatables.DataTable("#lista_circuitos", {
                 searchable: true,
         paging: true,
@@ -119,10 +134,7 @@
         perPageSelect: [5, 10, 15, 20, 25],
         sortable: true,
         sortable: true,
-        language: {
-        url: '//cdn.datatables.net/plug-ins/2.2.2/i18n/pt-PT.json',
-    },
-            deferRender: true,
+        deferRender: true,
             });
         </script>
 
