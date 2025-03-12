@@ -7,10 +7,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Cadastro de Circuitos</title>
-        <link href="{% static 'iptelecom.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/iptelecom.css' %}" rel="stylesheet" type="text/css">
             <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+
     </head>
     <body class="bg-primary bg-opacity-65 overscroll-contain">
         {% if user.is_authenticated %}
@@ -19,9 +21,9 @@
         {% block content %}
 
         {% endblock content %}
-        <script src="{% static flowbite.min.js %}"></script>
+        <script src="{% static '\node_modules\flowbite\dist\flowbite.min.js' %}"></script>
         
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        
         
 
 

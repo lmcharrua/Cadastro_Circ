@@ -6,7 +6,7 @@
 
     <!-- Nova tabela -->
 
-        <table id="lista_circuitos" class="display compact order-column">
+        <table id="lista_circuitos" class="display compact order-column" style="display:none">
             <thead >
                 <tr>
                     <th>
@@ -122,20 +122,25 @@
         </table>
     
 </div>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
         <script>
 
+ 
 
-            new simpleDatatables.DataTable("#lista_circuitos", {
+            let table = new simpleDatatables.DataTable("#lista_circuitos", {
+                deferRender: true,
                 searchable: true,
-        paging: true,
-        perPage: 12,
-        perPageSelect: [5, 10, 15, 20, 25],
-        sortable: true,
-        sortable: true,
-        deferRender: true,
+                paging: true,
+                perPage: 12,
+                perPageSelect: [5, 10, 15, 20, 25],
+                sortable: true,
+                sortable: true,
+                orderClasses: false,
+                
             });
+            $('#lista_circuitos').show();
         </script>
 
 
