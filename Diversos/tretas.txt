@@ -1,0 +1,2 @@
+// start fade out in one second, take 300ms to fade
+$('#mydiv').delay(1000).fadeOut(300); 
