@@ -27,7 +27,7 @@ def editar_circuito(request, pk):
         form = CircuitoForm(request.POST,instance=cct)
         if form.is_valid():
             form.save()
-            messages.success(request, "O circuito foi actualizado com sucesso!")
+            # messages.success(request, "O circuito foi actualizado com sucesso!")
             print("Circuito actualizado")
             return redirect("lista_cct")   
     context = {'form':form}
@@ -38,7 +38,7 @@ def criar_circuito(request):
     form = CreateCircuitoForm(request.POST)
     if form.is_valid():
         form.save()
-        messages.success(request, "O circuito foi criado com sucesso!")
+        # messages.success(request, "O circuito foi criado com sucesso!")
         return redirect('lista_cct')
     context = {'form':form}
     return render(request, 'circuitos/criar_circuito.html', context=context)
