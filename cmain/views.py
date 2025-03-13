@@ -38,5 +38,5 @@ def userlogin(request):
 def userlogout(request):
 
     auth.logout(request)
-    messages.success(request, "Logout success!")
+    # messages.success(request, "Logout success!")
     return redirect("userlogin")
