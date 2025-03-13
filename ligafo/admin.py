@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import circ_Foe  
-
-
+from .models import ligafo
 # Register your models here.
 
-admin.site.register(circ_Foe)
+admin.site.register(ligafo)

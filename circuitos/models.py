@@ -32,7 +32,7 @@ class Circuitos(models.Model):
         ordering = ['N_Circuito']
     
     def __str__(self):
-        return Circuitos.N_Circuito
+        return self.N_Circuito
 
 
 class Hist_Cct(models.Model):
