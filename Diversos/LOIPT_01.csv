@@ -1,0 +1,65 @@
+ID;Referência;Cliente;Projeto;Distância IET;Distância Ótica;Data Pedido;Data Entrega;ESTADO;Local_A;Equipamento_A;Slot_A;Porto_A;Local_B;Equipamento_B;Slot_B;Porto_B;Observações
+1;LOIPT00001;IPT Tx Dados;S2025_00432;17.453;;2025-03-03;;I;Entrocamento;;;;Sta. Cita;;;;Ramal de Tomar_Rede Secundária Voz Entroncamento-Sta. Cita
+2;LOIPT00002;IPT Tx Dados;S2025_00432;5.65;;2025-03-03;;I;Sta. Cita;;;;Tomar;;;;Ramal de Tomar_Rede Secundária Voz Sta. Cita-Tomar
+3;LOIPT00003;IPT Tx Dados;S2025_00432;8.3;;2025-03-03;;I;Riachos;;;;Mato Miranda;;;;Linha do Norte_Rede Secundária Voz Riachos-Mato Miranda
+4;LOIPT00004;IPT Tx Dados;S2025_00432;10.1;;2025-03-03;;I;Mato Miranda;;;;Vale Figueira;;;;Linha do Norte_Rede Secundária Voz Mato Miranda-Vale Figueira
+5;LOIPT00005;IPT Tx Dados;S2025_00432;17.5;;2025-03-03;;I;Vale Figueira;;;;Vale de Santarém;;;;Linha do Norte_Rede Secundária Voz Vale Figueira-Vale de Santarém
+6;LOIPT00006;IPT Tx Dados;S2025_00432;6.0;;2025-03-03;;I;Vale de Santarém;;;;Santana Cartaxo;;;;Linha do Norte_Rede Secundária Voz Vale de Santarém-Santana Cartaxo
+7;LOIPT00007;IPT Tx Dados;S2025_00432;6.0;;2025-03-03;;I;Santana Cartaxo;;;;Reguengo;;;;Linha do Norte_Rede Secundária Voz Santana Cartaxo-Reguengo
+8;LOIPT00008;IPT Tx Dados;S2025_00432;3.339;;2025-03-03;;I;Reguengo;;;;Virtudes;;;;Linha do Norte_Rede Secundária Voz Reguengo-Virtudes
+9;LOIPT00009;IPT Tx Dados;S2025_00432;3.791;;2025-03-03;;I;Virtudes;;;;Azambuja;;;;Linha do Norte_Rede Secundária Voz Virtudes-Azambuja
+10;LOIPT00010;IPT Tx Dados;S2025_00432;1.605;;2025-03-03;;I;Castanheira;;;;SST V.F. Xira;;;;Linha do Norte_Rede Secundária Voz Castanheira-SST V.F. Xira
+11;LOIPT00011;IPT Tx Dados;S2025_00432;2.599;;2025-03-03;;I;SST V.F. Xira;;;;V.F. Xira;;;;Linha do Norte_Rede Secundária Voz SST V.F. Xira-V.F. Xira
+12;LOIPT00012;IPT Tx Dados;S2025_00432;6.675;;2025-03-03;;I;Setil;;;;Muge;;;;L. Vendas Novas_Rede Secundária Voz Setil-Muge
+13;LOIPT00013;IPT Tx Dados;S2025_00432;5.225;;2025-03-03;;I;Muge;;;;Marinhais;;;;L. Vendas Novas_Rede Secundária Voz Muge-Marinhais
+14;LOIPT00014;IPT Tx Dados;S2025_00432;0.155;;2025-03-03;;I;STT Coruche;;;;Coruche;;;;L. Vendas Novas_Rede Secundária Voz STT Coruche-Coruche
+15;LOIPT00015;IPT Tx Dados;S2025_00432;2.554;;2025-03-03;;I;Coruche;;;;Qta Grande;;;;L. Vendas Novas_Rede Secundária Voz Coruche-Qta Grande 
+16;LOIPT00016;IPT Tx Dados;S2025_00432;23.5;;2025-03-03;;I;Qta Grande;;;;Canha;;;;L. Vendas Novas_Rede Secundária Voz Qta Grande-Canha
+17;LOIPT00017;IPT Tx Dados;S2025_00432;22.822;;2025-03-03;;I;Canha;;;;Pegões;;;;L. Vendas Novas_Rede Secundária Voz Canha-Pegões
+18;LOIPT00018;IPT Tx Dados;S2025_00432;5.290;;2025-03-03;;I;Barcarena;;;;Amadora;;;;Linha de Sintra_Rede Secundária Voz Barcarena-Amadora
+19;LOIPT00019;IPT Tx Dados;S2025_00432;0.807;;2025-03-03;;I;Amadora;;;;SST Amadora;;;;Linha de Sintra_Rede Secundária Voz Amadora-SST Amadora
+20;LOIPT00020;IPT Tx Dados;S2025_00432;8.325;;2025-03-03;;I;Pragal;;;;SST Fogueteiro;;;;Linha do Sul_Rede Secundária Voz Pragal-SST Fogueteiro
+21;LOIPT00021;IPT Tx Dados;S2025_00432;21.371;;2025-03-03;;I;SST Fogueteiro;;;;Pinhal Novo;;;;Linha do Sul_Rede Secundária Voz SST Fogueteiro-Pinhal Novo
+22;LOIPT00022;IPT Tx Dados;S2025_00432;5.576;;2025-03-03;;I;Praias Sado;;;;Gambia;;;;Linha do Sul_Rede Secundária Voz Praias Sado-Gambia
+23;LOIPT00023;IPT Tx Dados;S2025_00432;18.973;;2025-03-03;;I;Gambia;;;;Pinheiro;;;;Linha do Sul_Rede Secundária Voz Gambia-Pinheiro 
+24;LOIPT00024;IPT Tx Dados;S2025_00432;50.073;;2025-03-03;;I;Pinheiro;;;;Canal Caveira;;;;Linha do Sul_Rede Secundária Voz Pinheiro-Canal Caveira
+25;LOIPT00025;IPT Tx Dados;S2025_00432;15.196;;2025-03-03;;I;Canal Caveira;;;;Lousado;;;;Linha do Sul_Rede Secundária Voz Canal Caveira-Lousado
+26;LOIPT00026;IPT Tx Dados;S2025_00432;3.017;;2025-03-03;;I;Lousado;;;;SST Ermidas;;;;Linha do Sul_Rede Secundária Voz Lousado-SST Ermidas
+27;LOIPT00027;IPT Tx Dados;S2025_00432;1.615;;2025-03-03;;I;SST Ermidas;;;;Ermidas;;;;Linha do Sul_Rede Secundária Voz SST Ermidas-Ermidas 
+28;LOIPT00028;IPT Tx Dados;S2025_00432;8.861;;2025-03-03;;I;Funcheira;;;;Amoreiras;;;;Linha do Sul_Rede Secundária Voz Funcheira-Amoreiras 
+29;LOIPT00029;IPT Tx Dados;S2025_00432;16.185;;2025-03-03;;I;Amoreiras;;;;Luzianes;;;;Linha do Sul_Rede Secundária Voz Amoreiras-Luzianes
+30;LOIPT00030;IPT Tx Dados;S2025_00432;2.051;;2025-03-03;;I;Luzianes;;;;SST Luzianes;;;;Linha do Sul_Rede Secundária Voz Luzianes-SST Luzianes 
+31;LOIPT00031;IPT Tx Dados;S2025_00432;10.070;;2025-03-03;;I;SST Luzianes;;;;Sta. Clara Saboia;;;;Linha do Sul_Rede Secundária Voz SST Luzianes-Sta. Clara Saboia
+32;LOIPT00032;IPT Tx Dados;S2025_00432;21.083;;2025-03-03;;I;Sta. Clara Saboia;;;;São Marcos;;;;Linha do Sul_Rede Secundária Voz Sta. Clara Saboia-São Marcos 
+33;LOIPT00033;IPT Tx Dados;S2025_00432;13.934;;2025-03-03;;I;São Marcos;;;;Messines;;;;Linha do Sul_Rede Secundária Voz São Marcos-Pereiras
+34;LOIPT00034;IPT Tx Dados;S2025_00432;11.663;;2025-03-03;;I;Messines;;;;SST Tunes;;;;Linha do Sul_Rede Secundária Voz Messines-SST Tunes
+35;LOIPT00035;IPT Tx Dados;S2025_00432;0.450;;2025-03-03;;I;SST Tunes;;;;Tunes;;;;Linha do Sul_Rede Secundária Voz Tunes-SST Tunes
+36;LOIPT00036;IPT Tx Dados;S2025_00432;6.32;;2025-03-03;;I;Ermidas;;;;PC/ZN de Ermidas;;;;Linha de Sines_Rede Secundária Voz Ermidas-PC/ZN de Ermidas
+37;LOIPT00037;IPT Tx Dados;S2025_00432;7.906;;2025-03-03;;I;PC/ZN de Ermidas;;;;PC/PN Abela;;;;Linha de Sines_Rede Secundária Voz PC/ZN de Ermidas-PC/PN Abela
+38;LOIPT00038;IPT Tx Dados;S2025_00432;7.267;;2025-03-03;;I;PC/PN Abela;;;;S.Bartolomeu Serra;;;;Linha de Sines_Rede Secundária Voz PC/PN Abela-S.Bartolomeu Serra
+39;LOIPT00039;IPT Tx Dados;S2025_00432;18.927;;2025-03-03;;I;S.Bartolomeu Serra;;;;Raquete;;;;Linha de Sines_Rede Secundária Voz S.Bartolomeu Serra-Raquete
+40;LOIPT00040;IPT Tx Dados;S2025_00432;4.8;;2025-03-03;;I;Raquete;;;;Ramal das Cinzas;;;;Linha de Sines_Rede Secundária Voz Raquete-Ramal das Cinzas
+41;LOIPT00041;IPT Tx Dados;S2025_00432;5.68;;2025-03-03;;I;Ramal das Cinzas;;;;Sines;;;;Linha de Sines_Rede Secundária Voz Ramal das Cinzas-Sines
+42;LOIPT00042;IPT Tx Dados;S2025_00432;13.7;;2025-03-03;;I;Tunes;;;;Boliqueime;;;;Linha do Algarve_Rede Secundária Voz Tunes-Boliqueime
+43;LOIPT00043;IPT Tx Dados;S2025_00432;24.4;;2025-03-03;;I;Boliqueime;;;;Faro;;;;Linha do Algarve_Rede Secundária Voz Boliqueime-Faro
+44;LOIPT00044;IPT Tx Dados;S2025_00432;8.5;;2025-03-03;;I;Tunes;;;;Alcantarinha;;;;Linha do Algarve_Rede Secundária Voz Tunes-Alcantarinha
+45;LOIPT00045;IPT Tx Dados;S2025_00432;8.8;;2025-03-03;;I;Alcantarinha;;;;Silves;;;;Linha do Algarve_Rede Secundária Voz Alcantarinha-Silves
+46;LOIPT00046;IPT Tx Dados;S2025_00432;6.0;;2025-03-03;;I;Silves;;;;Estômbar;;;;Linha do Algarve_Rede Secundária Voz Silves-Estômbar
+47;LOIPT00047;IPT Tx Dados;S2025_00432;13.973;;2025-03-03;;I;Estômbar;;;;Mexilhoeira;;;;Linha do Algarve_Rede Secundária Voz Estômbar-Mexilhoeira
+48;LOIPT00048;IPT Tx Dados;S2025_00432;8.037;;2025-03-03;;I;Mexilhoeira;;;;Lagos;;;;Linha do Algarve_Rede Secundária Voz Mexilhoeira-Lagos
+49;LOIPT00049;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;STT C.Branco;;;;Sarnadas;;;;Rede Secundária Voz STT C.Branco - Sarnadas
+50;LOIPT00050;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Sarnadas;;;;Rodão;;;;Rede Secundária Voz Sarnadas - Rodão
+51;LOIPT00051;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Rodão;;;;Fratel;;;;Rede Secundária Voz Rodão - Fratel
+52;LOIPT00052;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Fratel;;;;B. Amieira;;;;Rede Secundária Voz Fratel - B. Amieira
+53;LOIPT00053;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;B. Amieira;;;;Belver;;;;Rede Secundária Voz B. Amieira - Belver
+54;LOIPT00054;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Belver;;;;Mouriscas A;;;;Rede Secundária Voz Belver - Mouriscas A
+55;LOIPT00055;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Mouriscas A;;;;Mouriscas;;;;Rede Secundária Voz Mouriscas A - Mouriscas
+56;LOIPT00056;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Mouriscas;;;;Aferrarede;;;;Rede Secundária Voz Mouriscas - Aferrarede
+57;LOIPT00057;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Aferrarede;;;;SST Abrantes;;;;Rede Secundária Voz Aferrarede - SST Abrantes
+58;LOIPT00058;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;SST Abrantes;;;;STT Abrantes;;;;Rede Secundária Voz SST Abrantes - STT Abrantes
+59;LOIPT00059;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;STT Abrantes;;;;Tramagal;;;;Rede Secundária Voz STT Abrantes - Tramagal
+60;LOIPT00060;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Tramagal;;;;Sta. Margarida;;;;Rede Secundária Voz Tramagal - Sta. Margarida
+61;LOIPT00061;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Sta. Margarida;;;;P. Ribatejo;;;;Rede Secundária Voz Sta. Margarida - P. Ribatejo
+62;LOIPT00062;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;P. Ribatejo;;;;Almourol;;;;Rede Secundária Voz P. Ribatejo - Almourol
+63;LOIPT00063;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;Almourol;;;;V.N. Barquinha;;;;Rede Secundária Voz Almourol - V.N. Barquinha
+64;LOIPT00064;IPT Tx Dados;S2024_01403;;;2024-09-25;;I;V.N. Barquinha;;;;Entroncamento;;;;Rede Secundária Voz V.N. Barquinha - Entroncamento
