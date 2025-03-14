@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+    <!-- Nova tabela -->
+
+        <table id="lista_ligafo" class="display compact order-column table-fixed" style="display:none">
+            <thead class="bg-ip-main">
+                <tr>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Referência
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Cliente
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                            Dist. óptica (Km)
+                        </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                            Dist. IET50 (Km)
+                        </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Data Encomenda
+                    </span>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Data Entrega
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Estado
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Local A
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Local B
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Observações
+                    </span>
+                    </th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                {% if dligafos %}
+                    {% for ligafo in dligafos %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+                                    <a class="btn btn-success btn-sm" href=#">{{ligafo.referencia}}</a>  
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.cliente}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.dist_optica}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.dist_iet}}
+                                </td>                                
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.data_pedido}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.data_entrega}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.estado}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.local_a}}
+                                </td>                        
+                                <td class="px-3 py-1 text-sm">
+                                    {{ligafo.local_b}}
+                                </td>        
+                                <td class="px-3 py-1 text-xs">
+                                    {{ligafo.observacoes}}
+                                </td>                         
+
+
+                            </tr>
+
+                            
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+        <script>
+
+ 
+
+            let table = new simpleDatatables.DataTable("#lista_ligafo", {
+                deferRender: true,
+                searchable: true,
+                paging: true,
+                perPage: 10,
+                perPageSelect: [5, 10, 15, 20, 25],
+                sortable: true,
+                sortable: true,
+                orderClasses: false,
+                
+            });
+            $('#lista_ligafo').show();
+        </script>
+
+
+
+
+
+{% endblock %}

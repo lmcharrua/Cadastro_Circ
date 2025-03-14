@@ -35,3 +35,8 @@ def criar_ligafo(request):
     context = {'form':form}
     return render(request, 'ligafo/criar_ligafo.html', context=context)
 
+@login_required(login_url='login')
+def desligados_ligafo(request):
+    desligados_ligafo = ligafo.objects.filter(estado='D')
+    context = {'dligafos': desligados_ligafo}
+    return render(request, 'ligafo/desligados_ligafo.html', context=context)
