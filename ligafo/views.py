@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -17,12 +18,16 @@ def lista_ligafo(request):
 @login_required(login_url='login')
 def editar_ligafo(request, pk):
     l = ligafo.objects.get(id=pk)
+    net = request.GET.get('next')
+    print (net)
     form = LigafoForm(instance=l)
     if request.method == 'POST':
         form = LigafoForm(request.POST, instance=l)
+
         if form.is_valid():
             form.save()
-            return redirect('lista_ligafo')
+
+            return redirect(net)   
     context = {'form':form}
     return render(request, 'ligafo/editar_ligafo.html', context=context)
 
