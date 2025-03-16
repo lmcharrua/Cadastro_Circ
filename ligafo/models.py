@@ -1,9 +1,11 @@
 from django.db import models
+from django.db.models import Max
+from django.utils.functional import cached_property
 
 # Create your models here.
 class ligafo(models.Model):
     referencia = models.CharField(max_length=20, blank=True, null=True, verbose_name='Referência', help_text='Referência')
-    cliente = models.CharField(max_length=100, blank=True, null=True, verbose_name='Cliente', help_text='Cliente')
+    cliente = models.CharField(max_length=100, blank=False, null=False, verbose_name='Cliente', help_text='Cliente')
     encomenda = models.CharField(max_length=20, blank=True, null=True, verbose_name='Encomenda', help_text='Encomenda')
     dist_iet = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True, verbose_name='Distância km IET50', help_text='Distância km IET50')
     dist_optica = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True, verbose_name='Distância km ótica', help_text='Distância km ótica')
@@ -21,21 +23,19 @@ class ligafo(models.Model):
     observacoes = models.TextField(max_length=150, blank=True, null=True, verbose_name='Observações', help_text='Observações')
 
     def save(self, *args, **kwargs):
+        print(self.referencia)
         if not self.referencia:
             self.referencia = self.gera_ref()
         super().save(*args, **kwargs)
 
     @classmethod
-    def gera_ref(cls)
-        prefix = "LOIPT"
-        last_ref = cls.objects.aaggregate
-        (max_ref=Max('referencia'))['max_ref']
-        if last_ref:
-            last_number = int(last_ref.replace(prefix,""))
-            new_number = last_number + 1
-        else:
-            new_number = 1
-        return f"{prefix}{new_number:05d}"
+    def gera_ref(ligafo):
+        prefix="LOIPT"
+        refe = ligafo.objects.aggregate(Max('referencia'))
+        x = refe.get('referencia__max')
+        ultimo = int(x[5:])
+        next = ultimo + 1
+        return f"{prefix}{next:05d}"
 
     class Meta:
         ordering = ['referencia']

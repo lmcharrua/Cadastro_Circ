@@ -2703,7 +2703,7 @@ for item in circuitos:
     # Check if the number part is numeric
     if number_part.isdigit() and int(number_part) < 200000:
         number = int(number_part)
-        
+      
         # Check prefix and update max values
         if prefix == "rft":
             if max_rft is None or number > max_rft:

@@ -23,16 +23,22 @@
                     <input type="text" id="ref" name="referencia" placeholder="Deixar em branco para gerar referência automática" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                 </div>  
                 <div class="col-span-1 p-1">
+                    <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">Cliente:</label>
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    </div>
+                    <input type="text" id="cli" name="cliente" placeholder="Nome do cliente" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                </div>                 
+                <div class="col-span-1 p-1">
                     <label for="distiet" class="block mb-1 text-xs font-medium text-gray-900">Distância ITE50 (Km):</label>
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                     </div>
-                    <input type="number" id="datainst" name="dist_iet" pattern="\d{1,3}\.\d{3}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    <input type="number" id="distiet" name="dist_iet" pattern="\d{1,3}\.\d{3}" step="0.001" placeholder="000.000" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                 </div>           
                 <div class="col-span-1 p-1">
                     <label for="distopt" class="block mb-1 text-xs font-medium text-gray-900">Distância óptica (Km):</label>
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                     </div>
-                    <input type="number" id="distopt" name="dist_optica" pattern="\d{1,3}\.\d{3}"  class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    <input type="number" id="distopt" name="dist_optica" pattern="\d{1,3}\.\d{3}" step="0.001" placeholder="000.000"  class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                 </div>
 
             </div>
@@ -62,7 +68,7 @@
                     <label for="locala" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Local A</label>
                   </div>
                   <div class="relative pb-2">
-                    <input type="text" id="equipa" name="eauipa_a" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <input type="text" id="equipa" name="equipa_a" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                     <label for="equipa" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento local A</label>
                   </div>
                   <div class="relative pb-2">
