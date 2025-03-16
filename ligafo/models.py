@@ -20,6 +20,23 @@ class ligafo(models.Model):
     porta_b = models.CharField(max_length=20, blank=True, null=True, verbose_name='Porta B', help_text='Porta B')
     observacoes = models.TextField(max_length=150, blank=True, null=True, verbose_name='Observações', help_text='Observações')
 
+    def save(self, *args, **kwargs):
+        if not self.referencia:
+            self.referencia = self.gera_ref()
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def gera_ref(cls)
+        prefix = "LOIPT"
+        last_ref = cls.objects.aaggregate
+        (max_ref=Max('referencia'))['max_ref']
+        if last_ref:
+            last_number = int(last_ref.replace(prefix,""))
+            new_number = last_number + 1
+        else:
+            new_number = 1
+        return f"{prefix}{new_number:05d}"
+
     class Meta:
         ordering = ['referencia']
 

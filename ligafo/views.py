@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpRequest, request
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
 from .forms import LigafoForm
+
 
 # Create your views here.
 
@@ -19,7 +20,7 @@ def lista_ligafo(request):
 def editar_ligafo(request, pk):
     l = ligafo.objects.get(id=pk)
     net = request.GET.get('next')
-    print (net)
+
     form = LigafoForm(instance=l)
     if request.method == 'POST':
         form = LigafoForm(request.POST, instance=l)
