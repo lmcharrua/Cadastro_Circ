@@ -2734,3 +2734,12 @@ print("Max for RFD:", max_rfd if max_rfd is not None else "No valid RFD data")
 print("Max for IP:", max_ip if max_ip is not None else "No valid IP data")
 print("Next RFT:", next_FRT_string)
 
+
+from functools import reduce
+from circuitos.models import Circuitos
+lcirc=list(Circuitos.objects.values_list('N_Circuito', flat = True).filter(N_Circuito__startswith='RFT'))
+res=reduce(lambda acc, x: acc + [x[3:]], lcirc, [])
+res2 = list(map(int, res))
+res3=[x for x in res2 if x <= 200000]
+next=max(res3)+1
+next

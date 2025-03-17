@@ -1,4 +1,5 @@
 from django.db import models
+from functools import reduce
 
 # Create your models here.
 
@@ -22,12 +23,25 @@ class Circuitos(models.Model):
     Equip_PTR2 = models.CharField(max_length=20, blank=True)
     Slot_PTR2 = models.CharField(max_length=5, default='---', blank=True)
     Trib_PTR2 = models.CharField(max_length=10, default='---', blank=True)
-    User_Cct = models.TextField(max_length=150, default='')
+    User_Cct = models.TextField(max_length=150, blank=False, null=False)
     Propriedade_Cct = models.TextField(max_length=150, default='', blank=True)
     Outras_Ref = models.TextField(max_length=150, default='', blank=True)
  
- 
+    def save(self, *args, **kwargs):
+        if not self.N_Circuito:
+            self.N_Circuito = self.gera_N_circ()
+        super().save(*args, **kwargs)
     
+    @classmethod
+    def gera_N_circ(circuito):
+        prefix="RFT"
+        lcirc=list(Circuitos.objects.values_list('N_Circuito', flat = True).filter(N_Circuito__startswith='RFT'))
+        res=reduce(lambda acc, x: acc + [x[3:]], lcirc, [])
+        res2 = list(map(int, res))
+        res3=[x for x in res2 if x <= 200000]
+        next=max(res3)+1
+        return f"{prefix}{next:06d}"
+
     class Meta:
         ordering = ['N_Circuito']
     
