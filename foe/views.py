@@ -14,7 +14,7 @@ from .forms import circfoeForm, cria_circfoeForm
 def lista_foe(request):
     l_foe = circfoe.objects.exclude(estado='D')
     context = {'l_foe': l_foe}
-    return render(request, 'ligafo/lista_foe.html', context=context)
+    return render(request, 'foe/lista_foe.html', context=context)
 
 @login_required(login_url='userlogin')
 def editar_foe(request, pk):
@@ -30,7 +30,7 @@ def editar_foe(request, pk):
 
             return redirect(net)   
     context = {'form':form}
-    return render(request, 'ligafo/editar_foe.html', context=context)
+    return render(request, 'foe/editar_foe.html', context=context)
 
 @login_required(login_url='userlogin')
 def criar_foe(request):
@@ -39,10 +39,10 @@ def criar_foe(request):
         form.save()
         return redirect('lista_foe')
     context = {'form':form}
-    return render(request, 'ligafo/criar_foe.html', context=context)
+    return render(request, 'foe/criar_foe.html', context=context)
 
 @login_required(login_url='userlogin')
 def desligados_foe(request):
-    desligados_foe = circfoe.objects.filter(estado='D')
-    context = {'dlfoe': desligados_foe}
-    return render(request, 'ligafo/desligados_foe.html', context=context)
+    dlfoe = circfoe.objects.filter(estado='D')
+    context = {'dlfoe': dlfoe}
+    return render(request, 'foe/desligados_foe.html', context=context)

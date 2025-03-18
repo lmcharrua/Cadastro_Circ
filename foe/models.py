@@ -18,6 +18,20 @@ class circfoe(models.Model):
     ligacao_b = models.CharField(max_length=20, null=True)
     observacoes = models.TextField(max_length=150, verbose_name='Observações', help_text='Observações', null=True)
 
+    def save(self, *args, **kwargs):
+        print(self.referencia)
+        if not self.referencia:
+            self.referencia = self.gera_ref()
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def gera_ref(circfoe):
+        prefix="RTFOE"
+        refe = circfoe.objects.aggregate(Max('referencia'))
+        x = refe.get('referencia__max')
+        ultimo = int(x[5:])
+        next = ultimo + 1
+        return f"{prefix}{next:04d}"
     class Meta:
         ordering = ['referencia']
 

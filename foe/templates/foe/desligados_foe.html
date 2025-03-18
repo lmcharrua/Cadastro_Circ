@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+    <!-- Nova tabela -->
+
+        <table id="lista_foe" class="display compact order-column table-fixed" style="display:none">
+            <thead class="bg-ip-main">
+                <tr>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Referência
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Encomenda
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Cliente
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Estado
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Tipo Ocup.
+                    </span>
+                    </th>                    
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Data Objectivo
+                    </span>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Data Entrega
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                            Dist. Km (Km)
+                        </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                            Dist. Óptica (Km)
+                        </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Local A
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Local B
+                    </span>
+                    </th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                {% if dlfoe %}
+                    {% for lfoe in dlfoe %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' lfoe.id %}?next=lista_foe">{{lfoe.referencia}}</a>
+                                            
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.encomenda}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.cliente}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.estado}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.tipo_ocupa}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.data_obj}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.data_entrega}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.dist_km}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.dist_optica}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.local_a}}
+                                </td>                        
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.local_b}}
+                                </td>
+                            </tr>
+
+                            
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+        <script>
+
+ 
+
+            let table = new simpleDatatables.DataTable("#lista_foe", {
+                deferRender: true,
+                searchable: true,
+                paging: true,
+                perPage: 10,
+                perPageSelect: [5, 10, 15, 20, 25],
+                sortable: true,
+                sortable: true,
+                orderClasses: false,
+                
+            });
+            $('#lista_foe').show();
+        </script>
+
+
+
+
+
+{% endblock %}
