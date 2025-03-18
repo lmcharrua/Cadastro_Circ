@@ -23,5 +23,6 @@ urlpatterns = [
     path('circuitos/', include('circuitos.urls')),
     path('cartas/',include('cartas.urls')),
     path('ligafo/',include('ligafo.urls')),
+    path('foe/',include('foe.urls')),
     path('dados/',include('dados.urls')),
 ]

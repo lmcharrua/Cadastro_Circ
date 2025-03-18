@@ -12,7 +12,7 @@
 
     <!-- Nova tabela -->
 
-        <table id="lista_ligafo" class="display compact order-column table-fixed" style="display:none">
+        <table id="lista_foe" class="display compact order-column table-fixed" style="display:none">
             <thead class="bg-ip-main">
                 <tr>
                     <th class="text-sm bg-ipt-main text-white">
@@ -22,22 +22,27 @@
                     </th>
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
+                        Encomenda
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
                         Cliente
                     </span>
                     </th>
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
-                            Dist. óptica (Km)
-                        </span>
+                        Estado
+                    </span>
                     </th>
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
-                            Dist. IET50 (Km)
-                        </span>
-                    </th>
+                        Tipo Ocup.
+                    </span>
+                    </th>                    
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
-                        Data Encomenda
+                        Data Objectivo
                     </span>
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
@@ -46,8 +51,13 @@
                     </th>
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
-                        Estado
-                    </span>
+                            Dist. Km (Km)
+                        </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                            Dist. Óptica (Km)
+                        </span>
                     </th>
                     <th class="text-sm bg-ipt-main text-white">
                         <span class="flex items-center">
@@ -59,77 +69,85 @@
                         Local B
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Observações
-                    </span>
-                    </th>
                 </tr>
             </thead>
 
 
             <tbody>
-                {% if ligafos %}
-                    {% for ligafo in ligafos %}
-                        {% if "A" in ligafo.estado %}
+                {% if l_foe %}
+                    {% for lfoe in l_foe %}
+                        {% if "A" in lfoe.estado %}
                             <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
                         {% else %}
                             <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
                         {% endif %}
                                 <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
-                                    <a class="btn btn-success btn-sm" href="{% url 'editar_ligafo' ligafo.id %}?next=lista_ligafo">{{ligafo.referencia}}</a>
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' lfoe.id %}?next=lista_foe">{{lfoe.referencia}}</a>
                                             
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.cliente}}
+                                    {{lfoe.encomenda}}
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.dist_optica}}
+                                    {{lfoe.cliente}}
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.dist_iet}}
-                                </td>                                
-                                <td class="px-3 py-1 text-sm">
-                                    {{ligafo.data_pedido}}
+                                    {{lfoe.estado}}
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.data_entrega}}
+                                    {{lfoe.tipo_ocupa}}
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.estado}}
+                                    {{lfoe.data_obj}}
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.local_a}}
+                                    {{lfoe.data_entrega}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.dist_km}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.dist_optica}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{lfoe.local_a}}
                                 </td>                        
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.local_b}}
-                                </td>        
-                                <td class="px-3 py-1 text-xs">
-                                    {{ligafo.observacoes}}
-                                </td>                         
+                                    {{lfoe.local_b}}
+                                </td>
                             </tr>
+
+                            
+   
                     {% endfor %}
                 {% endif %}
             </tbody>
         </table>
+    
 </div>
-
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-<script>
-    let table = new simpleDatatables.DataTable("#lista_ligafo", {
-        deferRender: true,
-        searchable: true,
-        paging: true,
-        perPage: 10,
-        perPageSelect: [5, 10, 15, 20, 25],
-        sortable: true,
-        sortable: true,
-        orderClasses: false,
-        
-    });
-    $('#lista_ligafo').show();
-</script>
+        <script>
+
+ 
+
+            let table = new simpleDatatables.DataTable("#lista_foe", {
+                deferRender: true,
+                searchable: true,
+                paging: true,
+                perPage: 10,
+                perPageSelect: [5, 10, 15, 20, 25],
+                sortable: true,
+                sortable: true,
+                orderClasses: false,
+                
+            });
+            $('#lista_foe').show();
+        </script>
+
+
+
+
 
 {% endblock %}

@@ -11,7 +11,7 @@
 {% endif %}
 
     <!-- Nova tabela -->
-
+    <div>
         <table id="lista_circuitos" class="display compact order-column table-fixed" style="display:none">
             <thead class="bg-ip-main">
                 <tr>
@@ -102,8 +102,8 @@
                 {% endif %}
             </tbody>
         </table>
-    
-</div>
+    </div>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
@@ -115,7 +115,7 @@
                 deferRender: true,
                 searchable: true,
                 paging: true,
-                perPage: 12,
+                perPage: 10,
                 perPageSelect: [5, 10, 15, 20, 25],
                 sortable: true,
                 sortable: true,
@@ -124,7 +124,7 @@
             });
             $('#lista_circuitos').show();
         </script>
-
+    
 
 
 
