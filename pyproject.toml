@@ -14,7 +14,9 @@ dependencies = [
     "django-import-export>=4.3.6",
     "django-simple-history>=3.8.0",
     "fontawesomefree>=6.6.0",
+    "gunicorn>=23.0.0",
     "mysqlclient>=2.2.7",
+    "whitenoise>=6.9.0",
 ]
 
 [dependency-groups]
