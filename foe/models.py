@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Max
+from django.utils.functional import cached_property
 
 # Create your models here.
 class circfoe(models.Model):

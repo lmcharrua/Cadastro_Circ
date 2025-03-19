@@ -84,13 +84,13 @@
                 <div id="dropdown_foe" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
                     <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
                     <li>
-                        <a href="#" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                        <a href="{% url 'lista_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
                     </li>
                     <li>
-                        <a href="#" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
+                        <a href="{% url 'criar_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
                     </li>
                     <li>
-                        <a href="#" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
+                        <a href="{% url 'desligados_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
                     </li>
                     </ul>
                 </div>
