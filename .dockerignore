@@ -2,3 +2,4 @@
 .venv/
 Dockerfile
 .vscode
+docker-compose.yaml

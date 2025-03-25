@@ -4,7 +4,7 @@ from django.utils.functional import cached_property
 
 # Create your models here.
 class circfoe(models.Model):
-    referencia = models.CharField(max_length=20, verbose_name='Referência', null=True, help_text='Referência')
+    referencia = models.CharField(max_length=20, verbose_name='Referência', help_text='Referência')
     encomenda = models.CharField(max_length=20, default="ref encomenda", verbose_name='Encomenda', help_text='Encomenda')
     cliente = models.CharField(max_length=30, blank=True, null=True, verbose_name='Cliente', help_text='Cliente')
     dist_km = models.DecimalField(max_digits=6, decimal_places=3, default="000.000", verbose_name='Distância Kilométrica', help_text='Distância km IET50')
@@ -33,6 +33,7 @@ class circfoe(models.Model):
         x = refe.get('referencia__max')
         ultimo = int(x[5:])
         next = ultimo + 1
+        print (next)
         return f"{prefix}{next:04d}"
     class Meta:
         ordering = ['referencia']
