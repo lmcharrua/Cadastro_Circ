@@ -4,7 +4,7 @@ from functools import reduce
 # Create your models here.
 
 class Circuitos(models.Model):
-    N_Circuito = models.CharField(max_length=20, help_text = 'Numero/referencia de Circuito', verbose_name = 'Número de circuito')
+    N_Circuito = models.CharField(max_length=20, help_text = 'Numero/referencia de Circuito', blank=True, verbose_name = 'Número de circuito')
     Data_Rate = models.CharField(max_length=10)
     Data_Inst = models.DateField(auto_now=False, auto_now_add=False)
     Data_Activ = models.DateField(auto_now=False, auto_now_add=False, blank=True)

@@ -11,20 +11,5 @@ class cria_circfoeForm(forms.ModelForm):
 
     class Meta:
         model = circfoe
-        fields = [
-            'referencia',
-            'encomenda',
-            'cliente',
-            'dist_km',
-            'dist_optica',
-            'data_obj',
-            'data_entrega',
-            'data_ocupa',
-            'estado',
-            'local_a',
-            'ligacao_a',
-            'local_b',
-            'ligacao_b',
-            'observacoes',
-        ]
+        fields = "__all__"
     
