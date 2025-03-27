@@ -1,22 +1,24 @@
 from django.db import models
 from functools import reduce
+from django.db.models import Max
+from django.utils.functional import cached_property
 
 # Create your models here.
 
 class Circuitos(models.Model):
     N_Circuito = models.CharField(max_length=20, help_text = 'Numero/referencia de Circuito', blank=True, verbose_name = 'Número de circuito')
     Data_Rate = models.CharField(max_length=10)
-    Data_Inst = models.DateField(auto_now=False, auto_now_add=False)
+    Data_Inst = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Data_Activ = models.DateField(auto_now=False, auto_now_add=False, blank=True)
     Estado_Cct = models.TextField(max_length=150, default='Definido')
-    Entidade_PTR1 = models.CharField(max_length=30)
+    Entidade_PTR1 = models.CharField(max_length=30, blank=False)
     Morada_PTR1 = models.TextField(max_length=150, default='', blank=True)
     Cod_Post_PTR1 = models.CharField(max_length=50, blank=True)
     Interface_PTR1 = models.CharField(max_length=30, blank=True)
     Equip_PTR1 = models.CharField(max_length=20, blank=True)
     Slot_PTR1 = models.CharField(max_length=5, default='---', blank=True)
     Trib_PTR1 = models.CharField(max_length=10, default='---', blank=True)
-    Entidade_PTR2 = models.CharField(max_length=30)
+    Entidade_PTR2 = models.CharField(max_length=30, blank=False)
     Morada_PTR2 = models.TextField(max_length=150, default='', blank=True)
     Cod_Post_PTR2 = models.CharField(max_length=50, blank=True)
     Interface_PTR2 = models.CharField(max_length=30, blank=True)
@@ -40,6 +42,7 @@ class Circuitos(models.Model):
         res2 = list(map(int, res))
         res3=[x for x in res2 if x <= 200000]
         next=max(res3)+1
+        print(next)
         return f"{prefix}{next:06d}"
 
     class Meta:
