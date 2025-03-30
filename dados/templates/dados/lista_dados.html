@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+    <!-- Nova tabela -->
+
+        <table id="lista_dados" class="display compact order-column table-fixed" style="display:none">
+            <thead class="bg-ip-main">
+                <tr>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        ISID
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        ISID Name
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Service Type
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        MUX Mode
+                    </span>
+                    </th>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Connect Type
+                    </span>
+                    </th>                    
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        VLAN Translation
+                    </span>
+                    <th class="text-sm bg-ipt-main text-white">
+                        <span class="flex items-center">
+                        Cliente
+                    </span>
+                    </th>
+                    
+                </tr>
+            </thead>
+
+
+            <tbody>
+                {% if l_dados %}
+                    {% for ldados in l_dados %}
+                        {% if "A" in ldados.estado %}
+                            <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+                        {% else %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                        {% endif %}
+                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_dados' ldados.id %}">{{ldados.ISID}}</a>
+                                            
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ldados.ISID_name}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ldados.Service_type}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ldados.Mux_mode}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ldados.Connect_type}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ldados.VLAN_translation}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{ldados.Cliente}}
+                                </td>
+                                
+                            </tr>
+
+                            
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+        <script>
+
+ 
+
+            let table = new simpleDatatables.DataTable("#lista_dados", {
+                deferRender: true,
+                searchable: true,
+                paging: true,
+                perPage: 10,
+                perPageSelect: [5, 10, 15, 20, 25],
+                sortable: true,
+                sortable: true,
+                orderClasses: false,
+                
+            });
+            $('#lista_dados').show();
+        </script>
+
+
+
+
+
+{% endblock %}
