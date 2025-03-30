@@ -15,13 +15,12 @@ def lista_dados(request):
 
 @login_required(login_url='userlogin')
 def editar_dados(request, pk):
-    l = serv_dados.objects.get(id=pk)
+    lisid = serv_dados.objects.get(id=pk)
     term = serv_dados.terminacao_set.all()
-    net = request.GET.get('next')
 
     form = ServDadosForm(instance=l)
     if request.method == 'POST':
-        form = ServDadosForm(request.POST, instance=l)
+        form = ServDadosForm(request.POST, instance=lisid)
 
         if form.is_valid():
             form.save()
@@ -35,7 +34,7 @@ def criar_dados(request):
     form = criarservdadosForm(request.POST)
     if form.is_valid():
         form.save()
-        return redirect('lista_dados')
+        return redirect('editar_dados')
     context = {'form':form}
     return render(request, 'dados/criar_dados.html', context=context)
 

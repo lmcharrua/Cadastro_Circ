@@ -1,2 +1,27 @@
 // start fade out in one second, take 300ms to fade
 $('#mydiv').delay(1000).fadeOut(300); 
+
+
+Diversos Dados
+
+Service_type
+Pseudowire      P
+Switched        S
+Transparent     T
+none            N
+
+Mux Mode
+Ono-to-one      OTO
+Many-to-one     MTO
+none            N
+
+Connect Type
+Point-to-Point              PTP 
+Multipoint-to-Multipoint    MTM
+Pseudowire                  P
+none                        N
+
+VLAN Translation
+Yes                         Yes
+No                          No
+none                        N
