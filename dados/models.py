@@ -10,7 +10,7 @@ class serv_dados(models.Model):
     Connect_type = models.CharField(max_length=100) # Allow blank=True
     VLAN_translation = models.CharField(max_length=100) # Allow blank=True
     Cliente = models.CharField(max_length=100) 
-    Notas = models.CharField(max_length=100)    # Allow blank=True
+    Notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
     class Meta:
         ordering = ['ISID']
 

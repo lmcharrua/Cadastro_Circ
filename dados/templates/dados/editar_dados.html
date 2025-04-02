@@ -13,7 +13,7 @@
             <h1 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">{{form.ISID.value}}</h1>
 
             <!-- General Fields (Full-width) -->
-             <div class="border rounded-lg p-1 gap-1.5">
+             <div class="border rounded-lg p-1 gap-1.5 pb-1.5">
 
             <div class=" grid grid-cols-2 rounded-b-lg  gap-1.5">
                 <div class="col-span-1 p-1">
@@ -87,7 +87,58 @@
                     </textarea>
                 </div>
             </div>
+
+        </div>
+        <div class="p-1"></div>
+        <div class="border rounded-lg p-1 gap-1.5 mt-1.5">
+            <table class="table-auto w-full text-sm text-left text-gray-500">
+                <thead class="bg-ip-main">
+                    <tr>
+                        <th class="text-sm bg-ipt-main text-white">
+                            <span class="flex items-center">
+                            Local
+                        </span>
+                        </th>
+                        <th class="text-sm bg-ipt-main text-white">
+                            <span class="flex items-center">
+                            Equipamento
+                        </span>
+                        </th>
+                        <th class="text-sm bg-ipt-main text-white">
+                            <span class="flex items-center">
+                            SAP
+                        </span>
+                        </th>
+                        <th class="text-sm bg-ipt-main text-white">
+                            <span class="flex items-center">
+                            Notas
+                        </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in term %}
+                        <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+                            <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+                                <a class="btn btn-success btn-sm" href="">{{t.Local}}</a>
+                                        
+                            </td>
+                            <td class="px-3 py-1 text-sm">
+                                {{t.Equipamento}}
+                            </td>
+                            <td class="px-3 py-1 text-sm">
+                                {{t.SAP}}
+                            </td>
+                            <td class="px-3 py-1 text-sm">
+                                {{t.Notas}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
             </div>
+        
 
             <!-- Two-column group of fields -->
             
@@ -100,5 +151,5 @@
             </div>
         </form>
      </div>
-    </div>
+
 {% endblock content %}
