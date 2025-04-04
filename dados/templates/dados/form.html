@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load tailwind_filters %}
+
+{% block content %}
+<!-- Form Container -->
+    <div class="overflow-y-auto scroll-m-0">
+        <!-- Form -->
+        <form   method="POST">
+            <h1 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">Terminação</h1>
+            <div class="border rounded-lg p-1 gap-1.5 pb-1.5"></div>
+                <div class=" grid grid-cols-3 rounded-b-lg  gap-1.5">
+                    <div class="col-span-1 p-1">
+                        <label for="ref" class="block mb-1 text-xs font-medium text-gray-900">ISID:</label>
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        </div>
+                        <input type="text" id="ref" name="ISID" value="{{form.Local.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    </div>  
+                    <div class="col-span-1 p-1">
+                        <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">ISID Name:</label>
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        </div>
+                        <input type="text" id="cli" name="ISID_name" value="{{form.Equipamento.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    </div>      
+                    <div class="col-span-1 p-1">
+                        <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">ISID Name:</label>
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        </div>
+                        <input type="text" id="cli" name="ISID_name" value="{{form.SAP.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    </div>   
+                </div>
+                <div class="col-span-3 px-2 gap-1.5">
+                    <label for="notas" name="Notas" class="block mb-1 text-xs font-medium text-gray-900">Notas</label>
+                    <textarea rows="3" type="text" id="notas" name="Notas" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" />{{form.Notas.value}}
+                    </textarea>
+                </div>
+            </div>
+        </form>
+        <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Submit
+        </button>
+    </div>
+

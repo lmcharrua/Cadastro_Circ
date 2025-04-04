@@ -34,16 +34,19 @@ def editar_dados(request, pk):
     term = lisid.terminacao_set.all()
 
     form = ServDadosForm(instance=lisid)
-    if request.method == 'POST':
-        form = ServDadosForm(request.POST, instance=lisid)
-
-        if form.is_valid():
-            form.save()
-            return redirect('lista_dados')
-        print(form.errors)
-
-    context = {'form':form,
+    context = {'form': form,
                'term': term
                }
     return render(request, 'dados/editar_dados.html', context=context)
+
+def criar_term(request, pk):
+    if request.method == 'POST':
+        form = criarterminacaoForm(request.POST or None)
+        if form.is_valid():
+            terminacao = form.save()
+            context = {'terminacao': terminacao}
+            return render(request, 'dados/term.html', context )
+    return render(request, 'dados/form.html', {'form': criarterminacaoForm()})
+
+
 

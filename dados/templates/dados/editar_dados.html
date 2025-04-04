@@ -91,50 +91,30 @@
         </div>
         <div class="p-1"></div>
         <div class="border rounded-lg p-1 gap-1.5 mt-1.5">
-            <table class="table-auto w-full text-sm text-left text-gray-500">
-                <thead class="bg-ip-main">
+            <table class="table-auto w-full text-sm text-gray-500 text-center">
+                <thead class="bg-ip-main text-center">
                     <tr>
                         <th class="text-sm bg-ipt-main text-white">
-                            <span class="flex items-center">
+
+                              
+                        </th>
+                        <th class="text-sm bg-ipt-main text-white">
                             Local
-                        </span>
                         </th>
                         <th class="text-sm bg-ipt-main text-white">
-                            <span class="flex items-center">
                             Equipamento
-                        </span>
                         </th>
                         <th class="text-sm bg-ipt-main text-white">
-                            <span class="flex items-center">
                             SAP
-                        </span>
                         </th>
                         <th class="text-sm bg-ipt-main text-white">
-                            <span class="flex items-center">
                             Notas
-                        </span>
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    {% for t in term %}
-                        <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
-                            <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
-                                <a class="btn btn-success btn-sm" href="">{{t.Local}}</a>
-                                        
-                            </td>
-                            <td class="px-3 py-1 text-sm">
-                                {{t.Equipamento}}
-                            </td>
-                            <td class="px-3 py-1 text-sm">
-                                {{t.SAP}}
-                            </td>
-                            <td class="px-3 py-1 text-sm">
-                                {{t.Notas}}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
+                    <tbody id=listaterdet"">
+                        {% url 'dados/term.html' %}
+                    </tbody>
             </table>
                 
             </div>

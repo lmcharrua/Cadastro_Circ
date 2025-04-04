@@ -28,16 +28,6 @@ class criarservdadosForm(forms.ModelForm):
                   'Notas',
         ]
 class terminacaoForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = ModalEditFormHelper()
-        self.helper.layout = ModalEditLayout(
-            "Local",
-            "Equipamento",
-            "SAP",
-            "Notas",
-        )
-
     class Meta:
         model = terminacao
         fields = "__all__"
