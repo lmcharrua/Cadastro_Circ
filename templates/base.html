@@ -13,7 +13,7 @@
             <script src="{% static 'js/htmx.min.js'%}"></script>
             
     </head>
-    <body class="bg-primary bg-opacity-65 overscroll-contain">
+    <body class="bg-primary bg-opacity-65 overscroll-contain" >
         {% if user.is_authenticated %}
             {% include 'navbar.html' %}
         {% endif %}
