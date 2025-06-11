@@ -39,6 +39,7 @@ def editar_dados(request, pk):
                }
     return render(request, 'dados/editar_dados.html', context=context)
 
+@login_required(login_url='userlogin')
 def criar_term(request,pk):
     if request.method == 'POST':
         form = criarterminacaoForm(request.POST or None)
