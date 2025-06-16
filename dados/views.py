@@ -31,25 +31,36 @@ def criar_dados(request):
 @login_required(login_url='userlogin')
 def editar_dados(request, pk):
     lisid = serv_dados.objects.get(id=pk)
-    terminacao = lisid.terminacao_set.all()
+    term = lisid.terminacao_set.all()
 
     form = ServDadosForm(instance=lisid)
     context = {'form': form,
-               'term': terminacao,
+               'term': term,
+               'tt'  : pk,
                }
     return render(request, 'dados/editar_dados.html', context=context)
 
 @login_required(login_url='userlogin')
-def criar_term(request,pk):
+def criar_term(request):
     if request.method == 'POST':
+        form1 = ServDadosForm(request.POST or None)
         form = criarterminacaoForm(request.POST or None)
+
         if form.is_valid():
-            terminacao = form.save()
-            context = {'terminacao': terminacao}
-            return render(request, 'dados/term.html', context )
+            term = form.save()
+            context = {'t': term}
+            
+            return render(request, 'dados/linha_term.html', context ) 
         else:
+            print(form1.errors)
             print(form.errors)
-    return render(request, 'dados/form.html', {'form': criarterminacaoForm(), 'misid': pk})
+    else:
+        net = request.GET.get('id')
+        cform = criarterminacaoForm(None)
+        context = {'form': cform, 
+                   'next': net}
+        
+        return render(request, 'dados/form.html', context=context)
 # a chamada ao view tem que incluir o ISID que deve ser passado no context para o template
 
 

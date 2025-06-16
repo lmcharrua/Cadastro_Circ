@@ -7,71 +7,65 @@
     <div class="container overscroll-y-auto mx-auto p-4 bg-white rounded-lg shadow-lg mt-8">
         <div id="terdet" class="overflow-y-auto scroll-m-0">
             <!-- Form -->
-            <form id="formdetalhe">
+            <form id="formdetalhe" name="detalhe">
                 {% csrf_token %}  
-                
                 <h1 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">{{form.ISID.value}}</h1>
-
                 <!-- General Fields (Full-width) -->
                 <div class="border rounded-lg p-1 gap-1.5 pb-1.5">
-
-                <div class=" grid grid-cols-2 rounded-b-lg  gap-1.5">
-                    <div class="col-span-1 p-1">
-                        <label for="ref" class="block mb-1 text-xs font-medium text-gray-900">ISID:</label>
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                        </div>
-                        <input type="text" id="ref" name="ISID" value="{{form.ISID.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
-                    </div>  
-                    <div class="col-span-1 p-1">
-                        <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">ISID Name:</label>
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                        </div>
-                        <input type="text" id="cli" name="ISID_name" value="{{form.ISID_name.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
-                    </div>                 
-                    <div class="col-span-1 p-1">
-                        <label for="servtype" name="Service_type" class="block mb-1 text-xs font-medium text-gray-900">Service Type</label>
-                        <select name="Service_type" id="servtype" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
-                            <option value="P" {% if form.Service_type.value == "P" %} Selected {% endif %}>Pseudowire</option>
-                            <option value="S" {% if form.Service_type.value == "S" %} Selected {% endif %}>Switched</option>
-                            <option value="T" {% if form.Service_type.value == "T" %} Selected {% endif %}>Transparent</option>
-                            <option value="N" {% if form.Service_type.value == "N" %} Selected {% endif %}>none</option>
-                        </select>
-                    </div>             
-                    <div class="col-span-1 p-1">
-                        <label for="muxmode" name="Mux_mode" class="block mb-1 text-xs font-medium text-gray-900">MUX Mode</label>
-                        <select name="Mux_mode" id="muxmode" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
-                            <option value="OTO" {% if form.Mux_mode.value == "OTO" %} Selected {% endif %}>One-to-one</option>
-                            <option value="MTM" {% if form.Mux_mode.value == "MTM" %} Selected {% endif %}>Many-to-many</option>
-                            <option value="N" {% if form.Mux_mode.value == "N" %} Selected {% endif %}>none</option>
-                        </select>
-                    </div>  
-
-                </div>
-
-                <div class=" grid grid-cols-2 rounded-lg py-1 gap-1.5">
-                    <div class="col-span-1 p-1">
-                        <label for="conntype" name="Connect_type" class="block mb-1 text-xs font-medium text-gray-900">Connect Type</label>
-                        <select name="Connect_type" id="conntype" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
-                            <option value="PTP" {% if form.Connect_type.value == "PTP" %} Selected {% endif %}>Point-to-point</option>
-                            <option value="MTM" {% if form.Connect_type.value == "MTM" %} Selected {% endif %}>Multipoint-to-multipoint</option>
-                            <option value="P" {% if form.Connect_type.value == "P" %} Selected {% endif %}>Pseudowire</option>
-                            <option value="N" {% if form.Connect_type.value == "N" %} Selected {% endif %}>none</option>
-                        </select>
-                    </div>           
-                    <div class="col-span-1 p-1">
-                        <label for="vlantrans" name="VLAN_translation" class="block mb-1 text-xs font-medium text-gray-900">VLAN Translation</label>
-                        <select name="VLAN_translation" id="vlantrans" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
-                            <option value="Yes" {% if form.VLAN_translation.value == "Yes" %} Selected {% endif %}>Yes</option>
-                            <option value="No" {% if form.VLAN_translation.value == "No" %} Selected {% endif %}>No</option>
-                            <option value="N" {% if form.VLAN_translation.value == "N" %} Selected {% endif %}>none</option>
-                        </select>
+                    <div class=" grid grid-cols-2 rounded-b-lg  gap-1.5">
+                        <div class="col-span-1 p-1">
+                            <label for="ref" class="block mb-1 text-xs font-medium text-gray-900">ISID:</label>
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            </div>
+                            <input type="text" id="ref" name="ISID" value="{{form.ISID.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        </div>  
+                        <div class="col-span-1 p-1">
+                            <label for="i_isid_name" class="block mb-1 text-xs font-medium text-gray-900">ISID Name:</label>
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            </div>
+                            <input type="text" id="i_isid_name" name="ISID_name" value="{{form.ISID_name.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        </div>                 
+                        <div class="col-span-1 p-1">
+                            <label for="servtype" name="Service_type" class="block mb-1 text-xs font-medium text-gray-900">Service Type</label>
+                            <select name="Service_type" id="servtype" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                                <option value="P" {% if form.Service_type.value == "P" %} Selected {% endif %}>Pseudowire</option>
+                                <option value="S" {% if form.Service_type.value == "S" %} Selected {% endif %}>Switched</option>
+                                <option value="T" {% if form.Service_type.value == "T" %} Selected {% endif %}>Transparent</option>
+                                <option value="N" {% if form.Service_type.value == "N" %} Selected {% endif %}>none</option>
+                            </select>
+                        </div>             
+                        <div class="col-span-1 p-1">
+                            <label for="muxmode" name="Mux_mode" class="block mb-1 text-xs font-medium text-gray-900">MUX Mode</label>
+                            <select name="Mux_mode" id="muxmode" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                                <option value="OTO" {% if form.Mux_mode.value == "OTO" %} Selected {% endif %}>One-to-one</option>
+                                <option value="MTM" {% if form.Mux_mode.value == "MTM" %} Selected {% endif %}>Many-to-many</option>
+                                <option value="N" {% if form.Mux_mode.value == "N" %} Selected {% endif %}>none</option>
+                            </select>
+                        </div>  
                     </div>
-
-                </div>
+                    <div class=" grid grid-cols-2 rounded-lg py-1 gap-1.5">
+                        <div class="col-span-1 p-1">
+                            <label for="conntype" name="Connect_type" class="block mb-1 text-xs font-medium text-gray-900">Connect Type</label>
+                            <select name="Connect_type" id="conntype" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                                <option value="PTP" {% if form.Connect_type.value == "PTP" %} Selected {% endif %}>Point-to-point</option>
+                                <option value="MTM" {% if form.Connect_type.value == "MTM" %} Selected {% endif %}>Multipoint-to-multipoint</option>
+                                <option value="P" {% if form.Connect_type.value == "P" %} Selected {% endif %}>Pseudowire</option>
+                                <option value="N" {% if form.Connect_type.value == "N" %} Selected {% endif %}>none</option>
+                            </select>
+                        </div>           
+                        <div class="col-span-1 p-1">
+                            <label for="vlantrans" name="VLAN_translation" class="block mb-1 text-xs font-medium text-gray-900">VLAN Translation</label>
+                            <select name="VLAN_translation" id="vlantrans" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                                <option value="Yes" {% if form.VLAN_translation.value == "Yes" %} Selected {% endif %}>Yes</option>
+                                <option value="No" {% if form.VLAN_translation.value == "No" %} Selected {% endif %}>No</option>
+                                <option value="N" {% if form.VLAN_translation.value == "N" %} Selected {% endif %}>none</option>
+                            </select>
+                        </div>
+                    </div>
                 <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">
                     <div class="col-span-1 p-1">
-                        <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">Cliente:</label>
-                        <input type="text" id="cli" name="Cliente" value="{{form.Cliente.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        <label for="i_cliente" class="block mb-1 text-xs font-medium text-gray-900">Cliente:</label>
+                        <input type="text" id="i_cliente" name="Cliente" value="{{form.Cliente.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                     </div>           
                     <div class="col-span-1 p-1">
                         <label for="status" name="Service_status" class="block mb-1 text-xs font-medium text-gray-900">Service Status</label>
@@ -89,51 +83,20 @@
             </form>
         </div>
         
-        <div class="p-1" id="form_terminacao">
-         
+        <div class="p-1 col-span-1" id="form_terminacao">
+            
         </div>
-        <div class="border rounded-lg p-1 gap-1.5 mt-1.5">
-            <table class="table-auto w-full text-sm text-gray-500 text-center">
-                <thead class="bg-ip-main text-center">
-                    <tr>
-                        <th class="text-sm bg-ipt-main text-white">
 
-                              
-                        </th>
-                        <th class="text-sm bg-ipt-main text-white">
-                            Local
-                        </th>
-                        <th class="text-sm bg-ipt-main text-white">
-                            Equipamento
-                        </th>
-                        <th class="text-sm bg-ipt-main text-white">
-                            SAP
-                        </th>
-                        <th class="text-sm bg-ipt-main text-white">
-                            Notas
-                        </th>
-                    </tr>
-                </thead>
-                    <tbody id="listaterdet">
-                        {% for t in term %}
-                            {% include 'dados/term.html' %}
-                        {% endfor %}
-                    </tbody>
-            </table>
-                
-            </div>
-        
-
-            <!-- Two-column group of fields -->
-            
-            
+                    
+        {% include 'dados/term.html' %}
+                        
             <!-- Submit Button (Full-width) -->
-            <div class="w-full flex justify-end">
-                <button type="button" href="{% url 'criar_term' form.ISID.value %}" hx-get="{% url 'criar_term' form.ISID.value %}" hx-target="#form_terminacao" hx-swap="innerHTML" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">+ Terminação</button>
-                <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
-                <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_dados' %}">Cancelar</a></button>
-                
-            </div>
+        <div class="w-full flex justify-end">
+            <button type="button" hx-get="{% url 'criar_term' %}?id={{tt}}" hx-target="#form_terminacao" hx-swap="innerHTML" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">+ Terminação</button>
+            <button id="gravar" type="submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
+            <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_dados' %}">Cancelar</a></button>
+            
+        </div>
         
      </div>
 

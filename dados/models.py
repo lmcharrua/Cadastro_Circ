@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class serv_dados(models.Model):
-    ISID = models.CharField(max_length=10)
+    ISID = models.CharField(max_length=10, unique=True)  # Allow blank=True
     ISID_name = models.CharField(max_length=100)
     Service_type = models.CharField(max_length=100)
     Mux_mode = models.CharField(max_length=100)     # Allow blank=True
@@ -25,7 +25,7 @@ class terminacao(models.Model):
     dicofre = models.CharField(max_length=6)    # Allow blank=True
     Equipamento = models.CharField(max_length=100)
     SAP = models.CharField(max_length=100)
-    Notas = models.CharField(max_length=100)    # Allow blank=True
+    Notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
 
     class Meta:
         ordering = ['main_isid']

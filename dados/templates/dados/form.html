@@ -2,29 +2,29 @@
 <!-- Form Container -->
     
         <!-- Form -->
-        <form hx-post="{% url 'criar_term' %}" hx-target="#listaterdet" hx-swap="beforeend" hx-on="htmx:afterRequest: this.remove()" hx-trigger="click from:#subterm">
+        <form id="termina" hx-post="{% url 'criar_term' %}" hx-target="#listaterdet" hx-swap="beforeend" hx-on:trigger="success: termina.remove()" >
             {% csrf_token %}
             <div class="w-full border rounded-lg p-1 gap-1.5 pb-1.5">
-                <h2 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">Nova terminação</h1>
-                    
+                <h2 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">Nova terminação para o serviço {{next}}</h1>
+                <input name="main_isid" type="hidden" value="{{next}}">   
                 <div class=" grid grid-cols-3 rounded-b-lg  gap-1.5">
                     <div class="col-span-1 p-1">
-                        <label for="ref" class="block mb-1 text-xs font-medium text-gray-900">Local</label>
+                        <label for="Local" class="block mb-1 text-xs font-medium text-gray-900">Local</label>
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                         </div>
-                        <input type="text" id="ref" name="Local" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        <input type="text" id="Local" name="Local" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                     </div>  
                     <div class="col-span-1 p-1">
-                        <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">Equipamento</label>
+                        <label for="Equipamento" class="block mb-1 text-xs font-medium text-gray-900">Equipamento</label>
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                         </div>
-                        <input type="text" id="cli" name="Equipamento" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        <input type="text" id="Equipamento" name="Equipamento" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                     </div>      
                     <div class="col-span-1 p-1">
-                        <label for="cli" class="block mb-1 text-xs font-medium text-gray-900">SAP</label>
+                        <label for="SAP" class="block mb-1 text-xs font-medium text-gray-900">SAP</label>
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                         </div>
-                        <input type="text" id="cli" name="SAP" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        <input type="text" id="SAP" name="SAP" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
                     </div>   
                 </div>
                 <div class="col-span-3 px-2 gap-1.5">
@@ -35,10 +35,12 @@
         
                 
             </div>
+            <div class="w-full flex justify-end p-2">
+            <button type="submit" id="guardar" class="m-1 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main cursor-pointer" >Gravar Terminação</button>
+            <button type="button" id="subclose" hx-on:click="termina.remove()" class="m-1 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Fechar</button>
+            </div>
+
         </form>
-        <div class="w-full flex justify-end">
-            <button type="button" id="subterm" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-ipt-main border border-transparent rounded-lg shadow-sm hover:bg-ip-main focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 items-end">Submit</button>
-        </div>
 
    
 

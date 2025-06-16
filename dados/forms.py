@@ -37,9 +37,6 @@ class criarterminacaoForm(forms.ModelForm):
         model = terminacao
         fields = ['main_isid',
                   'Local',
-                  'Morada',
-                  'Cod_Postal',
-                  'dicofre',
                   'Equipamento',
                   'SAP',
                   'Notas',
