@@ -25,4 +25,5 @@ urlpatterns = [
     path('ligafo/',include('ligafo.urls')),
     path('foe/',include('foe.urls')),
     path('dados/',include('dados.urls')),
+    path('sdados/',include('sdados.urls')),
 ]

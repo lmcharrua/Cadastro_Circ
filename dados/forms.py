@@ -30,12 +30,17 @@ class criarservdadosForm(forms.ModelForm):
 class terminacaoForm(forms.ModelForm):
     class Meta:
         model = terminacao
-        fields = "__all__"
+        fields = ['main_isid',
+            'Local',
+            'Equipamento',
+            'SAP',
+            'Notas',
+        ]
 
 class criarterminacaoForm(forms.ModelForm):
     class Meta:
         model = terminacao
-        fields = ['main_isid',
+        fields = [
                   'Local',
                   'Equipamento',
                   'SAP',

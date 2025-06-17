@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'circuitos',
     'cartas',
     'dados',
+    'sdados'
     'foe',
     'ligafo',
     'crispy_forms',

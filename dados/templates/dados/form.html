@@ -2,11 +2,11 @@
 <!-- Form Container -->
     
         <!-- Form -->
-        <form id="termina" hx-post="{% url 'criar_term' %}" hx-target="#listaterdet" hx-swap="beforeend" hx-on:trigger="success: termina.remove()" >
-            {% csrf_token %}
+                 <form id="termina" method="POST" hx-post="{% url 'criar_term' %}" hx-target="#listaterdet" hx-swap="beforeend" hx-on="click from: #guardar"  >
+            {% csrf_token %}  
             <div class="w-full border rounded-lg p-1 gap-1.5 pb-1.5">
-                <h2 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">Nova terminação para o serviço {{next}}</h1>
-                <input name="main_isid" type="hidden" value="{{next}}">   
+                <h2 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">Nova terminação para o serviço {{form.id.value}}</h1>
+                <input name="main_isid" value="{{next}}">   
                 <div class=" grid grid-cols-3 rounded-b-lg  gap-1.5">
                     <div class="col-span-1 p-1">
                         <label for="Local" class="block mb-1 text-xs font-medium text-gray-900">Local</label>
@@ -36,7 +36,7 @@
                 
             </div>
             <div class="w-full flex justify-end p-2">
-            <button type="submit" id="guardar" class="m-1 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main cursor-pointer" >Gravar Terminação</button>
+            <button type="submit" id="guardar"  class="m-1 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main cursor-pointer" >Gravar Terminação</button>
             <button type="button" id="subclose" hx-on:click="termina.remove()" class="m-1 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Fechar</button>
             </div>
 
