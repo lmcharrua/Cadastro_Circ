@@ -1,0 +1,19 @@
+<form hx-post="{% url 'edit_sdados' servico.id %}" >
+    {% csrf_token %}
+    <h2>Term</h2>
+    <p>{{misid}}</p>
+    <div class="form-actions">
+        <button type="submit" data-modal-toggle="modal_details" class="btn btn-primary">actualizar serviço</button>
+        <a href="{% url 'lista_sdados' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+    {{form.ISID}}
+{{form.ISID_name}}
+{{form.Service_type}}
+{{form.Mux_mode}}
+{{form.Service_status}}
+{{form.Connect_type}}
+{{form.VLAN_translation}}
+{{form.Cliente}}
+{{form.Notas}}
+
+</form>

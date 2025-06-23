@@ -5,7 +5,7 @@ from django.utils.functional import cached_property
 # Create your models here.
 class ligafo(models.Model):
     referencia = models.CharField(max_length=20, blank=True, null=True, verbose_name='Referência', help_text='Referência')
-    cliente = models.CharField(max_length=100, blank=False, null=False, verbose_name='Cliente', help_text='Cliente')
+    cliente = models.CharField(max_length=100, null=False, verbose_name='Cliente', help_text='Cliente')
     encomenda = models.CharField(max_length=20, blank=True, null=True, verbose_name='Encomenda', help_text='Encomenda')
     dist_iet = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True, verbose_name='Distância km IET50', help_text='Distância km IET50')
     dist_optica = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True, verbose_name='Distância km ótica', help_text='Distância km ótica')

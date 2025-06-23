@@ -18,7 +18,7 @@ class serv_dados(models.Model):
         return self.ISID_name
 
 class terminacao(models.Model):
-    main_isid = models.ForeignKey('serv_dados', on_delete=models.CASCADE)
+    main_isid = models.IntegerField()
     Local = models.CharField(max_length=100)
     Morada = models.CharField(max_length=100)   # Allow blank=True
     Cod_Postal = models.CharField(max_length=100) # Allow blank=True

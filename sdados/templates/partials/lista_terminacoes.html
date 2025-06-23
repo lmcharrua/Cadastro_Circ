@@ -1,0 +1,28 @@
+<div class="border rounded-lg p-1 gap-1.5 mt-1.5">
+    <table class="table-auto w-full text-sm text-gray-500 text-center">
+        <thead class="bg-ip-main text-center">
+            <tr>
+                <th class="text-sm bg-ipt-main text-white">
+                </th>
+                <th class="text-sm bg-ipt-main text-white">
+                    Local
+                </th>
+                <th class="text-sm bg-ipt-main text-white">
+                    Equipamento
+                </th>
+                <th class="text-sm bg-ipt-main text-white">
+                    SAP
+                </th>
+                <th class="text-sm bg-ipt-main text-white">
+                    Notas
+                </th>
+            </tr>
+        </thead>
+            {% for term in terminas %}
+                <tbody id="listaterdet"></tbody>
+                    {% include 'partials/linha_terminacao.html' %}
+                </tbody>
+            {% endfor %}
+    </table>
+        
+</div>

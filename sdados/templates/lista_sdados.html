@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    <!-- Nova tabela -->
+    <!-- Nova tabela TESTE -->
 
-<table id="lista_dados" class="display compact order-column table-fixed" style="display:none">
+<table id="lista_dados" class="display compact order-column table-fixed" >
     <thead class="bg-ip-main">
         <tr>
             <th class="text-sm bg-ipt-main text-white">
@@ -46,7 +46,7 @@
     </thead>
 
     <tbody>
-        {% if lista %}
+
             {% for ldados in lista %}
                 {% if "A" in ldados.estado %}
                     <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
@@ -81,7 +81,7 @@
                     
 
             {% endfor %}
-        {% endif %}
+
     </tbody>
 </table>
     

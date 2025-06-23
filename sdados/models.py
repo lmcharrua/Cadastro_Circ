@@ -18,16 +18,16 @@ class sdados(models.Model):
         return self.ISID_name
 
 class sterm(models.Model):
-    misid = models.ForeignKey('serv_dados', on_delete=models.CASCADE, related_name='terminacoes')
+    misid = models.CharField(max_length=15)  # Foreign key to sdados, should match ISID
     Local = models.CharField(max_length=100)
-    Morada = models.CharField(max_length=100, blank=True)   # Allow blank=True
-    Cod_Postal = models.CharField(max_length=100, blank=True) # Allow blank=True
+    Morada = models.CharField(max_length=100, blank=True, default= '')   # Allow blank=True
+    Cod_Postal = models.CharField(max_length=100, blank=True, default=''   ) # Allow blank=True
     Equipamento = models.CharField(max_length=100)
     SAP = models.CharField(max_length=100)
     Notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
 
     class Meta:
-        ordering = ['main_isid']
+        ordering = ['SAP']
     
     def __str__(self):
         return self.Local

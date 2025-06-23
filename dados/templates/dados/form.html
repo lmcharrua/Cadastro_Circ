@@ -2,7 +2,7 @@
 <!-- Form Container -->
     
         <!-- Form -->
-                 <form id="termina" method="POST" hx-post="{% url 'criar_term' %}" hx-target="#listaterdet" hx-swap="beforeend" hx-on="click from: #guardar"  >
+        <form id="termina" method="POST" hx-post="{% url 'criar_term' %}" hx-target="#listaterdet" hx-swap="beforeend" hx-on="click from: #guardar"  >
             {% csrf_token %}  
             <div class="w-full border rounded-lg p-1 gap-1.5 pb-1.5">
                 <h2 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">Nova terminação para o serviço {{form.id.value}}</h1>
