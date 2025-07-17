@@ -69,12 +69,11 @@
         {% include 'partials/lista_terminacoes.html' %}
     </div>
 <div class="flex justify-center m-5">
-    {{servico.id}}
     <button id="defaultModalButton" data-modal-target="modal_details" data-modal-toggle="modal_details" hx-target="#modal_form" hx-get="{% url 'edit_sdados' servico.id %}" hx-swap="innnerHtml" class="btn btn-primary bg-ipt-main m-2 p-2 rounded-md" type="button">
     Editar Serviço
     </button>
     <div class="flex justify-center m-5">
-    <button id="defaultModalButton" data-modal-target="modal_detail" data-modal-toggle="modal_details" hx-target="#modal_form" hx-get="{% url 'criar_terminacao' servico.id %}" hx-swap="innnerHtml" class="btn btn-primary bg-ipt-main m-2 p-2 rounded-md" type="button">
+    <button id="defaultModalButton" data-modal-target="modal_details" data-modal-toggle="modal_details" hx-target="#modal_form" hx-get="{% url 'criar_terminacao' servico.id %}" hx-swap="innnerHtml" class="btn btn-primary bg-ipt-main m-2 p-2 rounded-md" type="button">
     Criar Terminação
     </button>
 </div>

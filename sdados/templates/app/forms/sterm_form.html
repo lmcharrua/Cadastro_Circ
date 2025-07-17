@@ -1,0 +1,7 @@
+<form method="POST" hx-post="{% url 'sterm_create' record.pk %}" hx-target="#sterm-list" hx-swap="outerHTML">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="mt-4">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</form>

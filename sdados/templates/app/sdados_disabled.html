@@ -1,0 +1,13 @@
+{% for r in records %}
+<tr class="hover">
+    <td><a class="text-blue-500 hover:underline" href="{% url 'sdados_detail' r.pk %}">{{ r.ISID }}</a></td>
+    <td>{{ r.ISID_name }}</td>
+    <td>{{ r.Service_type }}</td>
+    <td>
+        <form method="POST" hx-post="{% url 'sdados_reactivate' r.pk %}" hx-target="body" hx-swap="none">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-success">Reactivate</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}

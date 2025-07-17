@@ -18,7 +18,7 @@ class sdados(models.Model):
         return self.ISID_name
 
 class sterm(models.Model):
-    misid = models.CharField(max_length=15)  # Foreign key to sdados, should match ISID
+    misid = models.ForeignKey(sdados, on_delete=models.CASCADE)  # Foreign key to sdados, should match ISID
     Local = models.CharField(max_length=100)
     Morada = models.CharField(max_length=100, blank=True, default= '')   # Allow blank=True
     Cod_Postal = models.CharField(max_length=100, blank=True, default=''   ) # Allow blank=True
