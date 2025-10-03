@@ -1,7 +1,7 @@
 [project]
 name = "cadastro-circ"
 version = "0.1.0"
-description = "Add your description here"
+description = "Cadasstro de Circuitos, Fibra Otica Escura e ligações óticas"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

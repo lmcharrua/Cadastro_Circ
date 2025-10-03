@@ -18,3 +18,122 @@
   --font-ipt: "Roboto", sans-serif;
 }
 
+.test_input {
+  display: block;
+  padding-inline: calc(var(--spacing) * 2.5);
+  padding-bottom: calc(var(--spacing) * 1); 
+  padding-top: calc(var(--spacing) * 1.5);
+  width: 100%; 
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--color-gray-900); 
+  background-color: var(--color-gray-50); 
+  border-radius: var(--radius-lg); 
+  border-width: 1px; 
+  border-color: var(--color-gray-300);
+  appearance: none;  
+}
+
+.test_input:focus-within{
+  outline: hidden;
+  border-color: var(--color-blue-600);
+  border-width: 0px;
+  box-shadow: inset 0;
+}
+
+.test_input_label {
+    position: absolute;
+    font-size: var(--text-sm);
+    color: var(--color-gray-500);  
+    transition: all 0.3s ease-in-out;
+    transform-origin: 0;
+    background-color: var(--color-white);
+    padding-inline: calc(var(--spacing) * 2);
+    top: calc(var(--spacing) * 2);
+    z-index: 10;
+    transform: translateY(-1rem) scale(0.75);
+    transform-origin: 0;
+    padding-inline: calc(var(--spacing) * 2);
+    left: 0.25rem;
+    right: auto;
+    start: 0.25rem;
+    direction: ltr;
+    text-align: left;
+    pointer-events: none;
+    
+}
+
+/* absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1 */
+
+/* Floating Label Input Styles */
+
+.floating-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.floating-input {
+  display: block;
+  padding-inline: calc(var(--spacing) * 2.5);
+  padding-bottom: calc(var(--spacing) * 1); 
+  padding-top: calc(var(--spacing) * 1.5);
+  width: 100%;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: #111827; /* text-gray-900 */
+  background-color: #f9fafb; /* bg-gray-50 */
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  border-radius: 0.5rem; /* rounded-lg */
+  appearance: none;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+} /* px-2.5 pb-1 pt-1.5*/
+
+.floating-input:focus {
+  border-color: #2563eb; /* focus:border-blue-600 */
+  ring: 0;
+  border-width: 0px;
+}
+
+.floating-input::placeholder {
+  color: transparent;
+}
+
+.floating-label {
+  position: absolute;
+  top: 0.5rem; /* top-2 */
+  left: 0.25rem; /* start-1 */
+  z-index: 10;
+  font-size: 0.875rem; /* text-sm */
+  color: #6b7280; /* text-gray-500 */
+  background-color: white;
+  padding-inline: calc(var(--spacing) * 2);
+  transform-origin: 0 0;
+  transition: transform 0.3s ease, color 0.3s ease, top 0.3s ease;
+  pointer-events: none;
+  transform: translateY(-1rem) scale(0.75); /* -translate-y-4 scale-75 */
+}
+
+/* When input is empty and not focused */
+.floating-input:placeholder-shown ~ .floating-label {
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+}
+
+/* When input is focused */
+.floating-input:focus ~ .floating-label {
+  top: 0.5rem; /* top-2 */
+  color: #2563eb; /* text-blue-600 */
+  transform: translateY(-1rem) scale(0.75);
+}
+
+/* RTL Support */
+[dir="rtl"] .floating-label {
+  left: auto;
+  right: 0.25rem;
+}
+
+[dir="rtl"] .floating-input:focus ~ .floating-label {
+  transform: translateY(-1rem) scale(0.75) translateX(0.25rem);
+}
+
