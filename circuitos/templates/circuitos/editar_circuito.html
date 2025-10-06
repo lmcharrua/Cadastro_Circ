@@ -14,7 +14,7 @@
             <div class="grid  rounded-t-lg p-1">
                 <div class="form-group col-span-1">
                     <label for="DataRate" class="block mb-1 text-sm font-medium text-gray-900">Data Rate:</label>
-                    <input  id="DataRate" name="Data_Rate" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.Data_Rate.value}}" placeholder="Data Rate">
+                    <input  id="DataRate" name="Data_Rate" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.Data_Rate.value}}" placeholder="Data Rate" {% if not can_edit %}disabled{% endif %}>
                 </div>
             </div>
             <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">
@@ -22,7 +22,7 @@
                     <label for="datainst" class="block mb-1 text-xs font-medium text-gray-900">Data Instalação:</label>
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                     </div>
-                    <input type="date" id="datainst" name="Data_Inst" value="{{form.Data_Inst.value|date:"c"}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    <input type="date" id="datainst" name="Data_Inst" value="{{form.Data_Inst.value|date:"c"}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                 </div>           
                 <div class="col-span-1 p-1">
                     <label for="dataactiv" class="block mb-1 text-xs font-medium text-gray-900">Data Activação:</label>

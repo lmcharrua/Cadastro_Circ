@@ -29,24 +29,7 @@
                 </div>
             {% endif %}
 
-<!-- Serviços Dados -->
 
- 
-            {% if request.user|has_group:"NOC,DADOS,TX" %}
-                <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_dados" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-4 text-white hover:text-black">
-                    Serv. Dados
-                </li>
-                <div id="dropdown_dados" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
-                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
-                    <li>
-                        <a href="{% url 'lista_dados' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'criar_dados' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
-                    </li>
-                    </ul>
-                </div>
-            {% endif %}
 
 <!-- Ligações ópticas-->
 
@@ -54,11 +37,13 @@
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_ligafo" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
                     Lig. Opticas
                 </li>
+                
                 <div id="dropdown_ligafo" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
                     <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
                     <li>
                         <a href="{% url 'lista_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
                     </li>
+                    {% endif %}
                     {% if request.user|has_group:"FOE" %}
                     <li>
                         <a href="{% url 'criar_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
@@ -69,7 +54,7 @@
                     {% endif %}
                     </ul>
                 </div>
-            {% endif %}
+            
 
 <!-- FOE -->
 
@@ -83,17 +68,22 @@
                     <li>
                         <a href="{% url 'lista_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
                     </li>
+                    {% endif %}
+                    {% if request.user|has_group:"FOE" %}
                     <li>
                         <a href="{% url 'criar_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
                     </li>
+                    
                     <li>
                         <a href="{% url 'desligados_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
                     </li>
+                    {% endif %}
                     </ul>
                 </div>
-            {% endif %}
+            
+            
 
-<!-- Cartas -->
+<!-- Cartas 
 
             {% if request.user|has_group:"TX,DAT" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_cartas" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
@@ -110,7 +100,7 @@
                     </ul>
                 </div>
             {% endif %}   
-
+-->
 <!-- Logout -->
 
             <li class="flex items-center p-1  px-3 gap-x-2 text font-semibold hover:text-black text-white">
@@ -118,7 +108,7 @@
                     Logout
                 </a>
             </li>
-            {% else %}
+        {% else %}
             <li class="flex items-center p-1 text gap-x-2 hover:text-black text-white">
                 <a href="{% url 'userlogout' %}" class="font-semibold flex items-center">
                     Login

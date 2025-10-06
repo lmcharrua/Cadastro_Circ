@@ -2,6 +2,7 @@ from django.db import models
 from functools import reduce
 from django.db.models import Max
 from django.utils.functional import cached_property
+from simple_history.models import HistoricalRecords
 
 # Create your models here.
 
@@ -28,7 +29,8 @@ class Circuitos(models.Model):
     User_Cct = models.TextField(max_length=150, blank=False, null=False)
     Propriedade_Cct = models.TextField(max_length=150, default='', blank=True)
     Outras_Ref = models.TextField(max_length=150, default='', blank=True)
- 
+    # history = HistoricalRecords()
+
     def save(self, *args, **kwargs):
         if not self.N_Circuito:
             self.N_Circuito = self.gera_N_circ()
@@ -57,6 +59,7 @@ class Hist_Cct(models.Model):
     Data = models.DateField(auto_now=False, auto_now_add=False)
     Accao = models.TextField
     User = models.CharField(max_length=30)
+    
     class Meta:
         ordering = ['-Data']
     

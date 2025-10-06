@@ -24,18 +24,20 @@ def ver_circuito(request, pk):
     return render(request, 'circuitos/ver_circuito.html', context=context)
 
 @login_required(login_url='userlogin')
-@group_required(('TX', 'DAT', 'DADOS', 'VOZ'))
+@group_required(('NOC','TX', 'DAT', 'DADOS', 'VOZ'))
 def editar_circuito(request, pk):
     cct = Circuitos.objects.get(id=pk)
     form = CircuitoForm(instance=cct)
-    if request.method == 'POST':
+    can_edit = request.user.has_perm('circuitos.change_circuitos' or 'circuitos.add_circuitos')
+
+    if request.method == 'POST' and can_edit:
         form = CircuitoForm(request.POST,instance=cct)
         if form.is_valid():
             form.save()
-            # messages.success(request, "O circuito foi actualizado com sucesso!")
+            messages.success(request, "O circuito foi actualizado com sucesso!")
             print("Circuito actualizado")
             return redirect("lista_cct")   
-    context = {'form':form}
+    context = {'form':form, 'can_edit': can_edit}
     return render(request, 'circuitos/editar_circuito.html', context=context)
 
 @login_required(login_url='userlogin')
