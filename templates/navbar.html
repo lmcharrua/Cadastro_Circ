@@ -1,48 +1,48 @@
 {% load cmain_extras %}
 {% load static %}
 
-<nav class="mx-auto text-white rounded-md shadow-md lg:py-3 bg-ipt-main">
+<nav class="justify-between text-white rounded-md shadow-md lg:py-3 bg-ipt-main">
     <div class="flex justify-between text-slate-800 mx-3">
-      <img class="h-8" src="{% static 'img/Logo_IPT_invertido.png' %}" alt="IPTelecom">
-      <div class="hidden lg:block">
-        {% if user.is_authenticated %}
+        <div class="flex justify-left">
+            <img class="h-8" src="{% static 'img/Logo_IPT_invertido.png' %}" alt="IPTelecom"> 
+            <div class="p-1 px-3 gap-x-1 text-ip-main ">
+                Utilizador: {{ user.username }}
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="hidden lg:block justify-end">
+         
+            {% if user.is_authenticated %}
 
+            <!-- Circuitos -->              
             <ul class="flex flex-col mt-2  gap-x-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-right">
-<!-- Circuitos -->
-
-        
-            {% if request.user|has_group:"NOC,TX,VOZ,DADOS,DAT" %}
+                {% if request.user|has_group:"NOC,TX,VOZ,DADOS,DAT" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_circuito" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold hover:text-black flex items-right p-1 px-3 gap-x-1 text-white ">
-                    
                     Circuitos
-                    
                 </li>
-                <div id="dropdown_circuito" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
-                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
-                    <li>
-                        <a href="{% url 'lista_cct' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'criar_circuito' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
-                    </li>
-                    </ul>
-                </div>
-            {% endif %}
+                    <div id="dropdown_circuito" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                        <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                            <li>
+                                <a href="{% url 'lista_cct' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'criar_circuito' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
 
+                <!-- Ligações ópticas-->
 
-
-<!-- Ligações ópticas-->
-
-            {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
-                <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_ligafo" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
+                {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
+                    <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_ligafo" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
                     Lig. Opticas
-                </li>
-                
-                <div id="dropdown_ligafo" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
-                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
-                    <li>
-                        <a href="{% url 'lista_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
                     </li>
+                    <div id="dropdown_ligafo" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                        <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                            <li>
+                                <a href="{% url 'lista_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                            </li>
                     {% endif %}
                     {% if request.user|has_group:"FOE" %}
                     <li>

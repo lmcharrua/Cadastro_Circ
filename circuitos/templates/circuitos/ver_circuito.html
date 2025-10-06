@@ -1,47 +1,136 @@
 {% extends 'base.html' %}
 
-{% block content %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-<div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-<div class="grid grid-cols-2 gap-2 p-10">
-    <div class="col-span-2 rounded-lg border border-gray-400 p-2">
-        <h2 class="" style="width: 100%"><center>{{circuito.N_Circuito}}</center></h2>
-        <p><strong>Data Rate:</strong> &nbsp;{{ circuito.Data_Rate }} &nbsp; &nbsp; <strong>Estado Circuito:</strong>&nbsp;{{ circuito.Estado_Cct}}
-        <br><strong>Data Pedido:</strong> &nbsp;{{ circuito.Data_Inst }} &nbsp; &nbsp; <strong>Data Entrega:</strong>&nbsp;{{ circuito.Data_Activ}}
-    </div>
-    <div class="rounded-lg border border-black p-2">
-        <h5 class="r">Terminação 1</h5>
-        <p><strong>Entidade:</strong>&nbsp;{{circuito.Entidade_PTR1}}
-        <br><strong>Morada:</strong>&nbsp;{{circuito.Morada_PTR1}}
-        <br><strong>Equipamento:</strong>&nbsp;{{circuito.Equip_PTR1}}
-        <br><strong>Slot:</strong>&nbsp;{{circuito.Slot_PTR1}}&nbsp;&nbsp;<strong>Porto;</strong>&nbsp;{{circuito.Trib_PTR1}}
-    </div>
-    <div class="rounded-lg border border-black p-2">
-        <h5 class="">Terminação 2</h5>
-        <p><strong>Entidade:</strong>&nbsp;{{circuito.Entidade_PTR2}}
-        <br><strong>Morada:</strong>&nbsp;{{circuito.Morada_PTR2}}
-        <br><strong>Equipamento:</strong>&nbsp;{{circuito.Equip_PTR2}}
-        <br><strong>Slot:</strong>&nbsp;{{circuito.Slot_PTR2}}&nbsp;&nbsp;<strong>Porto;</strong>&nbsp;{{circuito.Trib_PTR2}}
-    </div>
-    <div class="col-span-2 rounded-lg border border-black p-2">
-        <p><strong>Cliente:</strong> &nbsp;{{ circuito.User_Cct }} &nbsp; &nbsp; <strong>Propriedade circuito:</strong>&nbsp;{{ circuito.Propriedade_Cct}}
-        <br><strong>Observações:</strong> &nbsp;{{ circuito.Outras_Ref }}
-    </div>
-</div>
-</div>
-<br>
-<div class="w-full flex justify-end">
-<button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'editar_circuito' circuito.id  %}" >Editar</a></button>
-<button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_cct' %}" >Voltar</a></button>
-{% if perms.circuitos.change_circuitos %}
+{% load tailwind_filters %}
 
-</div>
-{% endif %}
-{% endblock %}
+{% block content %}
+    <div class="container overscroll-y-auto mx-auto p-4 bg-white rounded-lg shadow-lg mt-8">
+    <div class="overflow-y-auto scroll-m-0">
+        <form   method="POST">
+            {% csrf_token %}  
+            
+            <h1 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">{{form.N_Circuito}}</h1>
+            <input type="hidden" name="N_Circuito" value="{{form.N_Circuito}}">
+            <div class="border rounded-t-lg p-1">
+            <div class="grid  rounded-t-lg p-1">
+                <div class="form-group col-span-1">
+                    <label for="DataRate" class="block mb-1 text-sm font-medium text-gray-900">Data Rate:</label>
+                    <input  id="DataRate" name="Data_Rate" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.Data_Rate}}" placeholder="Data Rate" disabled>
+                </div>
+            </div>
+            <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">
+                <div class="col-span-1 p-1">
+                    <label for="datainst" class="block mb-1 text-xs font-medium text-gray-900">Data Instalação:</label>
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    </div>
+                    <input type="date" id="datainst" name="Data_Inst" value="{{form.Data_Inst|date:"c"}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" disabled>
+                </div>           
+                <div class="col-span-1 p-1">
+                    <label for="dataactiv" class="block mb-1 text-xs font-medium text-gray-900">Data Activação:</label>
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    </div>
+                    <input type="date" id="dataactiv" name="Data_Activ" value="{{form.Data_Activ|date:"c"}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" disabled>
+                </div>
+
+            </div>
+            </div>
+
+            <div class=" grid grid-cols-2 rounded-b-lg py-1.5 gap-1.5">
+                <div class="col-span-1 border p-2">
+                    <div class="relative pb-2">
+                        <input type="text" id="EntidadePTR1" name="Entidade_PTR1" value="{{form.Entidade_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="EntidadePTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Entidade PTR1</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="MoradaPTR1" name="Morada_PTR1" value="{{form.Morada_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="MoradaPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Morada PTR1</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="CodPost_PTR1" name="Cod_Post_PTR1" value="{{form.Cod_Post_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="CodPost_PTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código Postal PTR1</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="EquipPTR1" name="Equip_PTR1" value="{{form.Equip_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="EquipPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento PTR1</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="SlotPTR1" name="Slot_PTR1" value="{{form.Slot_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="SlotPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot PTR1</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="TribPTR1" name="Trib_PTR1" value="{{form.Trib_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="TribPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porta PTR1</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="Interfac_PTR1" name="Interface_PTR1" value="{{form.Interface_PTR1}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="InterfacePTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Interface PTR1</label>
+                    </div>
+                    </div>
+
+                <div class="col-span-1 border p-2">
+                    <div class="relative pb-2">
+                        <input type="text" id="EntidadePTR2" name="Entidade_PTR2" value="{{form.Entidade_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="EntidadePTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Entidade PTR2</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="MoradaPTR2" name="Morada_PTR2" value="{{form.Morada_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="MoradaPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Morada PTR2</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="CodPost_PTR2" name="Cod_Post_PTR2" value="{{form.Cod_Post_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="CodPost_PTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código Postal PTR2</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="EquipPTR2" name="Equip_PTR2" value="{{form.Equip_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="EquipPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento PTR2</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="SlotPTR2" name="Slot_PTR2" value="{{form.Slot_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="SlotPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot PTR2</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="TribPTR2" name="Trib_PTR2" value="{{form.Trib_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="TribPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porta PTR2</label>
+                    </div>
+                    <div class="relative pb-2">
+                        <input type="text" id="InterfacePTR2" name="Interface_PTR2" value="{{form.Interface_PTR2}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                        <label for="InterfacePTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Interface PTR2</label>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class=" grid grid-cols-2 border rounded-b-lg">
+                <div class="col-span-2 px-2 pt-2">
+                    <label for="lista" name="Estado_Cct" class="block mb-1 text-sm font-medium text-gray-900">Estado do circuito</label>
+                    <select name="Estado_Cct" id="lista" class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" disable>
+                        <option value="Activo" {% if form.Estado_Cct == "Activo" %} selected {% endif %}>Activo</option>
+                        <option value="Desligado" {% if form.Estado_Cct == "Desligado" %} selected {% endif %}>Desligado</option>
+                        <option value="Definido" {% if form.Estado_Cct == "Definido" %} selected {% endif %}>Definido</option>
+                    </select>
+
+                <div class="relative pb-2">
+                    <input type="text" id="Propriedade" name="Propriedade_Cct" value="{{form.Propriedade_Cct}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                    <label for="Propriedade" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Propriedade</label>
+                </div>
+                <div class="relative pb-2">
+                    <input type="text" id="UserCct" name="User_Cct" value="{{form.User_Cct}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled>
+                    <label for="UserCct" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cliente</label>
+                </div>
+                    <label for="Outrasref" name="Outras_Ref" class="block mb-1 text-sm font-medium text-gray-900">Observações</label>
+                    <textarea rows="3" type="text" id="Outrasref" name="Outras_Ref" value="{{form.Outras_Ref}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" placeholder="Observações" disabled>{{form.Outras_Ref}}
+                    </textarea>
+
+                </div>
+            </div>
+            <!-- Submit Button (Full-width) -->
+            <div class="w-full flex justify-end">
+                {% if perms.circuitos.change_circuitos %}
+                <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
+                {% endif %}
+                <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_cct' %}" >Cancelar</a></button>
+                
+            </div>
+        </form>
+    </div>
+    </div>
+{% endblock content %}
 

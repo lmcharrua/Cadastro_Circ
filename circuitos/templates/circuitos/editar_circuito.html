@@ -28,7 +28,7 @@
                     <label for="dataactiv" class="block mb-1 text-xs font-medium text-gray-900">Data Activação:</label>
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                     </div>
-                    <input type="date" id="dataactiv" name="Data_Activ" value="{{form.Data_Activ.value|date:"c"}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    <input type="date" id="dataactiv" name="Data_Activ" value="{{form.Data_Activ.value|date:"c"}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                 </div>
 
             </div>
@@ -37,62 +37,62 @@
             <div class=" grid grid-cols-2 rounded-b-lg py-1.5 gap-1.5">
                 <div class="col-span-1 border p-2">
                     <div class="relative pb-2">
-                        <input type="text" id="EntidadePTR1" name="Entidade_PTR1" value="{{form.Entidade_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="EntidadePTR1" name="Entidade_PTR1" value="{{form.Entidade_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="EntidadePTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Entidade PTR1</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="MoradaPTR1" name="Morada_PTR1" value="{{form.Morada_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="MoradaPTR1" name="Morada_PTR1" value="{{form.Morada_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="MoradaPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Morada PTR1</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="CodPost_PTR1" name="Cod_Post_PTR1" value="{{form.Cod_Post_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="CodPost_PTR1" name="Cod_Post_PTR1" value="{{form.Cod_Post_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="CodPost_PTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código Postal PTR1</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="EquipPTR1" name="Equip_PTR1" value="{{form.Equip_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="EquipPTR1" name="Equip_PTR1" value="{{form.Equip_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="EquipPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento PTR1</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="SlotPTR1" name="Slot_PTR1" value="{{form.Slot_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="SlotPTR1" name="Slot_PTR1" value="{{form.Slot_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="SlotPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot PTR1</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="TribPTR1" name="Trib_PTR1" value="{{form.Trib_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="TribPTR1" name="Trib_PTR1" value="{{form.Trib_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="TribPTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porta PTR1</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="Interfac_PTR1" name="Interface_PTR1" value="{{form.Interface_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="Interfac_PTR1" name="Interface_PTR1" value="{{form.Interface_PTR1.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="InterfacePTR1" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Interface PTR1</label>
                     </div>
                     </div>
 
                 <div class="col-span-1 border p-2">
                     <div class="relative pb-2">
-                        <input type="text" id="EntidadePTR2" name="Entidade_PTR2" value="{{form.Entidade_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="EntidadePTR2" name="Entidade_PTR2" value="{{form.Entidade_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="EntidadePTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Entidade PTR2</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="MoradaPTR2" name="Morada_PTR2" value="{{form.Morada_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="MoradaPTR2" name="Morada_PTR2" value="{{form.Morada_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="MoradaPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Morada PTR2</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="CodPost_PTR2" name="Cod_Post_PTR2" value="{{form.Cod_Post_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="CodPost_PTR2" name="Cod_Post_PTR2" value="{{form.Cod_Post_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="CodPost_PTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Código Postal PTR2</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="EquipPTR2" name="Equip_PTR2" value="{{form.Equip_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="EquipPTR2" name="Equip_PTR2" value="{{form.Equip_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="EquipPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento PTR2</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="SlotPTR2" name="Slot_PTR2" value="{{form.Slot_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="SlotPTR2" name="Slot_PTR2" value="{{form.Slot_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="SlotPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot PTR2</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="TribPTR2" name="Trib_PTR2" value="{{form.Trib_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="TribPTR2" name="Trib_PTR2" value="{{form.Trib_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="TribPTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porta PTR2</label>
                     </div>
                     <div class="relative pb-2">
-                        <input type="text" id="InterfacePTR2" name="Interface_PTR2" value="{{form.Interface_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <input type="text" id="InterfacePTR2" name="Interface_PTR2" value="{{form.Interface_PTR2.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="InterfacePTR2" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Interface PTR2</label>
                     </div>
                     
@@ -101,29 +101,32 @@
             <div class=" grid grid-cols-2 border rounded-b-lg">
                 <div class="col-span-2 px-2 pt-2">
                     <label for="lista" name="Estado_Cct" class="block mb-1 text-sm font-medium text-gray-900">Estado do circuito</label>
-                    <select name="Estado_Cct" id="lista" class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                    <select name="Estado_Cct" id="lista" class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                         <option value="Activo" {% if form.Estado_Cct.value == "Activo" %} selected {% endif %}>Activo</option>
                         <option value="Desligado" {% if form.Estado_Cct.value == "Desligado" %} selected {% endif %}>Desligado</option>
                         <option value="Definido" {% if form.Estado_Cct.value == "Definido" %} selected {% endif %}>Definido</option>
                     </select>
 
                 <div class="relative pb-2">
-                    <input type="text" id="Propriedade" name="Propriedade_Cct" value="{{form.Propriedade_Cct.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <input type="text" id="Propriedade" name="Propriedade_Cct" value="{{form.Propriedade_Cct.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                     <label for="Propriedade" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Propriedade</label>
                 </div>
                 <div class="relative pb-2">
-                    <input type="text" id="UserCct" name="User_Cct" value="{{form.User_Cct.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                    <input type="text" id="UserCct" name="User_Cct" value="{{form.User_Cct.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
                     <label for="UserCct" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cliente</label>
                 </div>
                     <label for="Outrasref" name="Outras_Ref" class="block mb-1 text-sm font-medium text-gray-900">Observações</label>
-                    <textarea rows="3" type="text" id="Outrasref" name="Outras_Ref" value="{{form.Outras_Ref.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" placeholder="Observações" />{{form.Outras_Ref.value}}
+                    <textarea rows="3" type="text" id="Outrasref" name="Outras_Ref" value="{{form.Outras_Ref.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" placeholder="Observações" {% if not can_edit %}disabled{% endif %}>{{form.Outras_Ref.value}}
                     </textarea>
 
                 </div>
             </div>
             <!-- Submit Button (Full-width) -->
             <div class="w-full flex justify-end">
-                <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
+                {% if can_edit %}
+                    <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
+                {% endif %}
+
                 <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_cct' %}" >Cancelar</a></button>
                 
             </div>
