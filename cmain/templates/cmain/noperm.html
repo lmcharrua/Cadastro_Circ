@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="w-full container text-center p-2 bg-ip-mains">
+<div class="w-full items-center p-4 justify-items-center" role="alert">
+  
+   <div class="text-center flex items-center p-4 mb-4 text-xl text-red-700 border border-4px border-red-300 rounded-lg bg-red-50">
+    <span class="text-lg font-bold"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red-700" class="shrink-0 inline w-8 h-8 me-3">
+  <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+</svg>
+         Não tem permissões para visualizar esta página, faça o <a href="{% url 'userlogin' %}" class="font-bold no-underline hover:underline">login</a> com um utilizador com os previlégios necessários!</span>
+  </div>
+</div>
+</div>
+
+{% endblock %}
+
+

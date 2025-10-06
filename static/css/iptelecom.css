@@ -6,7 +6,10 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-50: #FEF2F2;
+    --color-red-300: #FCA5A5;
     --color-red-500: #EF4444;
+    --color-red-800: #991B1B;
     --color-green-200: #A7F3D0;
     --color-blue-300: #93C5FD;
     --color-blue-500: #3B82F6;
@@ -1064,6 +1067,9 @@
   .ms-1 {
     margin-inline-start: calc(var(--spacing) * 1);
   }
+  .me-3 {
+    margin-inline-end: calc(var(--spacing) * 3);
+  }
   .mt-1\.5 {
     margin-top: calc(var(--spacing) * 1.5);
   }
@@ -1793,6 +1799,9 @@
   }
   .shrink {
     flex-shrink: 1;
+  }
+  .shrink-0 {
+    flex-shrink: 0;
   }
   .flex-grow {
     flex-grow: 1;
@@ -2679,6 +2688,9 @@
   .border-ip-main {
     border-color: var(--color-ip-main);
   }
+  .border-red-300 {
+    border-color: var(--color-red-300);
+  }
   .apexcharts-active {
     .apexcharts-canvas .apexcharts-tooltip-series-group& .apexcharts-tooltip-y-group {
       padding: 0 !important;
@@ -2753,6 +2765,9 @@
   }
   .bg-ipt-main {
     background-color: var(--color-ipt-main);
+  }
+  .bg-red-50 {
+    background-color: var(--color-red-50);
   }
   .bg-red-500 {
     background-color: var(--color-red-500);
@@ -3398,6 +3413,9 @@
   }
   .text-gray-950 {
     color: var(--color-gray-950);
+  }
+  .text-red-800 {
+    color: var(--color-red-800);
   }
   .text-slate-800 {
     color: var(--color-slate-800);

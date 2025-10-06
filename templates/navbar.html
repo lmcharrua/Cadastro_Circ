@@ -11,7 +11,7 @@
 <!-- Circuitos -->
 
         
-            {% if request.user|has_group:"NOC,OTC,DAT" %}
+            {% if request.user|has_group:"NOC,TX,VOZ,DADOS,DAT" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_circuito" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold hover:text-black flex items-right p-1 px-3 gap-x-1 text-white ">
                     
                     Circuitos
@@ -32,7 +32,7 @@
 <!-- Serviços Dados -->
 
  
-            {% if request.user|has_group:"NOC,OTC" %}
+            {% if request.user|has_group:"NOC,DADOS,TX" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_dados" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-4 text-white hover:text-black">
                     Serv. Dados
                 </li>
@@ -50,7 +50,7 @@
 
 <!-- Ligações ópticas-->
 
-            {% if request.user|has_group:"NOC,OTC,FOE" %}
+            {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_ligafo" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
                     Lig. Opticas
                 </li>
@@ -74,7 +74,7 @@
 <!-- FOE -->
 
 
-            {% if request.user|has_group:"NOC,OTC,FOE" %}
+            {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_foe" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
                     FOE
                 </li>
@@ -95,7 +95,7 @@
 
 <!-- Cartas -->
 
-            {% if request.user|has_group:"OTC" %}
+            {% if request.user|has_group:"TX,DAT" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_cartas" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
                     Cartas
                 </li>

@@ -30,6 +30,8 @@ def userlogin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
+                l = list(request.user.groups.values_list('name', flat = True))[0]
+                print(l)
                 return redirect("main")
     context = {'form':form}
     return render(request, 'cmain/userlogin.html', context=context)
@@ -40,3 +42,6 @@ def userlogout(request):
     auth.logout(request)
     # messages.success(request, "Logout success!")
     return redirect("userlogin")
+
+def noperm(request):
+    return render(request, 'cmain/noperm.html')
