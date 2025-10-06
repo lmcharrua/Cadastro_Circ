@@ -7,6 +7,7 @@
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
+{% endif %}
 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
 <div class="grid grid-cols-2 gap-2 p-10">
     <div class="col-span-2 rounded-lg border border-gray-400 p-2">
@@ -35,10 +36,12 @@
 </div>
 </div>
 <br>
-<a href="{% url 'lista_cct' %}" class="btn btn-secondary">Voltar &nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-&nbsp;
+<div class="w-full flex justify-end">
+<button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'editar_circuito' circuito.id  %}" >Editar</a></button>
+<button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_cct' %}" >Voltar</a></button>
 {% if perms.circuitos.change_circuitos %}
-<a href="" class="btn btn-secondary">Editar &nbsp;<i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+</div>
 {% endif %}
 {% endblock %}
 
