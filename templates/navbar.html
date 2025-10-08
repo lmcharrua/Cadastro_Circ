@@ -31,9 +31,16 @@
                             <li>
                                 <a href="{% url 'lista_cct' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
                             </li>
+                            {% if request.user|has_group:"TX,DAT,DADOS" %}
                             <li>
                                 <a href="{% url 'criar_circuito' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
                             </li>
+                            {% endif %}
+                            {% if request.user|has_group:"DAT" %}
+                            <li>
+                                <a href="{% url 'download' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Download</a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 {% endif %}

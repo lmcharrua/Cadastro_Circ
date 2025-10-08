@@ -6,6 +6,8 @@ from django.contrib import messages
 from .models import *
 from .forms import CircuitoForm, CreateCircuitoForm
 from cmain.decorators import group_required 
+import csv
+from django.http import HttpResponse
 
 
 @login_required(login_url='userlogin')
@@ -55,3 +57,28 @@ def criar_circuito(request):
         return redirect('lista_cct')
     context = {'form':form}
     return render(request, 'circuitos/criar_circuito.html', context=context)
+
+
+def download(request):
+    data = Circuitos.objects.all()
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="circuitos.csv"'
+
+    writer = csv.writer(response, delimiter=';')
+    campos = [f.name for f in Circuitos._meta.fields]
+    writer.writerow(campos)  # CSV header
+
+    # 
+    for circ in data:
+
+         writer.writerow([circ.id, circ.N_Circuito, circ.Data_Rate, circ.Data_Inst, circ.Data_Activ, circ.Estado_Cct,
+               circ.Entidade_PTR1, circ.Morada_PTR1, circ.Cod_Post_PTR1, circ.Interface_PTR1,
+               circ.Equip_PTR1, circ.Slot_PTR1, circ.Trib_PTR1,
+               circ.Entidade_PTR2, circ.Morada_PTR2, circ.Cod_Post_PTR2, circ.Interface_PTR2,
+               circ.Equip_PTR2, circ.Slot_PTR2, circ.Trib_PTR2,
+               circ.User_Cct, circ.Propriedade_Cct, circ.Outras_Ref,
+               circ.created_at.strftime('%d-%b-%Y'), circ.updated_at.strftime('%d-%b-%Y'),
+               circ.update_user, circ.create_user])
+
+    return response
