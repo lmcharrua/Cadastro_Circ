@@ -30,8 +30,6 @@ def userlogin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                l = list(request.user.groups.values_list('name', flat = True))[0]
-                print(l)
                 return redirect("main")
     context = {'form':form}
     return render(request, 'cmain/userlogin.html', context=context)

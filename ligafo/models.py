@@ -23,7 +23,7 @@ class ligafo(models.Model):
     observacoes = models.TextField(max_length=150, blank=True, null=True, verbose_name='Observações', help_text='Observações')
 
     def save(self, *args, **kwargs):
-        print(self.referencia)
+        #print(self.referencia)
         if not self.referencia:
             self.referencia = self.gera_ref()
         super().save(*args, **kwargs)

@@ -40,6 +40,7 @@ def editar_circuito(request, pk):
             messages.success(request, "O circuito foi actualizado com sucesso!")
             print("Circuito actualizado")
             return redirect("lista_cct")  
+
     context = {'form':form, 'can_edit': can_edit, 'criado': criado, 'editado': editado}
     return render(request, 'circuitos/editar_circuito.html', context=context)
 

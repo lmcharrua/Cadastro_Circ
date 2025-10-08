@@ -6,33 +6,33 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import circfoe
 from .forms import circfoeForm, cria_circfoeForm
+from cmain.decorators import group_required 
 
-
-# Create your views here.
 
 @login_required(login_url='userlogin')
+@group_required(('NOC', 'FOE'))
 def lista_foe(request):
     l_foe = circfoe.objects.exclude(estado='D')
     context = {'l_foe': l_foe}
     return render(request, 'foe/lista_foe.html', context=context)
 
 @login_required(login_url='userlogin')
+@group_required(('FOE', 'NOC'))
 def editar_foe(request, pk):
     lfoe = circfoe.objects.get(id=pk)
     net = request.GET.get('next')
-
     form = circfoeForm(instance=lfoe)
-    if request.method == 'POST':
+    can_edit = request.user.groups.filter(name='FOE').exists()
+    if request.method == 'POST' and can_edit:
         form = circfoeForm(request.POST, instance=lfoe)
-
         if form.is_valid():
             form.save()
-
             return redirect(net)   
-    context = {'form':form}
+    context = {'form':form, 'can_edit': can_edit}
     return render(request, 'foe/editar_foe.html', context=context)
 
 @login_required(login_url='userlogin')
+@group_required(('FOE', 'NOC'))
 def criar_foe(request):
     form = cria_circfoeForm(request.POST)
     if form.is_valid():
@@ -42,6 +42,7 @@ def criar_foe(request):
     return render(request, 'foe/criar_foe.html', context=context)
 
 @login_required(login_url='userlogin')
+@group_required(('FOE',))
 def desligados_foe(request):
     dlfoe = circfoe.objects.filter(estado='D')
     context = {'dlfoe': dlfoe}
