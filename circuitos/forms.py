@@ -26,7 +26,7 @@ class CreateCircuitoForm(forms.ModelForm):
                   'Trib_PTR2',
                   'User_Cct',
                   'Propriedade_Cct',
-                  'Outras_Ref'
+                  'Outras_Ref',
                   ]
         
 class CircuitoForm(forms.ModelForm):

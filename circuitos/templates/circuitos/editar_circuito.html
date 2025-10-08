@@ -11,13 +11,19 @@
             <h1 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">{{form.N_Circuito.value}}</h1>
             <input type="hidden" name="N_Circuito" value="{{form.N_Circuito.value}}">
             <div class="border rounded-t-lg p-1">
-            <div class="grid  rounded-t-lg p-1">
+            <div class="grid grid-cols-2 rounded-b-lg py-1 gap-1.5"> 
                 <div class="form-group col-span-1">
+                    <label for="usercct" class="block mb-1 text-sm font-medium text-gray-900">Cliente:</label>
+                    <input  id="usercct" name="User_Cct" class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.User_Cct.value}}" placeholder="Cliente" {% if not can_edit %}disabled{% endif %}>
+                    <label for="createuser" class="block text-sm  text-gray-900">Criado por: {{form.create_user.value}} a {{criado}}</label>
+                </div>                
+                <div class="form-group col-span-1"><!-- Data rate e cliente -->
                     <label for="DataRate" class="block mb-1 text-sm font-medium text-gray-900">Data Rate:</label>
-                    <input  id="DataRate" name="Data_Rate" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.Data_Rate.value}}" placeholder="Data Rate" {% if not can_edit %}disabled{% endif %}>
+                    <input  id="DataRate" name="Data_Rate" class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.Data_Rate.value}}" placeholder="Data Rate" {% if not can_edit %}disabled{% endif %}>
+                    <label for="edituser" class="block text-sm  text-gray-900">Última actualização por: {{form.update_user.value}} a {{editado}}</label>
                 </div>
             </div>
-            <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">
+            <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5"> <!-- Dates -->
                 <div class="col-span-1 p-1">
                     <label for="datainst" class="block mb-1 text-xs font-medium text-gray-900">Data Instalação:</label>
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -98,26 +104,24 @@
                 </div>
             </div>
             <div class=" grid grid-cols-2 border rounded-b-lg">
-                <div class="col-span-2 px-2 pt-2">
+                <div class="col-span-1 px-2 pt-2">
                     <label for="lista" name="Estado_Cct" class="block mb-1 text-sm font-medium text-gray-900">Estado do circuito</label>
                     <select name="Estado_Cct" id="lista" class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                         <option value="Activo" {% if form.Estado_Cct.value == "Activo" %} selected {% endif %}>Activo</option>
                         <option value="Desligado" {% if form.Estado_Cct.value == "Desligado" %} selected {% endif %}>Desligado</option>
                         <option value="Definido" {% if form.Estado_Cct.value == "Definido" %} selected {% endif %}>Definido</option>
                     </select>
+                </div>
+                <div class="col-span-1 px-2 pt-2">
+                    <label for="propriedade" class="block mb-1 text-sm font-medium text-gray-900">Propriedade:</label>
+                    <input  id="propriedade" name="Propriedade_Cct" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" value="{{form.Propriedade_Cct.value}}" placeholder="Propriedade circuito" {% if not can_edit %}disabled{% endif %}>
 
-                <div class="relative pb-2">
-                    <input type="text" id="Propriedade" name="Propriedade_Cct" value="{{form.Propriedade_Cct.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
-                    <label for="Propriedade" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Propriedade</label>
                 </div>
-                <div class="relative pb-2">
-                    <input type="text" id="UserCct" name="User_Cct" value="{{form.User_Cct.value}}" class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " {% if not can_edit %}disabled{% endif %}>
-                    <label for="UserCct" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cliente</label>
-                </div>
+                <div class="col-span-2 px-2 pt-1">
                     <label for="Outrasref" name="Outras_Ref" class="block mb-1 text-sm font-medium text-gray-900">Observações</label>
                     <textarea rows="3" type="text" id="Outrasref" name="Outras_Ref" value="{{form.Outras_Ref.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" placeholder="Observações" {% if not can_edit %}disabled{% endif %}>{{form.Outras_Ref.value}}
                     </textarea>
-
+                </div>
                 </div>
                 <input type="hidden" name="create_user" value="{{form.create_user.value}}">
             </div>

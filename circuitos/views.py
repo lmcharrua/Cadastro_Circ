@@ -28,6 +28,8 @@ def ver_circuito(request, pk):
 def editar_circuito(request, pk):
     cct = Circuitos.objects.get(id=pk)
     form = CircuitoForm(instance=cct)
+    criado = form.instance.created_at.strftime('%d-%b-%Y')
+    editado = form.instance.updated_at.strftime('%d-%b-%Y')
     can_edit = request.user.has_perm('circuitos.change_circuitos' or 'circuitos.add_circuitos')
 
     if request.method == 'POST' and can_edit:
@@ -38,7 +40,7 @@ def editar_circuito(request, pk):
             messages.success(request, "O circuito foi actualizado com sucesso!")
             print("Circuito actualizado")
             return redirect("lista_cct")  
-    context = {'form':form, 'can_edit': can_edit}
+    context = {'form':form, 'can_edit': can_edit, 'criado': criado, 'editado': editado}
     return render(request, 'circuitos/editar_circuito.html', context=context)
 
 @login_required(login_url='userlogin')
