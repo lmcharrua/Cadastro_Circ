@@ -29,6 +29,10 @@ class Circuitos(models.Model):
     User_Cct = models.TextField(max_length=150, blank=False, null=False)
     Propriedade_Cct = models.TextField(max_length=150, default='', blank=True)
     Outras_Ref = models.TextField(max_length=150, default='', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    update_user = models.CharField(max_length=30, blank=True)
+    create_user = models.CharField(max_length=30, blank=True)
     # history = HistoricalRecords()
 
     def save(self, *args, **kwargs):
@@ -44,7 +48,7 @@ class Circuitos(models.Model):
         res2 = list(map(int, res))
         res3=[x for x in res2 if x <= 200000]
         next=max(res3)+1
-        print(next)
+        #print(next)
         return f"{prefix}{next:06d}"
 
     class Meta:

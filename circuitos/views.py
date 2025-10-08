@@ -33,10 +33,11 @@ def editar_circuito(request, pk):
     if request.method == 'POST' and can_edit:
         form = CircuitoForm(request.POST,instance=cct)
         if form.is_valid():
+            form.instance.update_user = request.user.username
             form.save()
             messages.success(request, "O circuito foi actualizado com sucesso!")
             print("Circuito actualizado")
-            return redirect("lista_cct")   
+            return redirect("lista_cct")  
     context = {'form':form, 'can_edit': can_edit}
     return render(request, 'circuitos/editar_circuito.html', context=context)
 
@@ -45,6 +46,7 @@ def editar_circuito(request, pk):
 def criar_circuito(request):
     form = CreateCircuitoForm(request.POST)
     if form.is_valid():
+        form.instance.create_user = request.user.username
         form.save()
         # messages.success(request, "O circuito foi criado com sucesso!")
         return redirect('lista_cct')

@@ -2,14 +2,19 @@
 {% load static %}
 
 <nav class="justify-between text-white rounded-md shadow-md lg:py-3 bg-ipt-main">
+    <!-- div principal -->
     <div class="flex justify-between text-slate-800 mx-3">
-        <div class="flex justify-left">
+        <!-- div logo e user -->
+        <div class="flex justify-left"> 
             <img class="h-8" src="{% static 'img/Logo_IPT_invertido.png' %}" alt="IPTelecom"> 
             <div class="p-1 px-3 gap-x-1 text-ip-main ">
                 Utilizador: {{ user.username }}
             </div>
         </div>
+        <!-- div em branco para espaçar os items -->
         <div>&nbsp;</div>
+
+        <!-- div menu -->
         <div class="hidden lg:block justify-end">
          
             {% if user.is_authenticated %}
@@ -20,6 +25,7 @@
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_circuito" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold hover:text-black flex items-right p-1 px-3 gap-x-1 text-white ">
                     Circuitos
                 </li>
+                    <!-- dropdown dos circuitos -->
                     <div id="dropdown_circuito" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
                         <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
                             <li>
@@ -35,52 +41,53 @@
                 <!-- Ligações ópticas-->
 
                 {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
-                    <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_ligafo" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
-                    Lig. Opticas
-                    </li>
-                    <div id="dropdown_ligafo" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
-                        <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
-                            <li>
-                                <a href="{% url 'lista_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
-                            </li>
-                    {% endif %}
+                <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_ligafo" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
+                Lig. Opticas
+                </li>
+                <div id="dropdown_ligafo" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                        <li>
+                            <a href="{% url 'lista_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                        </li>
+                
                     {% if request.user|has_group:"FOE" %}
-                    <li>
-                        <a href="{% url 'criar_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'desligados_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
-                    </li>
-                    {% endif %}
+                        <li>
+                            <a href="{% url 'criar_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'desligados_ligafo' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
+                        </li>
+                    {% endif %}        
                     </ul>
                 </div>
+                {% endif %}
             
 
 <!-- FOE -->
 
 
-            {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
+                {% if request.user|has_group:"NOC,TX,DADOS,DAT,FOE" %}
                 <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_foe" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
                     FOE
                 </li>
-                <div id="dropdown_foe" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
-                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
-                    <li>
-                        <a href="{% url 'lista_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
-                    </li>
-                    {% endif %}
-                    {% if request.user|has_group:"FOE" %}
-                    <li>
-                        <a href="{% url 'criar_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
-                    </li>
-                    
-                    <li>
-                        <a href="{% url 'desligados_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
-                    </li>
-                    {% endif %}
-                    </ul>
-                </div>
-            
+                    <div id="dropdown_foe" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                        <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                            <li>
+                                <a href="{% url 'lista_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                            </li>
+                            
+                            {% if request.user|has_group:"FOE" %}
+                            <li>
+                                <a href="{% url 'criar_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
+                            </li>
+                            
+                            <li>
+                                <a href="{% url 'desligados_foe' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Lig. Desligadas</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
             
 
 <!-- Cartas 
@@ -103,21 +110,21 @@
 -->
 <!-- Logout -->
 
-            <li class="flex items-center p-1  px-3 gap-x-2 text font-semibold hover:text-black text-white">
-                <a href="{% url 'userlogout' %}" class="flex items-center">
-                    Logout
-                </a>
-            </li>
-        {% else %}
-            <li class="flex items-center p-1 text gap-x-2 hover:text-black text-white">
-                <a href="{% url 'userlogout' %}" class="font-semibold flex items-center">
-                    Login
-                </a>
-          </li>
-        </ul>
-        {% endif %}
-      </div>
+                <li class="flex items-center p-1  px-3 gap-x-2 text font-semibold hover:text-black text-white">
+                    <a href="{% url 'userlogout' %}" class="flex items-center">
+                        Logout
+                    </a>
+                </li>
+            {% else %}
+                <li class="flex items-center p-1 text gap-x-2 hover:text-black text-white">
+                    <a href="{% url 'userlogout' %}" class="font-semibold flex items-center">
+                        Login
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
     </div>
-  </nav>
+</nav>
 
 
