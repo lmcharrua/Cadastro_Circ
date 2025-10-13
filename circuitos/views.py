@@ -58,7 +58,8 @@ def criar_circuito(request):
     context = {'form':form}
     return render(request, 'circuitos/criar_circuito.html', context=context)
 
-
+@login_required(login_url='userlogin')
+@group_required(('DAT',))
 def download(request):
     data = Circuitos.objects.all()
 
