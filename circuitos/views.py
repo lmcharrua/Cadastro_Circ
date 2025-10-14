@@ -39,7 +39,7 @@ def editar_circuito(request, pk):
         if form.is_valid():
             form.instance.update_user = request.user.username
             form.save()
-            messages.success(request, "O circuito foi actualizado com sucesso!")
+            # messages.success(request, "O circuito foi actualizado com sucesso!")
             print("Circuito actualizado")
             return redirect("lista_cct")  
 
