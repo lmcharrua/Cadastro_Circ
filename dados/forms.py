@@ -2,11 +2,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import serv_dados, terminacao
 from django import forms
 from django.forms.widgets import TextInput, DateInput, ChoiceWidget
-from crispy_formset_modal.helper import ModalEditFormHelper
-from crispy_formset_modal.layout import ModalEditLayout, ModalEditFormsetLayout
-from crispy_forms.helper import FormHelper
-from crispy_formset_modal.layout import ModalEditFormsetLayout
-from crispy_forms.layout import Column, Fieldset, Layout, Row, Submit
+#from crispy_formset_modal.helper import ModalEditFormHelper
+#from crispy_formset_modal.layout import ModalEditLayout, ModalEditFormsetLayout
+#from crispy_forms.helper import FormHelper
+#from crispy_formset_modal.layout import ModalEditFormsetLayout
+#from crispy_forms.layout import Column, Fieldset, Layout, Row, Submit
 
 class ServDadosForm(forms.ModelForm):
     class Meta:

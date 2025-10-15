@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'crispy_tailwind',
     'fontawesomefree',
     'extra_views',
-    'crispy_formset_modal',
+    #'crispy_formset_modal',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
