@@ -10,7 +10,7 @@
             <link href="{% static 'css/iptelecom.css' %}" rel="stylesheet" type="text/css">
  
 
-            <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+            <link href="{% static 'css/datatable_style.css' %}" rel="stylesheet" type="text/css">
             <script src="{% static 'js/htmx.min.js'%}"></script>
             
     </head>
@@ -21,7 +21,7 @@
         {% block content %}
 
         {% endblock content %}
-        <script src="{% static '\node_modules\flowbite\dist\flowbite.min.js' %}"></script>
+        <script src="{% static 'js/flowbite.min.js' %}"></script>
         
         
         
