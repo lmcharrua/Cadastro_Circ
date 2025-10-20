@@ -24,7 +24,7 @@
                         <input type="text" id="cli" name="cliente"
                             value="{{form.cliente.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="cli"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cliente:</label>
                     </div>
@@ -41,7 +41,7 @@
                         <input type="number" id="datainst" name="dist_iet"
                             pattern="\d{1,3}\.\d{3}"
                             value="{{form.dist_iet.value}}"
-                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                     </div>
                     <div class="col-span-1 p-1">
                         <label for="distopt"
@@ -53,7 +53,7 @@
                         <input type="number" id="distopt" name="dist_optica"
                             pattern="\d{1,3}\.\d{3}"
                             value="{{form.dist_optica.value}}"
-                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                     </div>
 
                 </div>
@@ -68,7 +68,7 @@
                         </div>
                         <input type="date" id="datainst" name="data_pedido"
                             value="{{form.data_pedido.value|date:"c"}}"
-                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                     </div>
                     <div class="col-span-1 p-1">
                         <label for="dataactiv"
@@ -79,7 +79,7 @@
                         </div>
                         <input type="date" id="dataactiv" name="data_entrega"
                             value="{{form.data_entrega.value|date:"c"}}"
-                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                            class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm  focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                     </div>
 
                 </div>
@@ -92,7 +92,7 @@
                         <input type="text" id="locala" name="local_a"
                             value="{{form.local_a.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="locala"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Local
                             A</label>
@@ -101,7 +101,7 @@
                         <input type="text" id="equipa" name="eauipa_a"
                             value="{{form.equipa_a.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="equipa"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento
                             local A</label>
@@ -110,7 +110,7 @@
                         <input type="text" id="slota" name="slot_a"
                             value="{{form.slot_a.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="slota"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot
                             equip. A</label>
@@ -119,7 +119,7 @@
                         <input type="text" id="portaa" name="porta_a"
                             value="{{form.porta_a.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="portaa"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porta
                             equip. A</label>
@@ -131,7 +131,7 @@
                         <input type="text" id="localb" name="local_b"
                             value="{{form.local_b.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="localb"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Local
                             B</label>
@@ -140,7 +140,7 @@
                         <input type="text" id="equipab" name="equipa_b"
                             value="{{form.equipa_b.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="equipab"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento
                             local B</label>
@@ -149,7 +149,7 @@
                         <input type="text" id="slotb" name="slot_b"
                             value="{{form.slot_b.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="slotb"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot
                             equip. B</label>
@@ -158,7 +158,7 @@
                         <input type="text" id="portab" name="porta_b"
                             value="{{form.porta_b.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="portab"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porta
                             equip. B</label>
@@ -172,7 +172,7 @@
                         class="block mb-1 text-sm font-medium text-gray-900">Estado
                         do circuito</label>
                     <select name="estado" id="estadol"
-                        class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                        class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
                         <option value="A" {% if form.estado.value == "A" %}
                             selected {% endif %}>Activo</option>
                         <option value="I" {% if form.estado.value == "I" %}
@@ -185,7 +185,7 @@
                         <input type="text" id="enc" name="encomenda"
                             value="{{form.encomenda.value}}"
                             class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " />
+                            placeholder=" " {% if not can_edit %}disabled{% endif %}>
                         <label for="enc"
                             class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Encomenda:</label>
                     </div>
@@ -195,7 +195,7 @@
                     <textarea rows="4" type="text" id="Outrasref" name="observacoes"
                         value="{{form.observacoes.value}}"
                         class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main"
-                        placeholder=" " /></textarea>
+                        placeholder=" " {% if not can_edit %}disabled{% endif %}></textarea>
 
                 </div>
             </div>

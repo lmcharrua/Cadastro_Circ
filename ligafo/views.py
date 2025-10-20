@@ -20,7 +20,7 @@ def lista_ligafo(request):
 def editar_ligafo(request, pk):
     l = ligafo.objects.get(id=pk)
     net = request.GET.get('next')
-
+    can_edit = request.user.has_perm('ligafo.change_ligafo' or 'ligafo.add_ligafo')
     form = LigafoForm(instance=l)
     if request.method == 'POST':
         form = LigafoForm(request.POST, instance=l)
@@ -29,7 +29,7 @@ def editar_ligafo(request, pk):
             form.save()
 
             return redirect(net)   
-    context = {'form':form}
+    context = {'form':form , 'can_edit': can_edit}
     return render(request, 'ligafo/editar_ligafo.html', context=context)
 
 @login_required(login_url='userlogin')

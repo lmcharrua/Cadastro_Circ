@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% load tailwind_filters %}
+
+{% block content %}
+<div class="container overscroll-y-auto mx-auto p-4 bg-white rounded-lg shadow-lg mt-8">
+    <div class="overflow-y-auto scroll-m-0">
+        <!-- Form -->
+        <form method="POST">
+            {% csrf_token %}
+                
+                <div class="border rounded-t-lg p-1 gap-1.5 mb-2">
+                    <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">
+                        <div class="col-span-2 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="serial" name="serial_number"
+                                    value=""
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="serial"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Serial Number:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="fab" name="fabricante"
+                                    value=""
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="fab"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Fabricante:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="part" name="part_number"
+                                    value=""
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="part"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Part Number:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="board" name="b_type"
+                                    value=""
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="board"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Board Type:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="desc" name="descricao"
+                                    value=""
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="desc"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Descrição:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                
+                                <input type="date" id="data" name="data_rececao"
+                                    value="{% now "d/m/Y" %}" default="{% now "d/m/Y" %}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="{% now "d/m/Y" %}"
+                                    >
+                                <label for="data"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Data de recepção:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="sist" name="sistema"
+                                    value="{{form.sistema.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="sist"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Sistema:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-2 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="proj" name="projeto"
+                                    value="{{form.projeto.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="proj"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Projecto:</label>
+                            </div>
+                        </div>
+                            
+                    </div>
+
+                </div> 
+                <div class="border p-2">
+                    <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">
+                        
+                        <div class="col-span-1 p-1 relative">
+                            <select name="estado" id="estadol"
+                            class="block w-full p-1 mb-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main">
+                                <option value="INS" {% if form.estado.value == "INS" %}
+                                    selected {% endif %}>Instalada</option>
+                                <option value="SPA" {% if form.estado.value == "SPA" %}
+                                    selected {% endif %}>Spare</option>
+                                <option value="ABA" {% if form.estado.value == "ABA" %}
+                                    selected {% endif %}>Abate</option>
+                                <option value="REP" {% if form.estado.value == "REP" %}
+                                    selected {% endif %}>Em reparação</option>
+                                <option value="LAB" {% if form.estado.value == "LAB" %}
+                                    selected {% endif %}>Lab/teste</option>
+                            </select>
+                            <label for="estadol"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Estado da ligação:</label>
+                        </div>
+
+                        <div class="col-span-1 p-1 relative">
+                            <div class="relative p-1">
+                                <input type="text" id="local" name="localizacao"
+                                    value="{{form.localizacao.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="local"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Local:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="equip" name="equipamento"
+                                    value="{{form.equipamento.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="equip"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Equipamento:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-2">
+                                <input type="text" id="sr" name="subrack"
+                                    value="{{form.subrack.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="sr"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SubRack:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-0">
+                                <input type="text" id="sl" name="slot"
+                                    value="{{form.slot.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="sl"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Slot:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-1 p-1">
+                            <div class="relative pb-0">
+                                <input type="text" id="porta" name="porto"
+                                    value="{{form.porto.value|default_if_none:'' }}"
+                                    class="block px-2.5 pb-1 pt-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-1 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " >
+                                <label for="porta"
+                                    class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Porto:</label>
+                            </div>
+                        </div>
+                        <div class="col-span-2 p-1">
+                            <label for="Outrasref" class="block mb-1 text-sm font-medium text-gray-900">Observações</label>
+                            <textarea rows="2" type="text" id="Outrasref" name="observacoes" value="{{form.observacoes.value}}" class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm mb-2 focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" placeholder=" ">{{form.observacoes.value}}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="border rounded-b-lg p-1 gap-1.5 mt-2">
+                    <div class="col-span-2 p-1">
+                    <table id="histc" class="table-auto w-full text-sm text-gray-500" >
+                        <thead class="bg-ip-main ">
+                            <tr>
+                                <th class="text-sm bg-ipt-main text-center justify-center text-white">
+                                    Data
+                                </th>
+                                <th class="text-sm bg-ipt-main text-white">
+                                    Utilizador
+                                </th>
+                                <th class="text-sm bg-ipt-main text-white">
+                                        Acção
+                                </th>                                                   
+                            </tr>
+                        </thead>
+                    <tbody class="text-center">
+                            {% if historico %}
+                                {% for hist in historico %}
+                                        <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+
+                                            <td class="px-3 py-1 text-sm">
+                                                {{hist.data_alteracao|date:"d/m/Y"}}
+                                            </td>
+                                            <td class="px-3 py-1 text-sm">
+                                                {{hist.utilizador}}
+                                            </td>
+                                            <td class="px-3 py-1 text-sm">
+                                                {{hist.action}}
+                                            </td>
+                                        </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Submit Button (Full-width) -->
+            <div class="w-full flex justify-end">
+                {% if can_edit %}
+                    <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
+                {% endif %}
+
+                <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'lista_cartas' %}" >Cancelar</a></button>
+                
+            </div>
+        </form>
+    </div>
+</div><div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5"></div>
+{% endblock %}
