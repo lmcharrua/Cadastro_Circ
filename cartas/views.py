@@ -22,6 +22,7 @@ def editar_carta(request, pk):
     
     if request.method == 'POST' and can_edit:
         form = CartaForm(request.POST, instance=carta)
+        print(form.errors)
         if form.is_valid():
             form.instance._current_user = request.user.username  # pass user to signal
             form.save()

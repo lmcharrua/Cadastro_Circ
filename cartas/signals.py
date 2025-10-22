@@ -21,6 +21,7 @@ def log_cartas_changes(sender, instance, **kwargs):
     """
     Detects field changes and logs them individually in hist_cartas.
     """
+
     if not instance.pk:
         return  # new record handled in post_save
 
@@ -39,16 +40,20 @@ def log_cartas_changes(sender, instance, **kwargs):
         old_value = getattr(old_instance, field_name)
         new_value = getattr(instance, field_name)
 
-        if old_value != new_value:
-            
+
+        if old_value != new_value and not (new_value == None and old_value == ''):
+
             field_label = field.verbose_name  # uses your verbose_name text
-            action_text = (
-                f"O valor do campo '{field_label}' foi alterado de "
-                f"'{old_value}' para '{new_value}'."
-            )
+            if field_name == 'observacoes':
+                action_text = ("O campo de Observações foi alterado/editado.")
+            else:
+                action_text = (
+                    f"O valor do campo '{field_label}' foi alterado de "
+                    f"'{old_value}' para '{new_value}'."
+                )
             hist_cartas.objects.create(
                 carta=instance,
                 action=action_text,
                 utilizador=utilizador,
             )
-            print("Change logged:", action_text)
+            #print("Change logged:", action_text)

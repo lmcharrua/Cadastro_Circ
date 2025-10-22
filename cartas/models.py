@@ -5,7 +5,7 @@ from django.db.models import Max
 from django.utils.functional import cached_property
 
 class Cartas(models.Model):
-    fabricante = models.CharField(max_length=50, help_text='Nome do fabricante da carta', verbose_name='Fabricante')
+    fabricante = models.CharField(max_length=50, help_text='Nome do fabricante da carta', verbose_name='Fabricante', null=True, blank=True)
     data_rececao = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True, default=datetime.date.today, help_text='Data de receção da carta', verbose_name='Data de receção')
     b_type = models.CharField(max_length=20, help_text='Tipo de carta', verbose_name='Tipo de carta')
     part_number = models.CharField(max_length=20, help_text='Model number', verbose_name='Model number')

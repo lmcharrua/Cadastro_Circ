@@ -132,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt-PT'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -154,7 +154,8 @@ STATICFILES_DIRS = [BASE_DIR /'static']
 #     # This defines a prefix so the url paths will become `/static/node_modules/...`
 #     ('node_modules', os.path.join(BASE_DIR, 'node_modules/')),
 # )
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -63,8 +63,10 @@ def criar_circuito(request):
 def download(request):
     data = Circuitos.objects.all()
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="circuitos.csv"'
+    response = HttpResponse(
+        content_type="text/csv",
+        headers={"Content-Disposition": 'attachment; filename="circuitos.csv"'},
+    )
 
     writer = csv.writer(response, delimiter=';')
     campos = [f.name for f in Circuitos._meta.fields]
