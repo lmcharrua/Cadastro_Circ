@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cmain.urls')),    
@@ -26,4 +27,6 @@ urlpatterns = [
     path('foe/',include('foe.urls')),
     path('dados/',include('dados.urls')),
     path('sdados/',include('sdados.urls')),
+    #path('user/', include('cmain.urls')),
+
 ]

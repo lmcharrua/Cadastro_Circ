@@ -6,6 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/icon_ipt.png' %}" >
         <title>Cadastro de Circuitos</title>
             <link href="{% static 'css/iptelecom.css' %}" rel="stylesheet" type="text/css">
  
@@ -14,7 +15,7 @@
             <script src="{% static 'js/htmx.min.js'%}"></script>
             
     </head>
-    <body class="bg-white bg-opacity-65 overscroll-contain" >
+    <body class="overscroll-contain" >
         {% if user.is_authenticated %}
             {% include 'navbar.html' %}
         {% endif %}

@@ -42,7 +42,7 @@ def criar_carta(request):
     if form.is_valid():
         form.instance._current_user = request.user.username  # pass user to signal
         form.save()
-        return redirect('lista_cartas')
+        return redirect('editar_carta', pk=form.instance.id)
     context = {'form':form, 'can_edit': can_edit}
     return render(request, 'cartas/criar_carta.html', context=context)
 

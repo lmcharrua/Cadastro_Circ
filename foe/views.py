@@ -37,7 +37,7 @@ def criar_foe(request):
     form = cria_circfoeForm(request.POST)
     if form.is_valid():
         form.save()
-        return redirect('lista_foe')
+        return redirect('editar_foe', pk=form.instance.id)
     context = {'form':form}
     return render(request, 'foe/criar_foe.html', context=context)
 

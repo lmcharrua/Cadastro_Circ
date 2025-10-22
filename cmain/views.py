@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-
-from .forms import LoginForm
+from django.urls import reverse_lazy
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from .forms import LoginForm, ChangePasswordForm
 
 from django.contrib import messages
 
@@ -43,3 +45,45 @@ def userlogout(request):
 
 def noperm(request):
     return render(request, 'cmain/noperm.html')
+
+@login_required
+def custom_change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        user = request.user
+
+        # 1️⃣ Validate current password
+        if not user.check_password(current_password):
+            messages.error(request, "Current password is incorrect.")
+            return render(request, 'cmain/change_password.html')
+
+        # 2️⃣ Check new passwords match
+        if new_password != confirm_password:
+            messages.error(request, "New passwords do not match.")
+            return render(request, 'cmain/change_password.html')
+
+        # 3️⃣ Validate password strength (optional)
+        if len(new_password) < 8:
+            messages.error(request, "New password must be at least 8 characters.")
+            return render(request, 'cmain/change_password.html')
+
+        # 4️⃣ Set new password
+        try:
+            validate_password(new_password, user)
+        except ValidationError as e:
+            for error in e.messages:
+                messages.error(request, error)
+            return render(request, 'cmain/change_password.html')
+        user.set_password(new_password)
+        user.save()
+
+        # 5️⃣ Keep the user logged in after password change
+        update_session_auth_hash(request, user)
+
+        #messages.success(request, "Your password has been successfully changed.")
+        return redirect('main')  # redirect wherever you want
+
+    return render(request, 'cmain/change_password.html')

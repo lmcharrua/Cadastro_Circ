@@ -7,9 +7,7 @@
         <!-- div logo e user -->
         <div class="flex justify-left"> 
             <img class="h-8" src="{% static 'img/Logo_IPT_invertido.png' %}" alt="IPTelecom"> 
-            <div class="p-1 px-3 gap-x-1 text-ip-main ">
-                Utilizador: {{ user.username }}
-            </div>
+            
         </div>
         <!-- div em branco para espaçar os items -->
         <div>&nbsp;</div>
@@ -116,12 +114,20 @@
             {% endif %}   
 
 <!-- Logout -->
-
-                <li class="flex items-center p-1  px-3 gap-x-2 text font-semibold hover:text-black text-white">
-                    <a href="{% url 'userlogout' %}" class="flex items-center">
-                        Logout
-                    </a>
+                <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_user" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
+                    {{ user.username }}
                 </li>
+                <div id="dropdown_user" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                    <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                    <li>
+                        <a href="{% url 'change_password' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Alterar Password</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'userlogout' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Logout</a>
+                    </li>
+                    </ul>
+                </div>
+                
             {% else %}
                 <li class="flex items-center p-1 text gap-x-2 hover:text-black text-white">
                     <a href="{% url 'userlogout' %}" class="font-semibold flex items-center">

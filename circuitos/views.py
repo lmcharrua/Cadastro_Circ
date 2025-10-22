@@ -54,7 +54,7 @@ def criar_circuito(request):
         form.instance.create_user = request.user.username
         form.save()
         # messages.success(request, "O circuito foi criado com sucesso!")
-        return redirect('lista_cct')
+        return redirect('editar_circuito', pk=form.instance.id)
     context = {'form':form}
     return render(request, 'circuitos/criar_circuito.html', context=context)
 
