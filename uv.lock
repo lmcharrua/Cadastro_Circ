@@ -20,7 +20,6 @@ dependencies = [
     { name = "django" },
     { name = "django-addanother" },
     { name = "django-crispy-forms" },
-    { name = "django-csv-export-view" },
     { name = "django-extensions" },
     { name = "django-extra-views" },
     { name = "django-filter" },
@@ -46,7 +45,6 @@ requires-dist = [
     { name = "django", specifier = ">=5.1.6" },
     { name = "django-addanother", specifier = ">=2.2.2" },
     { name = "django-crispy-forms", specifier = ">=2.3" },
-    { name = "django-csv-export-view", specifier = ">=2.0.1" },
     { name = "django-extensions", specifier = ">=3.2.3" },
     { name = "django-extra-views", specifier = ">=0.15.0" },
     { name = "django-filter", specifier = ">=25.1" },
@@ -116,18 +114,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/04/f6/5bce7ae3512171c7c0ca3de31689e2a1ced8b030f156fcf13d2870e5468e/django_crispy_forms-2.3.tar.gz", hash = "sha256:2db17ae08527201be1273f0df789e5f92819e23dd28fec69cffba7f3762e1a38", size = 278849 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4c/3b/5dc3faf8739d1ce7a73cedaff508b4af8f6aa1684120ded6185ca0c92734/django_crispy_forms-2.3-py3-none-any.whl", hash = "sha256:efc4c31e5202bbec6af70d383a35e12fc80ea769d464fb0e7fe21768bb138a20", size = 31411 },
-]
-
-[[package]]
-name = "django-csv-export-view"
-version = "2.0.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/36/88/1b41f77992b6017fbac1faa0878b4874624765f70388bb18faadf6807ac1/django-csv-export-view-2.0.1.tar.gz", hash = "sha256:c6c78b0fc8fb990cff6eaa7dac19cf208f33868b429b62d5d65208f22038432b", size = 10317 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0f/16/863c0fd40ae88c8b121bd567d2e81e566720236e737c3241ac2fc134151f/django_csv_export_view-2.0.1-py3-none-any.whl", hash = "sha256:ae6aab6938fa2653d7d8b292e06efd394847a81523a792323b281d3b0dac408b", size = 10029 },
 ]
 
 [[package]]
