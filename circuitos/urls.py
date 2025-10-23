@@ -9,5 +9,5 @@ urlpatterns = [
     path('ver_circuito/<int:pk>', views.ver_circuito, name='ver_circuito'),
     path('editar_circuito/<int:pk>', views.editar_circuito, name='editar_circuito'),
     path('criar_circuito', views.criar_circuito, name='criar_circuito'),
-    #path('download', downteste.as_view(), name='download'),
+    path('download', views.download, name='download'),
 ]

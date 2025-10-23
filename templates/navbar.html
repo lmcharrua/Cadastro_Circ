@@ -36,7 +36,7 @@
                             {% endif %}
                             {% if request.user|has_group:"DAT" %}
                             <li>
-                                <a href="#" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Download</a>
+                                <a href="{% url 'download' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Download</a>
                             </li>
                             {% endif %}
                         </ul>
