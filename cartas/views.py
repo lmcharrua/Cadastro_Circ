@@ -7,7 +7,7 @@ from .models import *
 from .forms import CreateCartasForm, CartaForm
 from cmain.decorators import group_required 
 import csv
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 
 # Create your views here.
 @login_required(login_url='userlogin')
@@ -50,6 +50,9 @@ def criar_carta(request):
 @login_required(login_url='userlogin')
 @group_required(('TX', 'DAT'))
 def downloadc(request):
+
+
+
     response = HttpResponse(
         content_type='text/csv',
         headers={'Content-Disposition': 'attachment; filename="cartas.csv"'},

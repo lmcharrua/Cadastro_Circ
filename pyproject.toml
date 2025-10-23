@@ -9,6 +9,7 @@ dependencies = [
     "django>=5.1.6",
     "django-addanother>=2.2.2",
     "django-crispy-forms>=2.3",
+    "django-csv-export-view>=2.0.1",
     "django-extensions>=3.2.3",
     "django-extra-views>=0.15.0",
     "django-filter>=25.1",

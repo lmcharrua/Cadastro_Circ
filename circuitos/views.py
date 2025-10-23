@@ -8,6 +8,7 @@ from .forms import CircuitoForm, CreateCircuitoForm
 from cmain.decorators import group_required 
 import csv
 from django.http import HttpResponse
+from csv_export.views import CSVExportView
 
 
 @login_required(login_url='userlogin')
@@ -85,3 +86,9 @@ def download(request):
                circ.update_user, circ.create_user])
 
     return response
+
+
+
+class downteste(CSVExportView):
+    model = Circuitos
+    fields = "__all__"
