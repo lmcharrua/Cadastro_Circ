@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import *
 from .forms import CircuitoForm, CreateCircuitoForm
 from cmain.decorators import group_required 
-import csv, os
+import csv, os, tempfile
 from django.http import HttpResponse, FileResponse
 from django.conf import settings
 from datetime import datetime
@@ -64,32 +64,53 @@ def criar_circuito(request):
 @login_required(login_url='userlogin')
 @group_required(('DAT',))
 def download(request):
-    # Ensure MEDIA_ROOT exists
-    os.makedirs(settings.MEDIA_ROOT, exist_ok=True)
+    # Create temporary CSV file
+    tmp = tempfile.NamedTemporaryFile(mode="w+", newline="", suffix=".csv", delete=False, encoding="utf-8-sig")
+    filepath = tmp.name
 
-    # File path in MEDIA directory
-    filename = f"circuitos_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-    filepath = os.path.join(settings.MEDIA_ROOT, filename)
+    # Configure CSV writer with quotechar='"'
+    writer = csv.writer(
+        tmp,
+        delimiter=';',           # Field separator
+        quotechar='"',            # Quote each field with "
+        quoting=csv.QUOTE_ALL     # Always quote all fields
+    )
 
-    # Write CSV file to disk
-    with open(filepath, "w", newline="", encoding="utf-8-sig") as csvfile:
-        writer = csv.writer(csvfile, delimiter=';')
-        campos = [field.name for field in Circuitos._meta.fields]
-        writer.writerow(campos)
+    # Write header row
+    campos = [field.name for field in Circuitos._meta.fields]
+    writer.writerow(campos)
 
-        for circ in Circuitos.objects.all():
-            row = []
-            for field in campos:
-                value = getattr(circ, field)
-                if value is None:
-                    value = ""
-                elif hasattr(value, "strftime"):
-                    value = value.strftime("%d-%b-%Y")
-                row.append(value)
-            writer.writerow(row)
+    # Write data rows
+    for circ in Circuitos.objects.all():
+        row = []
+        for field in campos:
+            value = getattr(circ, field)
+            if value is None:
+                value = ""
+            elif hasattr(value, "strftime"):
+                value = value.strftime("%d-%b-%Y")
+            row.append(value)
+        writer.writerow(row)
 
-    # Send the saved file as a response
-    response = FileResponse(open(filepath, "rb"), as_attachment=True, filename=filename)
+    tmp.close()  # Flush and close temp file
+
+    # Download filename
+    download_name = f"circuitos_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+
+    # Stream file to client
+    response = FileResponse(open(filepath, "rb"), as_attachment=True, filename=download_name)
+
+    # Delete temporary file after sending
+    def cleanup_file(response):
+        try:
+            os.remove(filepath)
+        except OSError:
+            pass
+        return response
+
+    # Attach cleanup to the response lifecycle
+    response._resource_closers.append(lambda: cleanup_file(response))
+
     return response
 
 # def download(request):
