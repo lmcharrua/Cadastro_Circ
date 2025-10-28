@@ -10,3 +10,10 @@ urlpatterns = [
     path('criar_carta', views.criar_carta, name='criar_carta'),
     #path('downloadc', views.downloadc, name='downloadc'),
 ]
+
+htmx_urlpatterns = [
+    path('pesquisa_carta/', views.pesquisa_carta, name='pesquisa_carta'),
+
+]
+
+urlpatterns += htmx_urlpatterns

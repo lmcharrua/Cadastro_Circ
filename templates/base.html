@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" hx-headers='{"X-CSRF-TOKEN": "CSRF_TOKEN_INSERTED_HERE"}'>
 
     <head>
         <meta charset="utf-8">
@@ -12,10 +12,11 @@
  
 
             <link href="{% static 'css/datatable_style.css' %}" rel="stylesheet" type="text/css">
-            <script src="{% static 'js/htmx.min.js'%}"></script>
+            <script src="{% static 'js/htmx.min.js'%}" defer></script>
+
             
     </head>
-    <body class="overscroll-contain" >
+    <body class="overscroll-contain" hx-headers='{"X-CSRF-TOKEN": "CSRF_TOKEN_INSERTED_HERE"}'>
         {% if user.is_authenticated %}
             {% include 'navbar.html' %}
         {% endif %}

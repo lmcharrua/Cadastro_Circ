@@ -10,6 +10,7 @@ import csv, os, tempfile
 from django.http import HttpResponse, FileResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.views.decorators.http import require_http_methods
 
 # Create your views here.
 @login_required(login_url='userlogin')
@@ -33,90 +34,9 @@ def editar_carta(request, pk):
 
 @login_required(login_url='userlogin')
 @group_required(('TX', 'DAT')) 
-# def lista_cartas(request):
-#     cartas = Cartas.objects.exclude(estado="ABA").order_by('fabricante', 'part_number', 'serial_number')
-#     return render(request, 'cartas/lista_cartas.html', {'cartas': cartas})  
 def lista_cartas(request):
-    """
-    Server-side view for the Carta list with HTMX.
-    Supports pagination, sorting, global and per-column search.
-    """
-
-    # --- Query parameters ---
-    search_global = request.GET.get("search", "")
-    filters = {
-        "serial_number__icontains": request.GET.get("serial_number", ""),
-        "part_number__icontains": request.GET.get("part_number", ""),
-        "fabricante__icontains": request.GET.get("fabricante", ""),
-        "sistema__icontains": request.GET.get("sistema", ""),
-        "b_type__icontains": request.GET.get("b_type", ""),
-        "descricao__icontains": request.GET.get("descricao", ""),
-        "estado__icontains": request.GET.get("estado", ""),
-        "localizacao__icontains": request.GET.get("localizacao", ""),
-        "equipamento__icontains": request.GET.get("equipamento", ""),
-    }
-
-    sort = request.GET.get("sort", "serial_number")
-    direction = request.GET.get("direction", "asc")
-    per_page = int(request.GET.get("per_page", 25))
-
-    # --- Base queryset ---
-    cartas = Cartas.objects.exclude(estado="ABA")
-
-    # --- Global search ---
-    if search_global:
-        cartas = cartas.filter(
-            Q(serial_number__icontains=search_global)
-            | Q(part_number__icontains=search_global)
-            | Q(fabricante__icontains=search_global)
-            | Q(descricao__icontains=search_global)
-            | Q(sistema__icontains=search_global)
-            | Q(b_type__icontains=search_global)
-            | Q(localizacao__icontains=search_global)
-            | Q(equipamento__icontains=search_global)
-        )
-
-    # --- Per-column filters ---
-    for field, value in filters.items():
-        if value:
-            cartas = cartas.filter(**{field: value})
-
-    # --- Sorting ---
-    if direction == "desc":
-        sort = f"-{sort}"
-    cartas = cartas.order_by(sort)
-
-    # --- Pagination ---
-    paginator = Paginator(cartas, per_page)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    # --- Context ---
-    context = {
-        "page_obj": page_obj,
-        "sort": request.GET.get("sort", ""),
-        "direction": direction,
-        "per_page": per_page,
-        "page_sizes": [10, 25, 50, 100],
-        "columns": [
-            ("N. Série", "serial_number"),
-            ("Part Number", "part_number"),
-            ("Fabricante", "fabricante"),
-            ("Sistema", "sistema"),
-            ("Board Type", "b_type"),
-            ("Descrição", "descricao"),
-            ("Estado", "estado"),
-            ("Localização", "localizacao"),
-            ("Equipamento", "equipamento"),
-        ],
-    }
-
-    # --- Return partial or full page ---
-    if request.htmx:
-        return render(request, "partials/_tabela_cartas.html", context)
-    return render(request, "cartas/lista_cartas.html", context)
-
-
+    cartas = Cartas.objects.exclude(estado="ABA").order_by('fabricante', 'part_number', 'serial_number')
+    return render(request, 'cartas/lista_cartas.html', {'cartas': cartas})  
 
 @login_required(login_url='userlogin')
 @group_required(('TX', 'DAT'))
@@ -196,3 +116,20 @@ def downloadc(request):
     #     writer.writerow(carta)
 
     # return response
+
+def pesquisa_carta(request):
+    pesquisar = request.GET.get('search')
+
+    cartas = Cartas.objects.exclude(estado="ABA")
+    resultado = Cartas.objects.filter(
+        Q(serial_number__icontains=pesquisar) |
+        Q(part_number__icontains=pesquisar) |
+        Q(fabricante__icontains=pesquisar) |
+        Q(descricao__icontains=pesquisar) |
+        Q(sistema__icontains=pesquisar) |
+        Q(b_type__icontains=pesquisar) |
+        Q(localizacao__icontains=pesquisar) |
+        Q(equipamento__icontains=pesquisar)
+    ) 
+    context = {'cartas': resultado}
+    return render(request, 'partials/tabela_c.html', context)
