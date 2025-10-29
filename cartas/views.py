@@ -165,15 +165,7 @@ def pesquisa_carta(request):
 @login_required(login_url='userlogin')
 @group_required(('TX', 'DAT')) 
 def lista_cartas(request):
-#     cartas = Cartas.objects.exclude(estado="ABA").order_by('fabricante', 'part_number', 'serial_number')
-#     cartas_pages = Paginator(cartas, 10)
-#     page_number = request.POST.get('page', 1)
-#     print(page_number)
-    
-#     cartas = cartas_pages.get_page(page_number)
-    
-#     return render(request, 'cartas/lista_cartas.html', {'cartas': cartas})  
-    
+   
     # pesquisa geral
     pesquisar = request.POST.get('search',default='')
 

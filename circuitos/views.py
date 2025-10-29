@@ -10,16 +10,9 @@ import csv, os, tempfile
 from django.http import HttpResponse, FileResponse
 from django.conf import settings
 from datetime import datetime
-#from csv_export.views import CSVExportView
+from django.db.models import Q
+from django.core.paginator import Paginator
 
-
-@login_required(login_url='userlogin')
-@group_required(('NOC', 'TX', 'DAT', 'DADOS', 'VOZ'))
-def lista_cct(request):
-    l_circuitos= Circuitos.objects.exclude(Estado_Cct="Desligado")
-    context = {'circuitos': l_circuitos}
-
-    return render(request, 'circuitos/lista_circuitos.html', context=context)
 
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'TX', 'DAT', 'DADOS', 'VOZ'))
@@ -113,34 +106,60 @@ def download(request):
 
     return response
 
-# def download(request):
-#     data = Circuitos.objects.all()
 
-#     response = HttpResponse(
-#         content_type="text/csv",
-#         headers={"Content-Disposition": 'attachment; filename="circuitos.csv"'},
-#     )
+@login_required(login_url='userlogin')
+@group_required(('NOC', 'TX', 'DAT', 'DADOS', 'VOZ'))
+def lista_cct(request):
+    pesquisar = request.POST.get('search', '')
+    filtros = {
+        "N_Circuito__icontains": request.POST.get('N_Circuito', ''),
+        "Data_Rate__icontains": request.POST.get('Data_Rate', ''),
+        "User_Cct__icontains": request.POST.get('User_Cct', ''),
+        "Estado_Cct__icontains": request.POST.get('Estado_Cct', ''),
+        "Entidade_PTR1__icontains": request.POST.get('Entidade_PTR1', ''),
+        "Morada_PTR1__icontains": request.POST.get('Morada_PTR1', ''),
+        "Entidade_PTR2__icontains": request.POST.get('Entidade_PTR2', ''),
+        "Morada_PTR2__icontains": request.POST.get('Morada_PTR2', ''),
+    }
 
-#     writer = csv.writer(response, delimiter=';')
-#     campos = [f.name for f in Circuitos._meta.fields]
-#     writer.writerow(campos)  # CSV header
+    per_page = int(request.POST.get('per_page', 10))
+    sort = request.POST.get('sort', 'N_Circuito')
+    direction = request.POST.get('direction', 'asc')
 
-#     # 
-#     for circ in data:
+    l_circuitos = Circuitos.objects.all().exclude(Estado_Cct="Desligado")
 
-#          writer.writerow([circ.id, circ.N_Circuito, circ.Data_Rate, circ.Data_Inst, circ.Data_Activ, circ.Estado_Cct,
-#                circ.Entidade_PTR1, circ.Morada_PTR1, circ.Cod_Post_PTR1, circ.Interface_PTR1,
-#                circ.Equip_PTR1, circ.Slot_PTR1, circ.Trib_PTR1,
-#                circ.Entidade_PTR2, circ.Morada_PTR2, circ.Cod_Post_PTR2, circ.Interface_PTR2,
-#                circ.Equip_PTR2, circ.Slot_PTR2, circ.Trib_PTR2,
-#                circ.User_Cct, circ.Propriedade_Cct, circ.Outras_Ref,
-#                circ.created_at.strftime('%d-%b-%Y'), circ.updated_at.strftime('%d-%b-%Y'),
-#                circ.update_user, circ.create_user])
+    l_circuitos = Circuitos.objects.filter(
+        Q(N_Circuito__icontains=pesquisar) |
+        Q(Data_Rate__icontains=pesquisar) |
+        Q(User_Cct__icontains=pesquisar) |
+        Q(Estado_Cct__icontains=pesquisar) |
+        Q(Entidade_PTR1__icontains=pesquisar) |
+        Q(Morada_PTR1__icontains=pesquisar) |
+        Q(Entidade_PTR2__icontains=pesquisar) |
+        Q(Morada_PTR2__icontains=pesquisar)
+    )
+    for field, value in filtros.items():
+        if value:
+            l_circuitos = l_circuitos.filter(**{field: value})
 
-#     return response
+    if direction == 'desc':
+        sort = f"-{sort}"
+    l_circuitos = l_circuitos.order_by(sort)
 
+    pages = Paginator(l_circuitos, per_page)
+    page_number = request.POST.get('page', 1)
 
+    l_circuitos = pages.get_page(page_number)
 
-# class downteste(CSVExportView):
-#     model = Circuitos
-#     fields = "__all__"
+    paginas = pages.get_elided_page_range(number=page_number, on_each_side=2, on_ends=2)
+    context = {
+        'circuitos': l_circuitos,
+        'per_page': per_page,
+        'paginas': paginas,
+        "sort": request.POST.get("sort", ""),
+        "direction": direction,
+    }
+
+    if request.htmx:
+        return render(request, 'partials/tabela_cct.html', context=context)
+    return render(request, 'circuitos/lista_circuitos.html', context)

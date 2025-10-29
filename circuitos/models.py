@@ -1,8 +1,8 @@
 from django.db import models
 from functools import reduce
 from django.db.models import Max
-from django.utils.functional import cached_property
-from simple_history.models import HistoricalRecords
+
+
 
 # Create your models here.
 
@@ -33,7 +33,7 @@ class Circuitos(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     update_user = models.CharField(max_length=30, blank=True)
     create_user = models.CharField(max_length=30, blank=True)
-    # history = HistoricalRecords()
+
 
     def save(self, *args, **kwargs):
         if not self.N_Circuito:
@@ -48,7 +48,6 @@ class Circuitos(models.Model):
         res2 = list(map(int, res))
         res3=[x for x in res2 if x <= 200000]
         next=max(res3)+1
-        #print(next)
         return f"{prefix}{next:06d}"
 
     class Meta:

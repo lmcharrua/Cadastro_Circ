@@ -1,0 +1,270 @@
+   <!-- Nova tabela -->
+    <div id="lista_circuitos">
+        <table class="display compact order-column table-fixed" style="width:100%">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "N_Circuito", "direction": "{% if sort == "N_Circuito" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            N. Circuito
+                            {% if sort == "N_Circuito" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "Data_Rate", "direction": "{% if sort == "Data_Rate" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Data Rate
+                            {% if sort == "Data_Rate" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "User_Cct", "direction": "{% if sort == "User_Cct" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Cliente
+                            {% if sort == "User_Cct" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "Estado_Cct", "direction": "{% if sort == "Estado_Cct" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Entidade_PTR2
+                            {% if sort == "Estado_Cct" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "Entidade_PTR1", "direction": "{% if sort == "Entidade_PTR1" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Entidade PTR1
+                            {% if sort == "Entidade_PTR1" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "Morada_PTR1", "direction": "{% if sort == "Morada_PTR1" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Morada PTR1
+                            {% if sort == "Morada_PTR1" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "Entidade_PTR2", "direction": "{% if sort == "Entidade_PTR2" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Entidade PTR2
+                            {% if sort == "Entidade_PTR2" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cct' %}"
+                            hx-include="#circuitos-form"
+                            hx-target="#lista_circuitos"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "Morada_PTR2", "direction": "{% if sort == "Morada_PTR2" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Morada PTR2
+                            {% if sort == "Morada_PTR2" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+                {% if circuitos %}
+                    {% for circuito in circuitos %}
+                        {% if "Activo" in circuito.Estado_Cct %}
+                            <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+                        {% else %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                        {% endif %}
+                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_circuito' circuito.id %}">{{circuito.N_Circuito}}</a>
+                                            
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Data_Rate}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.User_Cct}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Estado_Cct}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Entidade_PTR1}}
+                                </td>                        
+                                <td class="px-3 py-1 text-xs">
+                                    {{circuito.Morada_PTR1}}
+                                </td>                                
+                                <td class="px-3 py-1 text-sm">
+                                    {{circuito.Entidade_PTR2}}
+                                </td>                                
+                                <td class="px-3 py-1 text-xs">
+                                    {{circuito.Morada_PTR2}}
+                                </td>
+
+                            </tr>
+
+                            
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+
+<div class="flex justify-center space-x-3 mt-4 mb-4">
+{% if circuitos.has_previous %}
+    <button
+        type="button"
+        hx-post="{% url 'lista_cct' %}"
+        hx-vals='{"page": "{{ circuitos.previous_page_number }}"}'
+        hx-include="#circuitos-form"
+        hx-target="#lista_circuitos"
+        hx-push-url="true"
+        hx-indicator="#spinner"
+        class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
+        style= "cursor:pointer"
+    >
+        &laquo;
+    </button>
+{% else %}
+        <button
+            type="button"
+            hx-include="#circuitos-form"
+            hx-target="#lista_circuitos"
+            hx-push-url="true"
+            class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
+            disabled
+        >
+            &laquo;
+        </button>
+{% endif %}
+
+    {% for i in paginas %}
+        {% if circuitos.number == i %}
+            <button type="button" hx-post="{% url 'lista_cct' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#circuitos-form" hx-target="#lista_circuitos" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
+                <p class="font-bold text-ipp-main">{{ i }}</p>
+            </button>
+        {% else %}
+            {% if i == circuitos.paginator.ELLIPSIS %}
+             <button
+                type="button"
+                class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
+            >
+                {{ i }}
+            </button>
+            {% else %}
+                <button
+                    type="button"
+                    hx-post="{% url 'lista_cct' %}"
+                    hx-vals='{"page": "{{ i }}"}'
+                    hx-include="#circuitos-form"
+                    hx-target="#lista_circuitos"
+                    hx-push-url="true"
+                    hx-indicator="#spinner"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
+                    style= "cursor:pointer"
+                >
+                    {{i}}
+                </button>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if circuitos.has_next %}
+                <button
+                    type="button"
+                    hx-post="{% url 'lista_cct' %}"
+                    hx-include="#circuitos-form"
+                    hx-target="#lista_circuitos"
+                    hx-push-url="true"
+                    hx-indicator="#spinner"
+                    hx-vals='{"page": "{{ circuitos.next_page_number }}"}'
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
+                    style= "cursor:pointer"
+                >
+                    &raquo;
+                </button>
+    {% else %}
+                <button
+                    type="button"
+
+                    hx-include="#circuitos-form"
+                    hx-target="#lista_circuitos"
+                    hx-push-url="true"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
+                    disabled
+                >
+                    &raquo;
+                </button>
+    {% endif %}
+</div>
+
+    </div>
