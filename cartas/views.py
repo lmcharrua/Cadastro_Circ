@@ -192,6 +192,8 @@ def lista_cartas(request):
 
 
     per_page = int(request.POST.get("per_page", 10))
+    sort = request.POST.get("sort", "serial_number")  # default sort
+    direction = request.POST.get("direction", "asc")
 
     cartas = Cartas.objects.exclude(estado="ABA")
 
@@ -210,6 +212,10 @@ def lista_cartas(request):
         if value:
             resultado = resultado.filter(**{field: value})
 
+    if direction == "desc":
+        sort = f"-{sort}"
+    resultado = resultado.order_by(sort)
+
     pages = Paginator(resultado, per_page)
     page_number = request.POST.get('page', 1)
 
@@ -219,7 +225,9 @@ def lista_cartas(request):
     context = {
         'cartas': resultado,
         'per_page': per_page,
-        'paginas': paginas
+        'paginas': paginas,
+        "sort": request.POST.get("sort", ""),
+        "direction": direction,
         }
     if request.htmx:
 

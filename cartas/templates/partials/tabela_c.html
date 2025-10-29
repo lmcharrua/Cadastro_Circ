@@ -4,49 +4,148 @@
             <thead class="bg-ip-main">
                 <tr>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        N. Série
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "serial_number", "direction": "{% if sort == "serial_number" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            N. Série
+                            {% if sort == "serial_number" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Part Number
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "part_number", "direction": "{% if sort == "part_number" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Part Number
+                            {% if sort == "part_number" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Fabricante
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "fabricante", "direction": "{% if sort == "fabricante" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Fabricante
+                            {% if sort == "fabricante" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "sistema", "direction": "{% if sort == "sistema" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
                             Sistema
-                        </span>
+                            {% if sort == "sistema" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Board Type
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "b_type", "direction": "{% if sort == "b_type" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Board Type
+                            {% if sort == "b_type" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Descrição
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "descricao", "direction": "{% if sort == "descricao" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Descrição
+                            {% if sort == "descricao" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Estado
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "estado", "direction": "{% if sort == "estado" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Estado
+                            {% if sort == "estado" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Localização
-                    </span>
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "localizacao", "direction": "{% if sort == "localizacao" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Localização
+                            {% if sort == "localizacao" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
-                    <th class=" bg-ipt-main text-white px-6 py-1">
-                        <span class="flex items-center">
-                        Equipamento
-                    </span>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_cartas' %}"
+                            hx-include="#cartas-form"
+                            hx-target="#lista_cartas"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "equipamento", "direction": "{% if sort == "equipamento" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Equipamento
+                            {% if sort == "equipamento" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
                     </th>
 
                 </tr>
