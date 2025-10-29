@@ -98,7 +98,7 @@
                 {% endif %}
             </tbody>
          </table>
-
+<div class="flex justify-center space-x-3 mt-4 mb-4">
 {% if cartas.has_previous %}
     <button
         type="button"
@@ -107,7 +107,7 @@
         hx-include="#cartas-form"
         hx-target="#lista_cartas"
         hx-push-url="true"
-        class="px-2 py-1 border rounded"
+        class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
         style= "cursor:pointer"
     >
         &laquo;
@@ -118,7 +118,7 @@
             hx-include="#cartas-form"
             hx-target="#lista_cartas"
             hx-push-url="true"
-            class="px-2 py-1 border rounded"
+            class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
             disabled
         >
             &laquo;
@@ -127,23 +127,14 @@
 
     {% for i in paginas %}
         {% if cartas.number == i %}
-            <button
-                type="button"
-                hx-post="{% url 'lista_cartas' %}"
-                hx-vals='{"page": "{{ i }}"}'
-                hx-include="#cartas-form"
-                hx-target="#lista_cartas"
-                hx-push-url="true"
-                class="px-2 py-1 border rounded"
-                style= "cursor:pointer"
-            >
-                <p class="font-bold">{{ i }}</p>
+            <button type="button" hx-post="{% url 'lista_cartas' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#cartas-form" hx-target="#lista_cartas" hx-push-url="true" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
+                <p class="font-bold text-ipp-main">{{ i }}</p>
             </button>
         {% else %}
             {% if i == cartas.paginator.ELLIPSIS %}
              <button
                 type="button"
-                class="px-2 py-1 border rounded"
+                class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
             >
                 {{ i }}
             </button>
@@ -155,7 +146,7 @@
                     hx-include="#cartas-form"
                     hx-target="#lista_cartas"
                     hx-push-url="true"
-                    class="px-2 py-1 border rounded"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
                     style= "cursor:pointer"
                 >
                     {{i}}
@@ -172,7 +163,7 @@
                     hx-target="#lista_cartas"
                     hx-push-url="true"
                     hx-vals='{"page": "{{ cartas.next_page_number }}"}'
-                    class="px-2 py-1 border rounded"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
                     style= "cursor:pointer"
                 >
                     &raquo;
@@ -184,11 +175,11 @@
                     hx-include="#cartas-form"
                     hx-target="#lista_cartas"
                     hx-push-url="true"
-                    class="px-2 py-1 border rounded"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
                     disabled
                 >
                     &raquo;
                 </button>
     {% endif %}
-
+</div>
 </div>

@@ -189,7 +189,7 @@ def lista_cartas(request):
     "localizacao__icontains": request.POST.get("local", ""),
     "equipamento__icontains": request.POST.get("equip", ""),
     }
-    print(request.POST)
+
 
     per_page = int(request.POST.get("per_page", 10))
 
@@ -209,12 +209,12 @@ def lista_cartas(request):
     for field, value in filtros.items():
         if value:
             resultado = resultado.filter(**{field: value})
-    print (resultado.count()) 
+
     pages = Paginator(resultado, per_page)
     page_number = request.POST.get('page', 1)
-    print("teste:", page_number)
+
     resultado = pages.get_page(page_number)
-    print(resultado.next_page_number())
+
     paginas =pages.get_elided_page_range(number=page_number, on_each_side=2, on_ends=2)
     context = {
         'cartas': resultado,
@@ -222,7 +222,7 @@ def lista_cartas(request):
         'paginas': paginas
         }
     if request.htmx:
-        print("htmx")
+
         return render(request, 'partials/tabela_c.html', context)
         
     return render(request, 'cartas/lista_cartas.html', context)
