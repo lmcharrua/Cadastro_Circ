@@ -1,55 +1,58 @@
 
-        <table id="lista_cartas" class="display compact order-column table-fixed" style="width: 100%;">
+<div id="lista_cartas">
+<table class="display compact order-column table-fixed" style="width: 100%;">
             <thead class="bg-ip-main">
                 <tr>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         N. Série
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Part Number
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Fabricante
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                             Sistema
                         </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Board Type
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Descrição
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Estado
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Localização
                     </span>
                     </th>
-                    <th class="text-sm bg-ipt-main text-white px-6 py-3">
+                    <th class=" bg-ipt-main text-white px-6 py-1">
                         <span class="flex items-center">
                         Equipamento
                     </span>
                     </th>
 
                 </tr>
+
             </thead>
+
 
 
             <tbody>
@@ -57,30 +60,30 @@
                     {% for carta in cartas %}
                             <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
 
-                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+                                <td scope="row" class="px-3 py-1 text-xs whitespace-nowrap">
 
                                     <a class="btn btn-success btn-sm" href="{% url 'editar_carta' carta.id %}">{{carta.serial_number}}</a>
                                             
                                 </td>
-                                <td class="px-3 py-1 text-sm">
+                                <td class="px-3 py-1 text-xs">
                                     {{carta.part_number}}
                                 </td>
-                                <td class="px-3 py-1 text-sm">
+                                <td class="px-3 py-1 text-xs">
                                     {{carta.fabricante}}
                                 </td>
-                                <td class="px-3 py-1 text-sm">
+                                <td class="px-3 py-1 text-xs">
                                     {{carta.sistema}}
                                 </td>
-                                <td class="px-3 py-1 text-sm">
+                                <td class="px-3 py-1 text-xs">
                                     {{carta.b_type}}
                                 </td>
-                                <td class="px-3 py-1 text-sm">
+                                <td class="px-3 py-1 text-xs">
                                     {{carta.descricao}}
                                 </td>                        
                                 <td class="px-3 py-1 text-xs">
                                     {{carta.estado}}
                                 </td>                                
-                                <td class="px-3 py-1 text-sm">
+                                <td class="px-3 py-1 text-xs">
                                     {{carta.localizacao}}
                                 </td>                                
                                 <td class="px-3 py-1 text-xs">
@@ -94,4 +97,98 @@
                     {% endfor %}
                 {% endif %}
             </tbody>
-        </table>
+         </table>
+
+{% if cartas.has_previous %}
+    <button
+        type="button"
+        hx-post="{% url 'lista_cartas' %}"
+        hx-vals='{"page": "{{ cartas.previous_page_number }}"}'
+        hx-include="#cartas-form"
+        hx-target="#lista_cartas"
+        hx-push-url="true"
+        class="px-2 py-1 border rounded"
+        style= "cursor:pointer"
+    >
+        &laquo;
+    </button>
+{% else %}
+        <button
+            type="button"
+            hx-include="#cartas-form"
+            hx-target="#lista_cartas"
+            hx-push-url="true"
+            class="px-2 py-1 border rounded"
+            disabled
+        >
+            &laquo;
+        </button>
+{% endif %}
+
+    {% for i in paginas %}
+        {% if cartas.number == i %}
+            <button
+                type="button"
+                hx-post="{% url 'lista_cartas' %}"
+                hx-vals='{"page": "{{ i }}"}'
+                hx-include="#cartas-form"
+                hx-target="#lista_cartas"
+                hx-push-url="true"
+                class="px-2 py-1 border rounded"
+                style= "cursor:pointer"
+            >
+                <p class="font-bold">{{ i }}</p>
+            </button>
+        {% else %}
+            {% if i == cartas.paginator.ELLIPSIS %}
+             <button
+                type="button"
+                class="px-2 py-1 border rounded"
+            >
+                {{ i }}
+            </button>
+            {% else %}
+                <button
+                    type="button"
+                    hx-post="{% url 'lista_cartas' %}"
+                    hx-vals='{"page": "{{ i }}"}'
+                    hx-include="#cartas-form"
+                    hx-target="#lista_cartas"
+                    hx-push-url="true"
+                    class="px-2 py-1 border rounded"
+                    style= "cursor:pointer"
+                >
+                    {{i}}
+                </button>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if cartas.has_next %}
+                <button
+                    type="button"
+                    hx-post="{% url 'lista_cartas' %}"
+                    hx-include="#cartas-form"
+                    hx-target="#lista_cartas"
+                    hx-push-url="true"
+                    hx-vals='{"page": "{{ cartas.next_page_number }}"}'
+                    class="px-2 py-1 border rounded"
+                    style= "cursor:pointer"
+                >
+                    &raquo;
+                </button>
+    {% else %}
+                <button
+                    type="button"
+
+                    hx-include="#cartas-form"
+                    hx-target="#lista_cartas"
+                    hx-push-url="true"
+                    class="px-2 py-1 border rounded"
+                    disabled
+                >
+                    &raquo;
+                </button>
+    {% endif %}
+
+</div>

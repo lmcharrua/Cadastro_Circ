@@ -180,9 +180,9 @@
                         class="block mb-1 text-sm font-medium text-gray-900">Tipo de Ocupação</label>
                     <select name="tipo_ocupa" id="tipocup"
                         class="block w-full p-1 mb-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-0 focus:ring-ipt-main focus:border-ipt-main" {% if not can_edit %}disabled{% endif %}>
-                        <option value="T" {% if form.estado.value == "A" %}
+                        <option value="T" {% if form.estado.value == "T" %}
                             selected {% endif %}>Temporário</option>
-                        <option value="D" {% if form.estado.value == "I" %}
+                        <option value="D" {% if form.estado.value == "D" %}
                             selected {% endif %}>Definitivo</option>
                     </select>
                 </div>

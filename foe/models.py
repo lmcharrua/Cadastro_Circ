@@ -5,7 +5,7 @@ from django.utils.functional import cached_property
 # Create your models here
 class circfoe(models.Model):
     referencia = models.CharField(max_length=20, verbose_name='Referência', blank=True, help_text='Referência')
-    encomenda = models.CharField(max_length=20, default="ref encomenda", verbose_name='Encomenda', help_text='Encomenda', blank=False)
+    encomenda = models.CharField(max_length=20, default="ref encomenda", verbose_name='Encomenda', help_text='Encomenda', blank=True)
     cliente = models.CharField(max_length=30, verbose_name='Cliente', help_text='Cliente', blank=False)
     dist_km = models.DecimalField(max_digits=6, decimal_places=3, default="000.000", blank=True, verbose_name='Distância Kilométrica', help_text='Distância km IET50')
     dist_optica = models.DecimalField(max_digits=6, decimal_places=3, default="000.000", blank=True, verbose_name='Distância km ótica', help_text='Distância km ótica')
@@ -15,9 +15,9 @@ class circfoe(models.Model):
     tipo_ocupa = models.CharField(max_length=20, verbose_name='Tipo Ocupação', help_text='Tipo Ocupação', blank=True)
     estado = models.CharField(max_length=20, verbose_name='Estado', default="I", help_text='Estado')
     local_a = models.CharField(max_length=150, verbose_name='Local A', default="Local A", help_text='Local A', blank=False)
-    ligacao_a = models.CharField(max_length=20, blank=True)
+    ligacao_a = models.CharField(max_length=20, blank=True, default="ODF")
     local_b = models.CharField(max_length=150, verbose_name='Local B',default="Local B",  help_text='Local B', blank=False)
-    ligacao_b = models.CharField(max_length=20, blank=True)
+    ligacao_b = models.CharField(max_length=20, blank=True, default="ODF")
     observacoes = models.TextField(max_length=150, verbose_name='Observações', help_text='Observações', blank=True)
 
     def save(self, *args, **kwargs):

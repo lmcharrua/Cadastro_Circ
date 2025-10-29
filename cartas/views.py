@@ -32,11 +32,6 @@ def editar_carta(request, pk):
             return redirect('editar_carta', pk=carta.pk)
     return render(request, 'cartas/editar_carta.html', {'form': form, 'historico': historico, 'can_edit': can_edit})
 
-@login_required(login_url='userlogin')
-@group_required(('TX', 'DAT')) 
-def lista_cartas(request):
-    cartas = Cartas.objects.exclude(estado="ABA").order_by('fabricante', 'part_number', 'serial_number')
-    return render(request, 'cartas/lista_cartas.html', {'cartas': cartas})  
 
 @login_required(login_url='userlogin')
 @group_required(('TX', 'DAT'))
@@ -118,9 +113,28 @@ def downloadc(request):
     # return response
 
 def pesquisa_carta(request):
-    pesquisar = request.GET.get('search')
+    
+    # pesquisa geral
+    pesquisar = request.POST.get('search',default='')
+
+    #pesquisa por campos específicos
+    filtros = {
+    "serial_number__icontains": request.POST.get("serial", ""),
+    "part_number__icontains": request.POST.get("part", ""),
+    "fabricante__icontains": request.POST.get("fabricante", ""),
+    "sistema__icontains": request.POST.get("sistema", ""),
+    "b_type__icontains": request.POST.get("board", ""),
+    "descricao__icontains": request.POST.get("descr", ""),
+    "estado__icontains": request.POST.get("estado", ""),
+    "localizacao__icontains": request.POST.get("local", ""),
+    "equipamento__icontains": request.POST.get("equip", ""),
+    }
+    print(request.POST)
+
+    per_page = int(request.POST.get("per_page", 25))
 
     cartas = Cartas.objects.exclude(estado="ABA")
+
     resultado = Cartas.objects.filter(
         Q(serial_number__icontains=pesquisar) |
         Q(part_number__icontains=pesquisar) |
@@ -130,6 +144,85 @@ def pesquisa_carta(request):
         Q(b_type__icontains=pesquisar) |
         Q(localizacao__icontains=pesquisar) |
         Q(equipamento__icontains=pesquisar)
-    ) 
-    context = {'cartas': resultado}
+    )
+
+    for field, value in filtros.items():
+        if value:
+            resultado = resultado.filter(**{field: value})
+    print (resultado.count()) 
+    pages = Paginator(resultado, per_page)
+    page_number = request.POST.get('page', 1)
+    print("teste:", page_number)
+    resultado = pages.get_page(page_number)
+    
+    print(request.htmx)
+    context = {
+        'cartas': resultado,
+        'per_page': per_page
+        }
     return render(request, 'partials/tabela_c.html', context)
+
+@login_required(login_url='userlogin')
+@group_required(('TX', 'DAT')) 
+def lista_cartas(request):
+#     cartas = Cartas.objects.exclude(estado="ABA").order_by('fabricante', 'part_number', 'serial_number')
+#     cartas_pages = Paginator(cartas, 10)
+#     page_number = request.POST.get('page', 1)
+#     print(page_number)
+    
+#     cartas = cartas_pages.get_page(page_number)
+    
+#     return render(request, 'cartas/lista_cartas.html', {'cartas': cartas})  
+    
+    # pesquisa geral
+    pesquisar = request.POST.get('search',default='')
+
+    #pesquisa por campos específicos
+    filtros = {
+    "serial_number__icontains": request.POST.get("serial", ""),
+    "part_number__icontains": request.POST.get("part", ""),
+    "fabricante__icontains": request.POST.get("fabricante", ""),
+    "sistema__icontains": request.POST.get("sistema", ""),
+    "b_type__icontains": request.POST.get("board", ""),
+    "descricao__icontains": request.POST.get("descr", ""),
+    "estado__icontains": request.POST.get("estado", ""),
+    "localizacao__icontains": request.POST.get("local", ""),
+    "equipamento__icontains": request.POST.get("equip", ""),
+    }
+    print(request.POST)
+
+    per_page = int(request.POST.get("per_page", 10))
+
+    cartas = Cartas.objects.exclude(estado="ABA")
+
+    resultado = Cartas.objects.filter(
+        Q(serial_number__icontains=pesquisar) |
+        Q(part_number__icontains=pesquisar) |
+        Q(fabricante__icontains=pesquisar) |
+        Q(descricao__icontains=pesquisar) |
+        Q(sistema__icontains=pesquisar) |
+        Q(b_type__icontains=pesquisar) |
+        Q(localizacao__icontains=pesquisar) |
+        Q(equipamento__icontains=pesquisar)
+    )
+
+    for field, value in filtros.items():
+        if value:
+            resultado = resultado.filter(**{field: value})
+    print (resultado.count()) 
+    pages = Paginator(resultado, per_page)
+    page_number = request.POST.get('page', 1)
+    print("teste:", page_number)
+    resultado = pages.get_page(page_number)
+    print(resultado.next_page_number())
+    paginas =pages.get_elided_page_range(number=page_number, on_each_side=2, on_ends=2)
+    context = {
+        'cartas': resultado,
+        'per_page': per_page,
+        'paginas': paginas
+        }
+    if request.htmx:
+        print("htmx")
+        return render(request, 'partials/tabela_c.html', context)
+        
+    return render(request, 'cartas/lista_cartas.html', context)

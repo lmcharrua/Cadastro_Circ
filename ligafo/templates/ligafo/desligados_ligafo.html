@@ -91,7 +91,16 @@
                                     {{ligafo.data_entrega}}
                                 </td>
                                 <td class="px-3 py-1 text-sm">
-                                    {{ligafo.estado}}
+                                    {% if ligafo.estado == "A" %}
+                                        Activo
+                                    {% elif ligafo.estado == "I" %}
+                                        Em Instalação
+                                    {% elif ligafo.estado == "D" %}
+                                        Desligado
+                                    {% else %}
+                                        {{ligafo.estado}}
+                                    {% endif %}
+                                </td>
                                 </td>
                                 <td class="px-3 py-1 text-sm">
                                     {{ligafo.local_a}}

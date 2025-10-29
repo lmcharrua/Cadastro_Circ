@@ -91,10 +91,24 @@
                     {{lfoe.cliente}}
                 </td>
                 <td class="px-3 py-1 text-sm">
-                    {{lfoe.estado}}
+                    {% if lfoe.estado == "A" %}
+                        Activo
+                    {% elif lfoe.estado == "I" %}
+                        Em Instalação
+                    {% elif lfoe.estado == "D" %}
+                        Desligado
+                    {% else %}
+                        {{lfoe.estado}}
+                    {% endif %}
                 </td>
-                <td class="px-3 py-1 text-sm">
-                    {{lfoe.tipo_ocupa}}
+                <td class="px-3 py-1 text-sm">~
+                    {% if lfoe.tipo_ocupa == "T" %}
+                        Temporário
+                    {% elif lfoe.tipo_ocupa == "D" %}
+                        Definitivo
+                    {% else %}
+                        {{lfoe.tipo_ocupa}}
+                    {% endif %}
                 </td>
                 <td class="px-3 py-1 text-sm">
                     {{lfoe.data_obj}}
