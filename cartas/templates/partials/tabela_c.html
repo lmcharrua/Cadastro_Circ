@@ -107,6 +107,7 @@
         hx-include="#cartas-form"
         hx-target="#lista_cartas"
         hx-push-url="true"
+        hx-indicator="#spinner"
         class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
         style= "cursor:pointer"
     >
@@ -127,7 +128,7 @@
 
     {% for i in paginas %}
         {% if cartas.number == i %}
-            <button type="button" hx-post="{% url 'lista_cartas' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#cartas-form" hx-target="#lista_cartas" hx-push-url="true" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
+            <button type="button" hx-post="{% url 'lista_cartas' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#cartas-form" hx-target="#lista_cartas" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
                 <p class="font-bold text-ipp-main">{{ i }}</p>
             </button>
         {% else %}
@@ -146,6 +147,7 @@
                     hx-include="#cartas-form"
                     hx-target="#lista_cartas"
                     hx-push-url="true"
+                    hx-indicator="#spinner"
                     class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
                     style= "cursor:pointer"
                 >
@@ -162,6 +164,7 @@
                     hx-include="#cartas-form"
                     hx-target="#lista_cartas"
                     hx-push-url="true"
+                    hx-indicator="#spinner"
                     hx-vals='{"page": "{{ cartas.next_page_number }}"}'
                     class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
                     style= "cursor:pointer"
