@@ -7,14 +7,8 @@ from django.contrib import messages
 from .models import circfoe
 from .forms import circfoeForm, cria_circfoeForm
 from cmain.decorators import group_required 
-
-
-@login_required(login_url='userlogin')
-@group_required(('NOC', 'FOE'))
-def lista_foe(request):
-    l_foe = circfoe.objects.exclude(estado='D')
-    context = {'l_foe': l_foe}
-    return render(request, 'foe/lista_foe.html', context=context)
+from django.db.models import Q
+from django.core.paginator import Paginator
 
 @login_required(login_url='userlogin')
 @group_required(('FOE', 'NOC'))
@@ -47,3 +41,65 @@ def desligados_foe(request):
     dlfoe = circfoe.objects.filter(estado='D')
     context = {'dlfoe': dlfoe}
     return render(request, 'foe/desligados_foe.html', context=context)
+
+@login_required(login_url='userlogin')
+@group_required(('NOC', 'FOE'))
+def lista_foe(request):
+    pesquisar = request.POST.get('search', '')
+    filtros = {
+        "referencia__icontains": request.POST.get('referencia', ''),
+        "encomenda__icontains": request.POST.get('encomenda', ''),
+        "cliente__icontains": request.POST.get('cliente', ''),
+        "estado__icontains": request.POST.get('estado', ''),
+        "tipo_ocupa__icontains": request.POST.get('tipo_ocupa', ''),
+        "data_obj__icontains": request.POST.get('data_obj', ''),
+        "data_entrega__icontains": request.POST.get('data_entrega', ''),
+        "dist_km__icontains": request.POST.get('dist_km', ''),
+        "dist_optica__icontains": request.POST.get('dist_optica', ''),
+        "local_a__icontains": request.POST.get('local_a', ''),
+        "local_b__icontains": request.POST.get('local_b', ''),
+        }
+    
+    per_page = request.POST.get('perpage', 10)
+    sort = request.POST.get('sort', 'referencia')
+    direction = request.POST.get('direction', 'asc')
+
+    lfoes = circfoe.objects.filter(
+        Q(referencia__icontains=pesquisar) |
+        Q(encomenda__icontains=pesquisar) |
+        Q(cliente__icontains=pesquisar) |
+        Q(estado__icontains=pesquisar) |
+        Q(tipo_ocupa__icontains=pesquisar) |
+        Q(data_obj__icontains=pesquisar) |
+        Q(data_entrega__icontains=pesquisar) |
+        Q(dist_km__icontains=pesquisar) |
+        Q(dist_optica__icontains=pesquisar) |
+        Q(local_a__icontains=pesquisar) |
+        Q(local_b__icontains=pesquisar)
+    ).exclude(estado='D')
+
+    for field, value in filtros.items():
+        if value:
+            lfoes = lfoes.filter(**{field: value})
+
+    if direction == 'desc':
+        sort = f"-{sort}"
+    lfoes = lfoes.order_by(sort)
+
+    pages = Paginator(lfoes, per_page)
+    page_number = request.POST.get('page', 1)
+
+    lfoes = pages.get_page(page_number)
+
+    paginas = pages.get_elided_page_range(number=page_number, on_each_side=2, on_ends=2)
+    context = {
+        'foes': lfoes,
+        'per_page': per_page,
+        'paginas': paginas,
+        "sort": request.POST.get("sort", ""),
+        "direction": direction,
+    }
+
+    if request.htmx:
+        return render(request, 'partials/tabela_foe.html', context=context)
+    return render(request, 'foe/lista_foe.html', context)

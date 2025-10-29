@@ -1,0 +1,253 @@
+<div id="lista_foes">
+<table class="display compact order-column table-fixed" style="width:100%">
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "referencia", "direction": "{% if sort == "referencia" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            N. foe
+                            {% if sort == "referencia" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "encomenda", "direction": "{% if sort == "encomenda" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Encomenda
+                            {% if sort == "encomenda" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "cliente", "direction": "{% if sort == "cliente" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Cliente
+                            {% if sort == "cliente" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "estado", "direction": "{% if sort == "estado" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Estado
+                            {% if sort == "estado" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "tipo_ocupa", "direction": "{% if sort == "tipo_ocupa" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Tipo Ocupação
+                            {% if sort == "tipo_ocupa" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "data_obj", "direction": "{% if sort == "data_obj" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Data Objectivo
+                            {% if sort == "data_obj" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "data_entrega", "direction": "{% if sort == "data_entrega" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Data Entrega
+                            {% if sort == "data_entrega" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "dist_km", "direction": "{% if sort == "dist_km" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Distância Km
+                            {% if sort == "dist_km" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "dist_otica", "direction": "{% if sort == "dist_otica" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Morada PTR2
+                            {% if sort == "dist_otica" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "local_a", "direction": "{% if sort == "local_a" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Distância Ótica
+                            {% if sort == "local_a" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                            {% if sort == "local_a" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'lista_foe' %}"
+                            hx-include="#foes-form"
+                            hx-target="#lista_foes"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "local_b", "direction": "{% if sort == "local_b" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Morada PTR2
+                            {% if sort == "local_b" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+                {% if foes %}
+                    {% for foe in foes %}
+                        {% if "Activo" in foe.estado %}
+                            <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
+                        {% else %}
+                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
+                        {% endif %}
+                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' foe.id %}">{{foe.referencia}}</a>
+                                            
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{foe.encomenda}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{foe.cliente}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {% if foe.estado == "A" %}
+                                        Activo
+                                    {% elif foe.estado == "I" %}
+                                        Em Instalação
+                                    {% elif foe.estado == "D" %}
+                                        Desligado
+                                    {% else %}
+                                        {{foe.estado}}
+                                    {% endif %}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {% if foe.tipo_ocupa == "T" %}
+                                        Temporário
+                                    {% elif foe.tipo_ocupa == "D" %}
+                                        Definitivo
+                                    {% else %}
+                                        {{foe.tipo_ocupa}}
+                                    {% endif %}
+                                </td>                        
+                                <td class="px-3 py-1 text-xs">
+                                    {{foe.data_obj|date:"c"}}
+                                </td>                                
+                                <td class="px-3 py-1 text-sm">
+                                    {{foe.data_entrega|date:"c"}}
+                                </td>                                
+                                <td class="px-3 py-1 text-xs">
+                                    {{foe.dist_km}}
+                                </td>
+                                <td class="px-3 py-1 text-xs">
+                                    {{foe.local_a}}
+                                </td>                                
+                                <td class="px-3 py-1 text-sm">
+                                    {{foe.local_b}}
+                                </td>                                
+
+
+                            </tr>
+
+                            
+   
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+
+    </div>

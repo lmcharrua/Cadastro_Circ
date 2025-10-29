@@ -10,155 +10,94 @@
 </ul>
 {% endif %}
 
+
+<form id="foes-form"
+        hx-post="{% url 'lista_foe' %}"
+        hx-target="#lista_foes"
+        hx-push-url="true">
+
     <!-- Nova tabela -->
-
-        <table id="lista_foe" class="display compact order-column table-fixed" style="display:none">
-            <thead class="bg-ip-main">
-                <tr>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Referência
-                    </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Encomenda
-                    </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Cliente
-                    </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Estado
-                    </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Tipo Ocup.
-                    </span>
-                    </th>                    
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Data Objectivo
-                    </span>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Data Entrega
-                    </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                            Dist. Km (Km)
-                        </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                            Dist. Óptica (Km)
-                        </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Local A
-                    </span>
-                    </th>
-                    <th class="text-sm bg-ipt-main text-white">
-                        <span class="flex items-center">
-                        Local B
-                    </span>
-                    </th>
-                </tr>
-            </thead>
-
-
-            <tbody>
-                {% if l_foe %}
-                    {% for lfoe in l_foe %}
-                        {% if "A" in lfoe.estado %}
-                            <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
-                        {% else %}
-                            <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
-                        {% endif %}
-                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
-                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' lfoe.id %}?next=lista_foe">{{lfoe.referencia}}</a>
-                                            
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.encomenda}}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.cliente}}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {% if lfoe.estado == "A" %}
-                                        Activo
-                                    {% elif lfoe.estado == "I" %}
-                                        Em Instalação
-                                    {% elif lfoe.estado == "D" %}
-                                        Desligado
-                                    {% else %}
-                                        {{lfoe.estado}}
-                                    {% endif %}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {% if lfoe.tipo_ocupa == "T" %}
-                                        Temporário
-                                    {% elif lfoe.tipo_ocupa == "D" %}
-                                        Definitivo
-                                    {% else %}
-                                        {{lfoe.tipo_ocupa}}
-                                    {% endif %}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.data_obj}}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.data_entrega}}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.dist_km}}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.dist_optica}}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.local_a}}
-                                </td>                        
-                                <td class="px-3 py-1 text-sm">
-                                    {{lfoe.local_b}}
-                                </td>
-                            </tr>
-
-                            
-   
-                    {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
+    <div class=" p-4 flex justify-between">
+        {% csrf_token %}
+        <div>
+        <span class=" items-center justify-center">
+        <input type="text" name="search" placeholder="Pesquisar..." class="text-xs items-center border justify-center border-gray-300 rounded-md p-2 w-1/3" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner">
+        </span>
+        </div>
+        <div>
+            <select name="per_page" class="text-xs border border-gray-300 rounded-md p-5" 
+                hx-post="{% url 'lista_foe' %}" 
+                hx-target="#lista_foes" 
+                hx-swap="innerHTML"
+                hx-trigger="change"
+                hx-indicator="#spinner">
+                <option class="text-xs" value="10" {% if request.GET.per_page == "10" %}selected{% endif %}>10 por página</option>
+                <option class="text-xs" value="25" {% if request.GET.per_page == "25" %}selected{% endif %}>25 por página</option>
+                <option class="text-xs" value="50" {% if request.GET.per_page == "50" %}selected{% endif %}>50 por página</option>
+                <option class="text-xs" value="100" {% if request.GET.per_page == "100" %}selected{% endif %}>100 por página</option>
+            </select>
+        </div>
+    </div>
     
+    <div class=" overflow-x-auto ">
+        <div id="spinner" class="loader htmx-indicator mb-1">   </div>
+            
+        <table class="p-1" style="width: 100%;">
+                <tr>
+                    <td class="p-1">
+                        <input type="text" name="referencia" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar N. Circuito" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="encomenda" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Encomenda" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="cliente" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="estado" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="tipo_ocupa" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Tipo Ocupação" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="data_obj" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Objectivo" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="data_entrega" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Entrega" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </th>
+                    <td class="p-1">
+                        <input type="text" name="dist_km" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Distância Km" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>                  
+                    <td class="p-1">
+                        <input type="text" name="dist_optica" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Distância Ótica" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>                   
+                    <td class="p-1">
+                        <input type="text" name="local_a" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Local A" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>
+                    <td class="p-1">
+                        <input type="text" name="local_b" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Local B" hx-post="{% url 'lista_foe' %}" hx-target="#lista_foes" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                    </td>                      
+                </tr>
+            </table>
+            
+            {% include 'partials/tabela_foe.html' %}
+   
+    </div>
+    <div class="mt-3 flex justify-center space-x-2">
+  
 </div>
-<script src="{% static 'js/jquery.min.js'%}"></script>
-
-<script src="{% static 'js/simple-datatables.js'%}" type="text/javascript"></script>
-        <script>
 
  
 
-            let table = new simpleDatatables.DataTable("#lista_foe", {
-                deferRender: true,
-                searchable: true,
-                paging: true,
-                perPage: 10,
-                perPageSelect: [5, 10, 15, 20, 25],
-                sortable: true,
-                sortable: true,
-                orderClasses: false,
-                
-            });
-            $('#lista_foe').show();
-        </script>
+
+
+
+</form>
+
+        
+
+<script src="{% static 'js/jquery.min.js'%}"></script>
+
 
 
 
