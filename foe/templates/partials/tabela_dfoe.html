@@ -1,12 +1,12 @@
-<div id="lista_foes">
+<div id="lista_dfoes">
 <table class="display compact order-column table-fixed" style="width:100%">
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "referencia", "direction": "{% if sort == "referencia" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -20,9 +20,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "encomenda", "direction": "{% if sort == "encomenda" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -36,9 +36,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "cliente", "direction": "{% if sort == "cliente" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -52,9 +52,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "estado", "direction": "{% if sort == "estado" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -68,9 +68,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "tipo_ocupa", "direction": "{% if sort == "tipo_ocupa" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -84,9 +84,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "data_obj", "direction": "{% if sort == "data_obj" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -100,9 +100,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "data_entrega", "direction": "{% if sort == "data_entrega" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -116,9 +116,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "dist_km", "direction": "{% if sort == "dist_km" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -132,9 +132,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "dist_otica", "direction": "{% if sort == "dist_otica" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -148,9 +148,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "local_a", "direction": "{% if sort == "local_a" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -167,9 +167,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
+                            hx-post="{% url 'desligados_foe' %}"
                             hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-target="#lista_dfoes"
                             hx-push-url="true"
                             hx-vals='{"sort": "local_b", "direction": "{% if sort == "local_b" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -195,7 +195,7 @@
                         {% endif %}
                                 <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
 
-                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' foe.id %}?next=lista_foe">{{foe.referencia}}</a>
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' foe.id %}?next=desligados_foe">{{foe.referencia}}</a>
                                             
                                 </td>
                                 <td class="px-3 py-1 text-sm">
