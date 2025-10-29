@@ -144,7 +144,7 @@ def pesquisa_carta(request):
         Q(b_type__icontains=pesquisar) |
         Q(localizacao__icontains=pesquisar) |
         Q(equipamento__icontains=pesquisar)
-    )
+    ).exclude(estado="ABA")
 
     for field, value in filtros.items():
         if value:
@@ -198,7 +198,7 @@ def lista_cartas(request):
         Q(b_type__icontains=pesquisar) |
         Q(localizacao__icontains=pesquisar) |
         Q(equipamento__icontains=pesquisar)
-    )
+    ).exclude(estado="ABA")
 
     for field, value in filtros.items():
         if value:

@@ -137,7 +137,8 @@ def lista_cct(request):
         Q(Morada_PTR1__icontains=pesquisar) |
         Q(Entidade_PTR2__icontains=pesquisar) |
         Q(Morada_PTR2__icontains=pesquisar)
-    )
+    ).exclude(Estado_Cct="Desligado")
+    
     for field, value in filtros.items():
         if value:
             l_circuitos = l_circuitos.filter(**{field: value})
