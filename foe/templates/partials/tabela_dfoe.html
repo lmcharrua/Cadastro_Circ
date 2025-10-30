@@ -10,7 +10,7 @@
                             hx-push-url="true"
                             hx-vals='{"sort": "referencia", "direction": "{% if sort == "referencia" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            N. foe
+                            Referência
                             {% if sort == "referencia" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
@@ -136,10 +136,10 @@
                             hx-include="#foes-form"
                             hx-target="#lista_dfoes"
                             hx-push-url="true"
-                            hx-vals='{"sort": "dist_otica", "direction": "{% if sort == "dist_otica" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            hx-vals='{"sort": "dist_optica", "direction": "{% if sort == "dist_optica" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Morada PTR2
-                            {% if sort == "dist_otica" %}
+                            Ditância Ótica
+                            {% if sort == "dist_optica" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
                         </button>
@@ -154,10 +154,7 @@
                             hx-push-url="true"
                             hx-vals='{"sort": "local_a", "direction": "{% if sort == "local_a" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Distância Ótica
-                            {% if sort == "local_a" %}
-                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
-                            {% endif %}
+                            Local A
                             {% if sort == "local_a" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
@@ -173,7 +170,7 @@
                             hx-push-url="true"
                             hx-vals='{"sort": "local_b", "direction": "{% if sort == "local_b" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Morada PTR2
+                            Local B
                             {% if sort == "local_b" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
@@ -231,7 +228,10 @@
                                     {{foe.data_entrega|date:"c"}}
                                 </td>                                
                                 <td class="px-3 py-1 text-xs">
-                                    {{foe.dist_km}}
+                                    {{foe.dist_km|floatformat:3}}
+                                </td>
+                                <td class="px-3 py-1 text-sm">
+                                    {{foe.dist_optica|floatformat:3}}
                                 </td>
                                 <td class="px-3 py-1 text-xs">
                                     {{foe.local_a}}
@@ -250,4 +250,91 @@
             </tbody>
         </table>
 
+        <div class="flex justify-center space-x-3 mt-4 mb-4">
+        {% if foes.has_previous %}
+    <button
+        type="button"
+        hx-post="{% url 'lista_foe' %}"
+        hx-vals='{"page": "{{ foes.previous_page_number }}"}'
+        hx-include="#foes-form"
+        hx-target="#lista_dfoes"
+        hx-push-url="true"
+        hx-indicator="#spinner"
+        class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
+        style= "cursor:pointer"
+    >
+        &laquo;
+    </button>
+{% else %}
+        <button
+            type="button"
+            hx-include="#foes-form"
+            hx-target="#lista_dfoes"
+            hx-push-url="true"
+            class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
+            disabled
+        >
+            &laquo;
+        </button>
+{% endif %}
+
+    {% for i in paginas %}
+        {% if foes.number == i %}
+            <button type="button" hx-post="{% url 'desligados_foe' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#foes-form" hx-target="#lista_dfoes" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
+                <p class="font-bold text-ipp-main">{{ i }}</p>
+            </button>
+        {% else %}
+            {% if i == foes.paginator.ELLIPSIS %}
+             <button
+                type="button"
+                class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
+            >
+                {{ i }}
+            </button>
+            {% else %}
+                <button
+                    type="button"
+                    hx-post="{% url 'lista_foe' %}"
+                    hx-vals='{"page": "{{ i }}"}'
+                    hx-include="#foes-form"
+                    hx-target="#lista_dfoes"
+                    hx-push-url="true"
+                    hx-indicator="#spinner"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
+                    style= "cursor:pointer"
+                >
+                    {{i}}
+                </button>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if foes.has_next %}
+                <button
+                    type="button"
+                    hx-post="{% url 'lista_foe' %}"
+                    hx-include="#foes-form"
+                    hx-target="#lista_dfoes"
+                    hx-push-url="true"
+                    hx-indicator="#spinner"
+                    hx-vals='{"page": "{{ foes.next_page_number }}"}'
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
+                    style= "cursor:pointer"
+                >
+                    &raquo;
+                </button>
+    {% else %}
+                <button
+                    type="button"
+
+                    hx-include="#foes-form"
+                    hx-target="#lista_dfoes"
+                    hx-push-url="true"
+                    class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
+                    disabled
+                >
+                    &raquo;
+                </button>
+    {% endif %}
+</div>
     </div>

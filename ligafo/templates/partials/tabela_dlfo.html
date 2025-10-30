@@ -1,12 +1,12 @@
-<div id="lista_foes">
+<div id="list_dlfo">
 <table class="display compact order-column table-fixed" style="width:100%">
                     <th class="text-xs bg-ipt-main text-white px-6 py-1">
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
                             hx-vals='{"sort": "referencia", "direction": "{% if sort == "referencia" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -20,25 +20,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
-                            hx-push-url="true"
-                            hx-vals='{"sort": "encomenda", "direction": "{% if sort == "encomenda" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
-                            >
-                            Encomenda
-                            {% if sort == "encomenda" %}
-                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
-                            {% endif %}
-                        </button>
-                    </th>
-                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <button
-                            type="button"
-                            class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
                             hx-vals='{"sort": "cliente", "direction": "{% if sort == "cliente" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -52,14 +36,14 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
-                            hx-vals='{"sort": "estado", "direction": "{% if sort == "estado" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            hx-vals='{"sort": "dist_optica", "direction": "{% if sort == "dist_optica" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Estado
-                            {% if sort == "estado" %}
+                            Distância Ótica (Km)
+                            {% if sort == "dist_optica" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
                         </button>
@@ -68,14 +52,14 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
-                            hx-vals='{"sort": "tipo_ocupa", "direction": "{% if sort == "tipo_ocupa" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            hx-vals='{"sort": "dist_iet", "direction": "{% if sort == "dist_iet" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Tipo Ocupação
-                            {% if sort == "tipo_ocupa" %}
+                            Distância IET (Km)
+                            {% if sort == "dist_iet" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
                         </button>
@@ -84,14 +68,14 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
-                            hx-vals='{"sort": "data_obj", "direction": "{% if sort == "data_obj" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            hx-vals='{"sort": "data_pedido", "direction": "{% if sort == "data_pedido" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Data Objectivo
-                            {% if sort == "data_obj" %}
+                            Data Pedido
+                            {% if sort == "data_pedido" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
                         </button>
@@ -100,9 +84,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
                             hx-vals='{"sort": "data_entrega", "direction": "{% if sort == "data_entrega" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -116,14 +100,14 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
-                            hx-vals='{"sort": "dist_km", "direction": "{% if sort == "dist_km" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            hx-vals='{"sort": "estado", "direction": "{% if sort == "estado" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
-                            Distância Km
-                            {% if sort == "dist_km" %}
+                            Estado
+                            {% if sort == "estado" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
                         </button>
@@ -132,25 +116,9 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
-                            hx-push-url="true"
-                            hx-vals='{"sort": "dist_optica", "direction": "{% if sort == "dist_optica" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
-                            >
-                            Distância Ótica
-                            {% if sort == "dist_optica" %}
-                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
-                            {% endif %}
-                        </button>
-                    </th>
-                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
-                        <button
-                            type="button"
-                            class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
                             hx-vals='{"sort": "local_a", "direction": "{% if sort == "local_a" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
@@ -164,14 +132,30 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lista_foe' %}"
-                            hx-include="#foes-form"
-                            hx-target="#lista_foes"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
                             hx-push-url="true"
                             hx-vals='{"sort": "local_b", "direction": "{% if sort == "local_b" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
                             >
                             Local B
                             {% if sort == "local_b" %}
+                                {% if direction == "asc" %}▲{% else %}▼{% endif %}
+                            {% endif %}
+                        </button>
+                    </th>
+                    <th class="text-xs bg-ipt-main text-white px-6 py-1">
+                        <button
+                            type="button"
+                            class="text-xs px-2 py-1 hover:text-ipp-main"
+                            hx-post="{% url 'desligados_ligafo' %}"
+                            hx-include="#dlfo-form"
+                            hx-target="#list_dlfo"
+                            hx-push-url="true"
+                            hx-vals='{"sort": "observacoes", "direction": "{% if sort == "observacoes" and direction == "asc" %}desc{% else %}asc{% endif %}"}'
+                            >
+                            Observações
+                            {% if sort == "observacoes" %}
                                 {% if direction == "asc" %}▲{% else %}▼{% endif %}
                             {% endif %}
                         </button>
@@ -183,62 +167,53 @@
 
 
             <tbody>
-                {% if foes %}
-                    {% for foe in foes %}
-                        {% if "Activo" in foe.estado %}
+                {% if lligafo %}
+                    {% for lfo in lligafo %}
+                        {% if "Activo" in lfo.dist_optica %}
                             <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
                         {% else %}
                             <tr class=" bg-white text-gray-700 border-b border-gray-200 hover:bg-slate-200">
                         {% endif %}
-                                <td scope="row" class="px-3 py-1 text-sm whitespace-nowrap">
+                                <td scope="row" class="px-3 py-1 text-xs whitespace-nowrap">
 
-                                    <a class="btn btn-success btn-sm" href="{% url 'editar_foe' foe.id %}?next=lista_foe">{{foe.referencia}}</a>
+                                    <a class="btn btn-success btn-sm" href="{% url 'editar_ligafo' lfo.id %}?next=desligados_ligafo">{{lfo.referencia}}</a>
                                             
                                 </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{foe.encomenda}}
+                                <td class="px-3 py-1 text-xs">
+                                    {{lfo.cliente}}
                                 </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {{foe.cliente}}
+                                <td class="px-3 py-1 text-xs">
+                                    {{lfo.dist_optica|floatformat:3}}
                                 </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {% if foe.estado == "A" %}
-                                        Activo
-                                    {% elif foe.estado == "I" %}
-                                        Em Instalação
-                                    {% elif foe.estado == "D" %}
-                                        Desligado
-                                    {% else %}
-                                        {{foe.estado}}
-                                    {% endif %}
-                                </td>
-                                <td class="px-3 py-1 text-sm">
-                                    {% if foe.tipo_ocupa == "T" %}
-                                        Temporário
-                                    {% elif foe.tipo_ocupa == "D" %}
-                                        Definitivo
-                                    {% else %}
-                                        {{foe.tipo_ocupa}}
-                                    {% endif %}
+                                <td class="px-3 py-1 text-xs">
+                                    {{lfo.dist_iet|floatformat:3}}
                                 </td>                        
                                 <td class="px-3 py-1 text-xs">
-                                    {{foe.data_obj|date:"c"}}
-                                </td>                                
-                                <td class="px-3 py-1 text-sm">
-                                    {{foe.data_entrega|date:"c"}}
+                                    {{lfo.data_pedido|date:"c"}}
                                 </td>                                
                                 <td class="px-3 py-1 text-xs">
-                                    {{foe.dist_km|floatformat:3}}
+                                    {{lfo.data_entrega|date:"c"}}
                                 </td>                                
                                 <td class="px-3 py-1 text-xs">
-                                    {{foe.dist_optica|floatformat:3}}
+                                    {% if lfo.estado == "A" %}
+                                        Activo
+                                    {% elif lfo.estado == "I" %}
+                                        Em Instalação
+                                    {% elif lfo.estado == "D" %}
+                                        Desligado
+                                    {% else %}
+                                        {{lfo.estado}}
+                                    {% endif %}
                                 </td>
                                 <td class="px-3 py-1 text-xs">
-                                    {{foe.local_a}}
+                                    {{lfo.local_a}}
                                 </td>                                
-                                <td class="px-3 py-1 text-sm">
-                                    {{foe.local_b}}
+                                <td class="px-3 py-1 text-xs">
+                                    {{lfo.local_b}}
                                 </td>                                
+                                <td class="px-3 py-1 text-xs">
+                                    {{lfo.observacoes}}
+                                </td>                                 
 
 
                             </tr>
@@ -250,14 +225,14 @@
             </tbody>
         </table>
 
-        <div class="flex justify-center space-x-3 mt-4 mb-4">
-{% if foes.has_previous %}
+                <div class="flex justify-center space-x-3 mt-4 mb-4">
+{% if lligafo.has_previous %}
     <button
         type="button"
-        hx-post="{% url 'lista_foe' %}"
-        hx-vals='{"page": "{{ foes.previous_page_number }}"}'
-        hx-include="#foes-form"
-        hx-target="#lista_foes"
+        hx-post="{% url 'desligados_ligafo' %}"
+        hx-vals='{"page": "{{ lligafo.previous_page_number }}"}'
+        hx-include="#dlfo-form"
+        hx-target="#list_dlfo"
         hx-push-url="true"
         hx-indicator="#spinner"
         class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
@@ -268,8 +243,8 @@
 {% else %}
         <button
             type="button"
-            hx-include="#foes-form"
-            hx-target="#lista_foes"
+            hx-include="#dlfo-form"
+            hx-target="#list_dlfo"
             hx-push-url="true"
             class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
             disabled
@@ -279,12 +254,12 @@
 {% endif %}
 
     {% for i in paginas %}
-        {% if foes.number == i %}
-            <button type="button" hx-post="{% url 'lista_foe' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#foes-form" hx-target="#lista_foes" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
+        {% if lligafo.number == i %}
+            <button type="button" hx-post="{% url 'desligados_ligafo' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#dlfo-form" hx-target="#list_dlfo" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
                 <p class="font-bold text-ipp-main">{{ i }}</p>
             </button>
         {% else %}
-            {% if i == foes.paginator.ELLIPSIS %}
+            {% if i == lligafo.paginator.ELLIPSIS %}
              <button
                 type="button"
                 class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
@@ -294,10 +269,10 @@
             {% else %}
                 <button
                     type="button"
-                    hx-post="{% url 'lista_foe' %}"
+                    hx-post="{% url 'desligados_ligafo' %}"
                     hx-vals='{"page": "{{ i }}"}'
-                    hx-include="#foes-form"
-                    hx-target="#lista_foes"
+                    hx-include="#dlfo-form"
+                    hx-target="#list_dlfo"
                     hx-push-url="true"
                     hx-indicator="#spinner"
                     class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
@@ -309,15 +284,15 @@
         {% endif %}
     {% endfor %}
 
-    {% if foes.has_next %}
+    {% if lligafo.has_next %}
                 <button
                     type="button"
-                    hx-post="{% url 'lista_foe' %}"
-                    hx-include="#foes-form"
-                    hx-target="#lista_foes"
+                    hx-post="{% url 'desligados_ligafo' %}"
+                    hx-include="#dlfo-form"
+                    hx-target="#list_dlfo"
                     hx-push-url="true"
                     hx-indicator="#spinner"
-                    hx-vals='{"page": "{{ foes.next_page_number }}"}'
+                    hx-vals='{"page": "{{ lligafo.next_page_number }}"}'
                     class="m-1 text-xs bg-ipt-main text-white border-ip-main hover:bg-ip-main rounded-sm p-1 border"
                     style= "cursor:pointer"
                 >
@@ -327,8 +302,8 @@
                 <button
                     type="button"
 
-                    hx-include="#foes-form"
-                    hx-target="#lista_foes"
+                    hx-include="#dlfo-form"
+                    hx-target="#list_dlfo"
                     hx-push-url="true"
                     class="m-1 text-xs bg-ipt-main text-white border-ip-main rounded-sm p-1 border"
                     disabled

@@ -26,7 +26,7 @@ def editar_foe(request, pk):
     return render(request, 'foe/editar_foe.html', context=context)
 
 @login_required(login_url='userlogin')
-@group_required(('FOE', 'NOC'))
+@group_required(('FOE',))
 def criar_foe(request):
     form = cria_circfoeForm(request.POST)
     if form.is_valid():

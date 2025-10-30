@@ -109,6 +109,11 @@
                     <li>
                         <a href="{% url 'criar_carta' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
                     </li>
+                    {% if request.user|has_group:"DAT" %}
+                    <li>
+                        <a href="{% url 'downloadc' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Download</a>
+                    </li>
+                    {% endif %}
                     </ul>
                 </div>
             {% endif %}   

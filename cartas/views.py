@@ -11,6 +11,7 @@ from django.http import HttpResponse, FileResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.views.decorators.http import require_http_methods
+from datetime import datetime
 
 # Create your views here.
 @login_required(login_url='userlogin')
@@ -96,71 +97,6 @@ def downloadc(request):
     response._resource_closers.append(lambda: cleanup_file(response))
 
     return response
-
-
-    # response = HttpResponse(
-    #     content_type='text/csv',
-    #     headers={'Content-Disposition': 'attachment; filename="cartas.csv"'},
-    # )
-
-    # writer = csv.writer(response)
-    # writer.writerow(['Fabricante', 'Data Receção', 'Tipo', 'Part Number', 'Serial Number', 'Descrição', 'Estado', 'Projeto', 'Sistema', 'Localização', 'Equipamento', 'Subrack', 'Slot', 'Porto', 'Observações'])
-
-    # cartas = Cartas.objects.all().values_list('fabricante', 'data_rececao', 'b_type', 'part_number', 'serial_number', 'descricao', 'estado', 'projeto', 'sistema', 'localizacao', 'equipamento', 'subrack', 'slot', 'porto', 'observacoes')
-    # for carta in cartas:
-    #     writer.writerow(carta)
-
-    # return response
-
-def pesquisa_carta(request):
-    
-    # pesquisa geral
-    pesquisar = request.POST.get('search',default='')
-
-    #pesquisa por campos específicos
-    filtros = {
-    "serial_number__icontains": request.POST.get("serial", ""),
-    "part_number__icontains": request.POST.get("part", ""),
-    "fabricante__icontains": request.POST.get("fabricante", ""),
-    "sistema__icontains": request.POST.get("sistema", ""),
-    "b_type__icontains": request.POST.get("board", ""),
-    "descricao__icontains": request.POST.get("descr", ""),
-    "estado__icontains": request.POST.get("estado", ""),
-    "localizacao__icontains": request.POST.get("local", ""),
-    "equipamento__icontains": request.POST.get("equip", ""),
-    }
-    print(request.POST)
-
-    per_page = int(request.POST.get("per_page", 25))
-
-    cartas = Cartas.objects.exclude(estado="ABA")
-
-    resultado = Cartas.objects.filter(
-        Q(serial_number__icontains=pesquisar) |
-        Q(part_number__icontains=pesquisar) |
-        Q(fabricante__icontains=pesquisar) |
-        Q(descricao__icontains=pesquisar) |
-        Q(sistema__icontains=pesquisar) |
-        Q(b_type__icontains=pesquisar) |
-        Q(localizacao__icontains=pesquisar) |
-        Q(equipamento__icontains=pesquisar)
-    ).exclude(estado="ABA")
-
-    for field, value in filtros.items():
-        if value:
-            resultado = resultado.filter(**{field: value})
-    print (resultado.count()) 
-    pages = Paginator(resultado, per_page)
-    page_number = request.POST.get('page', 1)
-    print("teste:", page_number)
-    resultado = pages.get_page(page_number)
-    
-    print(request.htmx)
-    context = {
-        'cartas': resultado,
-        'per_page': per_page
-        }
-    return render(request, 'partials/tabela_c.html', context)
 
 @login_required(login_url='userlogin')
 @group_required(('TX', 'DAT')) 

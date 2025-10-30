@@ -201,7 +201,7 @@
             </div>
             <!-- Submit Button (Full-width) -->
             <div class="w-full flex justify-end">
-                {% if request.user|has_group:"FOE" %}
+                {% if request.user|has_group:"FOE,TX,DAT" %}
                 <button type="submit" value="Submit"
                     class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
                 {% endif %}

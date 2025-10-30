@@ -15,13 +15,6 @@ from django.core.paginator import Paginator
 
 
 @login_required(login_url='userlogin')
-@group_required(('NOC', 'TX', 'DAT', 'DADOS', 'VOZ'))
-def ver_circuito(request, pk):
-    form = Circuitos.objects.get(id=pk)
-    context = {'form':form}
-    return render(request, 'circuitos/ver_circuito.html', context=context)
-
-@login_required(login_url='userlogin')
 @group_required(('NOC','TX', 'DAT', 'DADOS', 'VOZ'))
 def editar_circuito(request, pk):
     cct = Circuitos.objects.get(id=pk)

@@ -27,6 +27,6 @@ urlpatterns = [
     path('foe/',include('foe.urls')),
     path('dados/',include('dados.urls')),
     path('sdados/',include('sdados.urls')),
-    #path('user/', include('cmain.urls')),
+
 
 ]
