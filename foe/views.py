@@ -16,13 +16,16 @@ def editar_foe(request, pk):
     lfoe = circfoe.objects.get(id=pk)
     net = request.GET.get('next')
     form = circfoeForm(instance=lfoe)
+    criado = form.instance.created_at.strftime('%d-%b-%Y')
+    editado = form.instance.updated_at.strftime('%d-%b-%Y')
     can_edit = request.user.groups.filter(name='FOE').exists()
     if request.method == 'POST' and can_edit:
         form = circfoeForm(request.POST, instance=lfoe)
         if form.is_valid():
+            form.instance.update_user = request.user.username
             form.save()
             return redirect(net)   
-    context = {'form':form, 'can_edit': can_edit}
+    context = {'form':form, 'can_edit': can_edit, 'criado': criado, 'editado': editado}
     return render(request, 'foe/editar_foe.html', context=context)
 
 @login_required(login_url='userlogin')
@@ -31,6 +34,7 @@ def criar_foe(request):
     form = cria_circfoeForm(request.POST)
     if form.is_valid():
         form.save()
+        form.instance.create_user = request.user.username
         return redirect('editar_foe', pk=form.instance.id)
     context = {'form':form}
     return render(request, 'foe/criar_foe.html', context=context)

@@ -19,6 +19,10 @@ class circfoe(models.Model):
     local_b = models.CharField(max_length=150, verbose_name='Local B',default="Local B",  help_text='Local B', blank=False)
     ligacao_b = models.CharField(max_length=20, blank=True, default="ODF")
     observacoes = models.TextField(max_length=150, verbose_name='Observações', help_text='Observações', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    update_user = models.CharField(max_length=30, blank=True)
+    create_user = models.CharField(max_length=30, blank=True)
 
     def save(self, *args, **kwargs):
         #print(self.referencia)
