@@ -102,7 +102,7 @@ def desligados_ligafo(request):
     if request.htmx:
         return render(request, 'partials/tabela_dlfo.html', context=context)
 
-    return render(request, 'ligafo/lista_ligafo.html', context=context)
+    return render(request, 'ligafo/desligados_ligafo.html', context=context)
 
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'FOE', 'TX', 'DAT', 'DADOS'))

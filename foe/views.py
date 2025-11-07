@@ -57,7 +57,7 @@ def desligados_foe(request):
         "local_b__icontains": request.POST.get('local_b', ''),
         }
     
-    per_page = request.POST.get('perpage', 10)
+    per_page = request.POST.get('per_page', 10)
     sort = request.POST.get('sort', 'referencia')
     direction = request.POST.get('direction', 'asc')
 
@@ -119,7 +119,7 @@ def lista_foe(request):
         "local_b__icontains": request.POST.get('local_b', ''),
         }
     
-    per_page = request.POST.get('perpage', 10)
+    per_page = request.POST.get('per_page', 10)
     sort = request.POST.get('sort', 'referencia')
     direction = request.POST.get('direction', 'asc')
 
