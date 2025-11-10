@@ -11,6 +11,7 @@ class sdados(models.Model):
     VLAN_translation = models.CharField(max_length=100, blank=True) # Allow blank=True
     Cliente = models.CharField(max_length=100) 
     Notas = models.CharField(max_length=100, blank=True, default='')    # Allow blank=True
+    created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         ordering = ['ISID']
 
@@ -24,6 +25,7 @@ class sterm(models.Model):
     Cod_Postal = models.CharField(max_length=100, blank=True, default=''   ) # Allow blank=True
     Equipamento = models.CharField(max_length=100)
     SAP = models.CharField(max_length=100)
+    data_actualizacao = models.DateTimeField()
     Notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
 
     class Meta:
