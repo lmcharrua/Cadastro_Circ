@@ -1,35 +1,38 @@
 from django.db import models
+import datetime
+from django.utils import timezone
 
 
 class sdados(models.Model):
-    ISID = models.CharField(max_length=10, unique=True)  # Allow blank=True
-    ISID_name = models.CharField(max_length=100)
-    Service_type = models.CharField(max_length=100)
-    Mux_mode = models.CharField(max_length=100, blank=True)     # Allow blank=True
-    Service_status = models.CharField(max_length=100, blank=True)   # Allow blank=True
-    Connect_type = models.CharField(max_length=100, blank=True) # Allow blank=True
-    VLAN_translation = models.CharField(max_length=100, blank=True) # Allow blank=True
-    Cliente = models.CharField(max_length=100) 
-    Notas = models.CharField(max_length=100, blank=True, default='')    # Allow blank=True
+    isid = models.CharField(max_length=10, unique=True)  # Allow blank=True
+    isid_name = models.CharField(max_length=100)
+    estado = models.CharField(max_length=3, default='A')
+    service_type = models.CharField(max_length=100)
+    mux_mode = models.CharField(max_length=100, blank=True)     # Allow blank=True
+    connect_type = models.CharField(max_length=100, blank=True) # Allow blank=True
+    vlan_translation = models.CharField(max_length=100, blank=True) # Allow blank=True
+    cliente = models.CharField(max_length=100) 
+    notas = models.CharField(max_length=100, blank=True, default='')    # Allow blank=True
     created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
-        ordering = ['ISID']
+        ordering = ['isid']
 
     def __str__(self):
-        return self.ISID_name
+        return self.isid_name
 
 class sterm(models.Model):
     misid = models.ForeignKey(sdados, on_delete=models.CASCADE)  # Foreign key to sdados, should match ISID
-    Local = models.CharField(max_length=100)
-    Morada = models.CharField(max_length=100, blank=True, default= '')   # Allow blank=True
-    Cod_Postal = models.CharField(max_length=100, blank=True, default=''   ) # Allow blank=True
-    Equipamento = models.CharField(max_length=100)
-    SAP = models.CharField(max_length=100)
-    data_actualizacao = models.DateTimeField()
-    Notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
+    local = models.CharField(max_length=100)
+    morada = models.CharField(max_length=100, blank=True, default= '')   # Allow blank=True
+    cod_postal = models.CharField(max_length=100, blank=True, default=''   ) # Allow blank=True
+    equipamento = models.CharField(max_length=100)
+    sap = models.CharField(max_length=100)
+    estado = models.CharField(max_length=3, default='A')
+    data_actualizacao = models.DateTimeField(null=True, blank=True)
+    notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
 
     class Meta:
-        ordering = ['SAP']
+        ordering = ['sap']
     
     def __str__(self):
         return self.Local

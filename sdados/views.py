@@ -1,166 +1,79 @@
-""" from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, request
+from django.contrib.auth.models import auth
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from django.views.decorators.http import require_http_methods
-
-from .models import sdados, sterm
-from .forms import *
-
-@login_required(login_url='userlogin')
-def lista_sdados(request):
-    lista = sdados.objects.exclude(Service_status="D").order_by('ISID')
-    context = {
-        'lista': lista
-    }
-
-    return render(request, 'lista_sdados.html', context=context)
-
-@login_required(login_url='userlogin')
-def detalhe_sdados(request, pk):
-    servico = sdados.objects.get(id=pk)
-    terminas = sterm.objects.all().filter(misid=pk).order_by('Local')
-    context = {
-        'servico': servico,
-        'terminas': terminas,
-    }
-    return render(request, 'detalhe_sdados.html', context)
-
-@login_required(login_url='userlogin')
-def edit_sdados(request, pk):
-    if request.method == 'GET':
-        sd = get_object_or_404(sdados, id=pk)
-        form = sdadosForm(instance=sd)
-        context = {
-            'form': form,
-        }
-        return render(request, 'partials/form_det_serv.html', context=context)
-    sd = sdados.objects.get(id=pk)
-    form = sdadosForm(instance=sd)
-    if request.method == 'POST':
-        form = sdadosForm(request.POST, instance=sd)
-        if form.is_valid():
-            form.save()
-            return HttpResponse("Serviço atualizado com sucesso!")
-     context = {
-        'form': form,
-    }
-    return render(request, 'partials/form_det_serv.html', context) 
-
-@login_required(login_url='userlogin')
-def criar_terminacao(request,pk):
-    if request.method == 'GET':
-        terminacao = stermCreateForm()
-        teste = pk
-        context = {
-            'form': terminacao,
-            'teste': teste
-        }
-        return render(request, 'partials/form_term.html', context=context)
-    else:
-        terminacao = stermCreateForm(request.POST)
-        if terminacao.is_valid():
-            terminacao.save()
-            return HttpResponse("Terminação criada com sucesso!")
-        else:
-            print("Formulário inválido")
-  
-        context = {
-            'form': terminacao,
-
-        }
-        return render(request, 'partials/form_term.html', context=context)
-    
-@login_required(login_url='userlogin')
-def edita_sterm(request,pk):
-    termina = sterm.objects.get(id=pk)
-    form = stermEditForm(instance=termina)
-    if request.method == 'POST':
-        form = stermEditForm(request.POST, instance=termina)
-        if form.is_valid():
-            form.save()
-            return HttpResponse("Terminação atualizada com sucesso!" )
-    context = {
-        'form': form,
-    }
-    return render(request, 'partials/form_term.html', context=context)
-
- """
-
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.views.decorators.http import require_POST
-from django.template.loader import render_to_string
+from django.contrib import messages
 from .models import sdados, sterm
 from .forms import StermForm, SdadosForm
+from cmain.decorators import group_required 
+from django.db.models import Q
+from django.core.paginator import Paginator
 
-def sdados_list(request):
-    records = sdados.objects.exclude(Service_status='D')
-    return render(request, 'app/sdados_list.html', {'records': records})
+@login_required(login_url='userlogin')
+@group_required(('NOC', 'DADOS'))
+def lista_sdados(request):
+    pesquisar = request.POST.get('search', '')
+    filtros = {
+        "isid__icontains": request.POST.get('isid', ''),
+        "isid_name__icontains": request.POST.get('isid_name', ''),
+        "cliente__icontains": request.POST.get('cliente', ''),
+        "estado__icontains": request.POST.get('estado', ''),
+        "service_type__icontains": request.POST.get('service_type', ''),
+        "created_at__icontains": request.POST.get('created_at', ''),
+        }
+    per_page = request.POST.get('per_page', 10 )
+    sort = request.POST.get('sort', 'isid')
+    direction = request.POST.get('direction', 'asc')
 
-def sdados_disabled(request):
-    records = sdados.objects.filter(Service_status='D')
-    return render(request, 'app/sdados_disabled.html', {'records': records})
+    l_sdados = sdados.objects.filter(
+        Q(isid__icontains=pesquisar) |
+        Q(isid_name__icontains=pesquisar) |
+        Q(cliente__icontains=pesquisar) |
+        Q(service_type__icontains=pesquisar) |
+        Q(estado__icontains=pesquisar) |
+        Q(created_at__icontains=pesquisar)
+    )
 
-def sdados_detail(request, pk):
-    record = get_object_or_404(sdados, pk=pk)
-    terms = sterm.objects.filter(misid=record)
-    return render(request, 'app/sdados_detail.html', {'record': record, 'terms': terms})
+    for field, value in filtros.items():
+        if value:
+            l_sdados = l_sdados.filter(**{field: value})
 
-def sterm_create(request, pk):
-    record = get_object_or_404(sdados, pk=pk)
-    if request.method == 'POST':
-        form = StermForm(request.POST)
-        if form.is_valid():
-            sterm_instance = form.save(commit=False)
-            sterm_instance.misid = record
-            sterm_instance.save()
-            terms = sterm.objects.filter(misid=record)
-            html = render_to_string('app/partials/sterm_table.html', {'terms': terms, 'record': record})
-            response = HttpResponse(html)
-            response['HX-Trigger'] = 'closeModal'
-            return response
-    else:
-        form = StermForm()
-    return render(request, 'app/forms/sterm_form.html', {'form': form, 'record': record})
+    if direction == 'desc':
+        sort = '-' + sort
+        l_sdados = l_sdados.order_by(sort)
 
-def sterm_edit(request, pk):
-    term = get_object_or_404(sterm, pk=pk)
-    record = term.misid
-    if request.method == 'POST':
-        form = StermForm(request.POST, instance=term)
-        if form.is_valid():
-            form.save()
-            terms = sterm.objects.filter(misid=record)
-            html = render_to_string('app/partials/sterm_table.html', {'terms': terms, 'record': record})
-            response = HttpResponse(html)
-            response['HX-Trigger'] = 'closeModal'
-            return response
-    else:
-        form = StermForm(instance=term)
-    return render(request, 'app/forms/sterm_edit_form.html', {'form': form, 'record': record, 'term': term})
+    pages = Paginator(l_sdados, per_page)
+    page_number = request.GET.get('page', 1)
 
-def sdados_edit(request, pk):
-    record = get_object_or_404(sdados, pk=pk)
-    if request.method == 'POST':
-        form = SdadosForm(request.POST, instance=record)
-        if form.is_valid():
-            form.save()
-            return HttpResponse(status=204, headers={'HX-Trigger': 'closeModal'})
-    else:
-        form = SdadosForm(instance=record)
-    return render(request, 'app/forms/sdados_form.html', {'form': form})
+    l_sdados = pages.get_page(page_number)
 
-@require_POST
-def sdados_disable(request, pk):
-    record = get_object_or_404(sdados, pk=pk)
-    record.Service_status = 'D'
-    record.save()
-    return HttpResponse(status=204)
+    paginas = pages.get_elided_page_range(number=page_number, on_each_side=2, on_ends=1)
 
-@require_POST
-def sdados_reactivate(request, pk):
-    record = get_object_or_404(sdados, pk=pk)
-    record.Service_status = ''
-    record.save()
-    return HttpResponse(status=204)
+    context = {
+        'l_sdados': l_sdados,
+        'per_page': per_page,
+        'paginas': paginas,
+        'sort': request.POST.get('sort', 'isid'),
+        'direction': direction,
+    }
+    
+    if request.htmx:
+        return render(request, 'partials/tabela_sdados.html', context)
+
+    return render(request, 'sdados/lista_sdados.html', context)
+
+def criar_sdados(request, pk):
+    pass
+
+def editar_sdados(request, pk):
+    pass
+
+def editar_sterm(request, pk):
+    pass
+
+def criar_sterm(request, pk):
+    pass
+
+
+

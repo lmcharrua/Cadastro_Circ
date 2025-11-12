@@ -7,7 +7,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-50: #FEF2F2;
-    --color-red-300: #FCA5A5;
+    --color-red-300: #ca7f7f;
     --color-red-700: #B91C1C;
     --color-green-200: #A7F3D0;
     --color-blue-300: #93C5FD;
@@ -71,6 +71,7 @@
     );
     --color-ipt-main: #00AAF8;
     --color-ip-main: #1E9D8B;
+    --color-red-400: #F98080;
     --font-ipt: "Roboto", sans-serif;
   }
 }

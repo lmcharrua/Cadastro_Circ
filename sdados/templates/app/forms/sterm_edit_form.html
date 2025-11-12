@@ -1,7 +1,0 @@
-<form method="POST" hx-post="{% url 'sterm_edit' term.pk %}" hx-target="#sterm-list" hx-swap="outerHTML">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="mt-4">
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </div>
-</form>
