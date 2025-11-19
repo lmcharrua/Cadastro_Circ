@@ -94,6 +94,29 @@
                     </div>
                 {% endif %}
             
+<!-- DADOS -->
+
+
+                {% if request.user|has_group:"NOC,DADOS" %}
+                <li id="dropdownDelayButton" data-dropdown-toggle="dropdown_dados" data-dropdown-delay="500" data-dropdown-trigger="hover" class="font-semibold flex items-right p-1 px-3 gap-x-2 hover:text-black text-white">
+                    Serv. Dados
+                </li>
+                    <div id="dropdown_dados" class="font-ipt z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border-ip-main border shadow-sm w-auto">
+                        <ul class="py-2 text-sm" aria-labelledby="dropdownDelayButton">
+                            <li>
+                                <a href="{% url 'lsdados' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Listar/pesquisar</a>
+                            </li>
+                            
+                            {% if request.user|has_group:"DADOS" %}
+                            <li>
+                                <a href="{% url 'csdados' %}" class="block px-2 mx-0.5 py-1 rounded-sm hover:bg-ipt-main hover:text-white ">Criar</a>
+                            </li>
+                            
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+            
 
 <!-- Cartas -->
 
