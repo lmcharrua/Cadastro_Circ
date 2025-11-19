@@ -13,7 +13,7 @@ class sdados(models.Model):
     vlan_translation = models.CharField(max_length=100, blank=True) # Allow blank=True
     cliente = models.CharField(max_length=100) 
     notas = models.CharField(max_length=100, blank=True, default='')    # Allow blank=True
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True, default=datetime.date.today)
     class Meta:
         ordering = ['isid']
 
@@ -21,18 +21,18 @@ class sdados(models.Model):
         return self.isid_name
 
 class sterm(models.Model):
-    misid = models.ForeignKey(sdados, on_delete=models.CASCADE)  # Foreign key to sdados, should match ISID
+    misid = models.CharField(max_length=10)  # Foreign key to sdados, should match ISID
     local = models.CharField(max_length=100)
     morada = models.CharField(max_length=100, blank=True, default= '')   # Allow blank=True
     cod_postal = models.CharField(max_length=100, blank=True, default=''   ) # Allow blank=True
     equipamento = models.CharField(max_length=100)
     sap = models.CharField(max_length=100)
     estado = models.CharField(max_length=3, default='A')
-    data_actualizacao = models.DateTimeField(null=True, blank=True)
+    data_actualizacao = models.DateField(null=True, blank=True)
     notas = models.CharField(max_length=100, blank=True)    # Allow blank=True
 
     class Meta:
         ordering = ['sap']
     
     def __str__(self):
-        return self.Local
+        return self.local

@@ -4,9 +4,9 @@ from .models import sterm, sdados
 class StermForm(forms.ModelForm):
     class Meta:
         model = sterm
-        exclude = ['misid']
+        fields = "__all__"
 
 class SdadosForm(forms.ModelForm):
     class Meta:
         model = sdados
-        fields = '__all__'
+        fields = "__all__"
