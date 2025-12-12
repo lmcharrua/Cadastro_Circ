@@ -4,7 +4,7 @@
 
 
 <form id="lsds-form"
-        hx-post="{% url 'lsdados' %}"
+        hx-get="{% url 'lsdados' %}"
         hx-target="#list_lsds"
         hx-push-url="true">
 
@@ -18,7 +18,7 @@
         </div>
         <div>
             <select name="per_page" class="text-xs border border-gray-300 rounded-md" 
-                hx-post="{% url 'lsdados' %}" 
+                hx-get="{% url 'lsdados' %}" 
                 hx-target="#list_lsds" 
                 hx-swap="innerHTML"
                 hx-trigger="change"
@@ -37,25 +37,25 @@
         <table class="p-1" style="width: 100%;">
                 <tr>                    
                     <td class="p-1">
-                        <input type="text" name="ref" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Referência" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" disabled/>
+                        <input type="text" name="ref" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Referência" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" disabled/>
                     </td>
                     <td class="p-1">
-                        <input type="text" name="isid" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Isid" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="isid" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Isid" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="isid_name" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Isid Name" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="isid_name" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Isid Name" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="cliente" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="cliente" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="estado" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="estado" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="service_type" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Service Type" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="service_type" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Service Type" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="created_at" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Activação" hx-post="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="created_at" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Activação" hx-get="{% url 'lsdados' %}" hx-target="#list_lsds" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
                     </th>
                     
                 </tr>

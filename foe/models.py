@@ -5,7 +5,7 @@ from django.utils.functional import cached_property
 # Create your models here
 class circfoe(models.Model):
     referencia = models.CharField(max_length=20, verbose_name='Referência', blank=True, help_text='Referência')
-    encomenda = models.CharField(max_length=20, default="ref encomenda", verbose_name='Encomenda', help_text='Encomenda', blank=True)
+    encomenda = models.CharField(max_length=30, default="ref encomenda", verbose_name='Encomenda', help_text='Encomenda', blank=True)
     cliente = models.CharField(max_length=30, verbose_name='Cliente', help_text='Cliente', blank=False)
     dist_km = models.DecimalField(max_digits=6, decimal_places=3, default="000.000", blank=True, verbose_name='Distância Kilométrica', help_text='Distância km IET50')
     dist_optica = models.DecimalField(max_digits=6, decimal_places=3, default="000.000", blank=True, verbose_name='Distância km ótica', help_text='Distância km ótica')
