@@ -12,7 +12,7 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lsdados' %}"
+                            hx-get="{% url 'lsdados' %}"
                             hx-include="#lsds-form"
                             hx-target="#list_lsds"
                             hx-push-url="true"
@@ -28,7 +28,7 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lsdados' %}"
+                            hx-get="{% url 'lsdados' %}"
                             hx-include="#lsds-form"
                             hx-target="#list_lsds"
                             hx-push-url="true"
@@ -44,7 +44,7 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lsdados' %}"
+                            hx-get="{% url 'lsdados' %}"
                             hx-include="#lsds-form"
                             hx-target="#list_lsds"
                             hx-push-url="true"
@@ -60,7 +60,7 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lsdados' %}"
+                            hx-get="{% url 'lsdados' %}"
                             hx-include="#lsds-form"
                             hx-target="#list_lsds"
                             hx-push-url="true"
@@ -76,7 +76,7 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lsdados' %}"
+                            hx-get="{% url 'lsdados' %}"
                             hx-include="#lsds-form"
                             hx-target="#list_lsds"
                             hx-push-url="true"
@@ -92,7 +92,7 @@
                         <button
                             type="button"
                             class="text-xs px-2 py-1 hover:text-ipp-main"
-                            hx-post="{% url 'lsdados' %}"
+                            hx-get="{% url 'lsdados' %}"
                             hx-include="#lsds-form"
                             hx-target="#list_lsds"
                             hx-push-url="true"
@@ -129,7 +129,7 @@
                                 </td>
                                 <td scope="row" class="px-3 py-1 text-xs whitespace-nowrap">
 
-                                    <a class="btn btn-success btn-sm" href="{% url 'esdados' sdad.id %}">{{sdad.isid}}</a>
+                                    <a class="btn btn-success btn-sm" href="{% url 'esdados' sdad.id %}?{{ request.GET.urlencode }}">{{sdad.isid}}</a>
                                             
                                 </td>
                                 <td class="px-3 py-1 text-xs">
@@ -171,7 +171,7 @@
 {% if l_sdados.has_previous %}
     <button
         type="button"
-        hx-post="{% url 'lsdados' %}"
+        hx-get="{% url 'lsdados' %}"
         hx-vals='{"page": "{{ l_sdados.previous_page_number }}"}'
         hx-include="#lsds-form"
         hx-target="#list_lsds"
@@ -197,7 +197,7 @@
 
     {% for i in paginas %}
         {% if l_sdados.number == i %}
-            <button type="button" hx-post="{% url 'lsdados' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#lsds-form" hx-target="#list_lsds" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
+            <button type="button" hx-get="{% url 'lsdados' %}" hx-vals='{"page": "{{ i }}"}' hx-include="#lsds-form" hx-target="#list_lsds" hx-push-url="true" hx-indicator="#spinner" class="m-1 text-xs bg-ipt-main text-ipp-main border-ip-main hover:bg-ip-main rounded-sm p-1 border" style="cursor:pointer">
                 <p class="font-bold text-ipp-main">{{ i }}</p>
             </button>
         {% else %}
@@ -211,7 +211,7 @@
             {% else %}
                 <button
                     type="button"
-                    hx-post="{% url 'lsdados' %}"
+                    hx-get="{% url 'lsdados' %}"
                     hx-vals='{"page": "{{ i }}"}'
                     hx-include="#lsds-form"
                     hx-target="#list_lsds"
@@ -229,7 +229,7 @@
     {% if l_sdados.has_next %}
                 <button
                     type="button"
-                    hx-post="{% url 'lsdados' %}"
+                    hx-get="{% url 'lsdados' %}"
                     hx-include="#lsds-form"
                     hx-target="#list_lsds"
                     hx-push-url="true"

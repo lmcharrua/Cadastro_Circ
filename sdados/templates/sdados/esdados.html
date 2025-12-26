@@ -150,7 +150,7 @@
                                         <tr class=" bg-white text-gray-950 border-b border-gray-200 hover:bg-green-200">
 
                                             <td class="px-3 py-1 text-sm">
-                                                <a href="{% url 'esterm' term.id %}">{{term.sap}}</a>
+                                                <a href="{% url 'esterm' term.id %}?{{ back_to_list }}">{{term.sap}}</a>
                                             </td>
                                             <td class="px-3 py-1 text-sm">
                                                 {{term.equipamento}}
@@ -187,11 +187,11 @@
             <div class="w-full flex justify-end">
                 {% if can_edit %}
                     <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
-                    <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'csterm' %}?misid={{form.isid.value}}">+ Terminação</a></button>
+                    <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'csterm' %}?misid={{form.isid.value}}&{{ back_to_list }}">+ Terminação</a></button>
                 {% endif %}
                 <button type="button"
                     class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a
-                        href="{% url 'lsdados' %}" >Cancelar</a></button>
+                        href="{% url 'lsdados' %}?{{ back_to_list }}" >Cancelar</a></button>
 
             </div>
         </form>

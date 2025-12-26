@@ -33,9 +33,11 @@ def editar_foe(request, pk):
 def criar_foe(request):
     form = cria_circfoeForm(request.POST)
     if form.is_valid():
-        form.save()
         form.instance.create_user = request.user.username
+        form.save()
+        
         return redirect('editar_foe', pk=form.instance.id)
+    print (form.errors)
     context = {'form':form}
     return render(request, 'foe/criar_foe.html', context=context)
 

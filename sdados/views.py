@@ -4,6 +4,7 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse
 from .models import sdados, sterm
 from .forms import StermForm, SdadosForm
 from cmain.decorators import group_required 
@@ -146,18 +147,18 @@ def criar_sterm(request):
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'DADOS'))
 def lsdados(request):
-    pesquisar = request.POST.get('search', '')
+    pesquisar = request.GET.get('search', '')
     filtros = {
-        "isid__icontains": request.POST.get('isid', ''),
-        "isid_name__icontains": request.POST.get('isid_name', ''),
-        "cliente__icontains": request.POST.get('cliente', ''),
-        "estado__icontains": request.POST.get('estado', ''),
-        "service_type__icontains": request.POST.get('service_type', ''),
-        "created_at__icontains": request.POST.get('created_at', ''),
+        "isid__icontains": request.GET.get('isid', ''),
+        "isid_name__icontains": request.GET.get('isid_name', ''),
+        "cliente__icontains": request.GET.get('cliente', ''),
+        "estado__icontains": request.GET.get('estado', ''),
+        "service_type__icontains": request.GET.get('service_type', ''),
+        "created_at__icontains": request.GET.get('created_at', ''),
         }
-    per_page = request.POST.get('per_page', 10 )
-    sort = request.POST.get('sort', 'isid')
-    direction = request.POST.get('direction', 'asc')
+    per_page = request.GET.get('per_page', 10 )
+    sort = request.GET.get('sort', 'isid')
+    direction = request.GET.get('direction', 'asc')
 
     l_sdados = sdados.objects.filter(
         Q(isid__icontains=pesquisar) |
@@ -177,7 +178,7 @@ def lsdados(request):
         l_sdados = l_sdados.order_by(sort)
 
     pages = Paginator(l_sdados, per_page)
-    page_number = request.POST.get('page', 1)
+    page_number = request.GET.get('page', 1)
     print (page_number)
 
     l_sdados = pages.get_page(page_number)
@@ -188,8 +189,9 @@ def lsdados(request):
         'l_sdados': l_sdados,
         'per_page': per_page,
         'paginas': paginas,
-        'sort': request.POST.get('sort', 'isid'),
+        'sort': request.GET.get('sort', 'isid'),
         'direction': direction,
+        'querystring': request.GET.urlencode(),  # useful for pagination links
     }
     
     if request.htmx:
@@ -204,17 +206,16 @@ def esdados(request, pk):
     terminas = sterm.objects.filter(misid=sd.isid)
     can_edit = request.user.has_perm('sdados.change_sdados' or 'sdados.add_sdados')
     form = SdadosForm(instance=sd)
+    back_to_list = request.GET.urlencode()
     if request.method == 'POST':
         #print(request.POST)
         form = SdadosForm(request.POST, instance=sd)
         if form.is_valid():
             form.save()
             messages.success(request, 'Serviço atualizado com sucesso.')
-            context = {'form': form,'can_edit': can_edit, 'terminas': terminas} 
-            print (form)
-            return redirect('editar_sdados', pk=sd.pk)
+            return redirect(request.path + f"?{back_to_list}")
             #return render(request, 'sdados/esdados.html', context)
-    context = {'form': form,'can_edit': can_edit, 'terminas': terminas} 
+    context = {'form': form,'can_edit': can_edit, 'terminas': terminas, "back_to_list": back_to_list} 
     return render(request, 'sdados/esdados.html', context)
 
 @login_required(login_url='userlogin')
@@ -234,23 +235,24 @@ def csdados(request):
 @group_required(('DADOS',))
 def csterm(request):
     misid = request.GET.get('misid')
+    back_to_list = request.GET.get('back_to_list', '')
     form = StermForm()
     form.fields['misid'].initial = misid
     if request.method == 'POST':
         misid = request.POST.get('misid')
+        back_to_list = request.POST.get('back_to_list', '')
         form = StermForm(request.POST)
         if form.is_valid():
             form.save()
             smisid = form.instance.misid
             sd = sdados.objects.filter(isid=smisid).get()
 
-
-            #sd = sdados.objects.get(id=smisid)
-            #print(sd.id)
             messages.success(request, 'Terminal adicionado com sucesso.')
             request.method = "GET"
+            if back_to_list:
+                return redirect(reverse('esdados', kwargs={'pk': sd.id}) + f'?{back_to_list}')
             return redirect('esdados', pk=sd.id)
-    context = {'form': form, 'serv': misid} 
+    context = {'form': form, 'serv': misid, 'back_to_list': back_to_list} 
     return render(request, 'partials/csterm.html', context)
 
 @login_required(login_url='userlogin')
@@ -261,12 +263,16 @@ def esterm(request, pk):
     s = form.instance.misid
     sd = sdados.objects.filter(isid=s).get()
     can_edit = request.user.has_perm('sterm.change_sdados' or 'sterm.add_sdados')
+    back_to_list = request.GET.get('back_to_list', '')
     if request.method == 'POST' and can_edit:
         form = StermForm(request.POST, instance=term)
-        if form.is_valid:
+        back_to_list = request.POST.get('back_to_list', '')
+        if form.is_valid():
             form.save()
             smisid = form.instance.misid
             sd = sdados.objects.filter(isid=smisid).get()
+            if back_to_list:
+                return redirect(reverse('esdados', kwargs={'pk': sd.id}) + f'?{back_to_list}')
             return redirect('esdados', pk=sd.id)
-    context = {'form': form, 'serv': sd.id} 
+    context = {'form': form, 'serv': sd.id, 'back_to_list': back_to_list} 
     return render(request, 'partials/esterm.html', context)
