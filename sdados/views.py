@@ -4,6 +4,7 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse
 from .models import sdados, sterm
 from .forms import StermForm, SdadosForm
 from cmain.decorators import group_required 
@@ -212,8 +213,6 @@ def esdados(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, 'Serviço atualizado com sucesso.')
-            context = {'form': form,'can_edit': can_edit, 'terminas': terminas} 
-            print (form)
             return redirect(request.path + f"?{back_to_list}")
             #return render(request, 'sdados/esdados.html', context)
     context = {'form': form,'can_edit': can_edit, 'terminas': terminas, "back_to_list": back_to_list} 
@@ -236,23 +235,24 @@ def csdados(request):
 @group_required(('DADOS',))
 def csterm(request):
     misid = request.GET.get('misid')
+    back_to_list = request.GET.get('back_to_list', '')
     form = StermForm()
     form.fields['misid'].initial = misid
     if request.method == 'POST':
         misid = request.POST.get('misid')
+        back_to_list = request.POST.get('back_to_list', '')
         form = StermForm(request.POST)
         if form.is_valid():
             form.save()
             smisid = form.instance.misid
             sd = sdados.objects.filter(isid=smisid).get()
 
-
-            #sd = sdados.objects.get(id=smisid)
-            #print(sd.id)
             messages.success(request, 'Terminal adicionado com sucesso.')
             request.method = "GET"
+            if back_to_list:
+                return redirect(reverse('esdados', kwargs={'pk': sd.id}) + f'?{back_to_list}')
             return redirect('esdados', pk=sd.id)
-    context = {'form': form, 'serv': misid} 
+    context = {'form': form, 'serv': misid, 'back_to_list': back_to_list} 
     return render(request, 'partials/csterm.html', context)
 
 @login_required(login_url='userlogin')
@@ -263,12 +263,16 @@ def esterm(request, pk):
     s = form.instance.misid
     sd = sdados.objects.filter(isid=s).get()
     can_edit = request.user.has_perm('sterm.change_sdados' or 'sterm.add_sdados')
+    back_to_list = request.GET.get('back_to_list', '')
     if request.method == 'POST' and can_edit:
         form = StermForm(request.POST, instance=term)
-        if form.is_valid:
+        back_to_list = request.POST.get('back_to_list', '')
+        if form.is_valid():
             form.save()
             smisid = form.instance.misid
             sd = sdados.objects.filter(isid=smisid).get()
+            if back_to_list:
+                return redirect(reverse('esdados', kwargs={'pk': sd.id}) + f'?{back_to_list}')
             return redirect('esdados', pk=sd.id)
-    context = {'form': form, 'serv': sd.id} 
+    context = {'form': form, 'serv': sd.id, 'back_to_list': back_to_list} 
     return render(request, 'partials/esterm.html', context)
