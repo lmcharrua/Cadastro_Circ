@@ -10,6 +10,7 @@ from .forms import StermForm, SdadosForm
 from cmain.decorators import group_required 
 from django.db.models import Q
 from django.core.paginator import Paginator
+from urllib.parse import urlencode, quote, parse_qs
 
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'DADOS'))
@@ -147,18 +148,47 @@ def criar_sterm(request):
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'DADOS'))
 def lsdados(request):
-    pesquisar = request.GET.get('search', '')
+    from urllib.parse import parse_qs, urlencode as url_encode
+    
+    # Get current filters from request
+    current_query = request.GET.urlencode()
+    
+    # Start with stored filters from session
+    stored_query = request.session.get('sdados_filters', '')
+    
+    # If there's a current query, use it and store it
+    # Otherwise, use the stored query from session
+    if current_query:
+        # Parse current and stored to merge them intelligently
+        current_params = dict(request.GET.lists())
+        # Convert lists back to single values for most params
+        current_params = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in current_params.items()}
+        
+        # Store the current state
+        request.session['sdados_filters'] = current_query
+        querystring = current_query
+        filter_query = current_params
+    else:
+        # No current query, use stored filters
+        querystring = stored_query
+        if stored_query:
+            parsed = parse_qs(stored_query)
+            filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in parsed.items()}
+        else:
+            filter_query = {}
+    
+    pesquisar = filter_query.get('search', '')
     filtros = {
-        "isid__icontains": request.GET.get('isid', ''),
-        "isid_name__icontains": request.GET.get('isid_name', ''),
-        "cliente__icontains": request.GET.get('cliente', ''),
-        "estado__icontains": request.GET.get('estado', ''),
-        "service_type__icontains": request.GET.get('service_type', ''),
-        "created_at__icontains": request.GET.get('created_at', ''),
+        "isid__icontains": filter_query.get('isid', ''),
+        "isid_name__icontains": filter_query.get('isid_name', ''),
+        "cliente__icontains": filter_query.get('cliente', ''),
+        "estado__icontains": filter_query.get('estado', ''),
+        "service_type__icontains": filter_query.get('service_type', ''),
+        "created_at__icontains": filter_query.get('created_at', ''),
         }
-    per_page = request.GET.get('per_page', 10 )
-    sort = request.GET.get('sort', 'isid')
-    direction = request.GET.get('direction', 'asc')
+    per_page = filter_query.get('per_page', 10)
+    sort = filter_query.get('sort', 'isid')
+    direction = filter_query.get('direction', 'asc')
 
     l_sdados = sdados.objects.filter(
         Q(isid__icontains=pesquisar) |
@@ -189,9 +219,9 @@ def lsdados(request):
         'l_sdados': l_sdados,
         'per_page': per_page,
         'paginas': paginas,
-        'sort': request.GET.get('sort', 'isid'),
+        'sort': sort,
         'direction': direction,
-        'querystring': request.GET.urlencode(),  # useful for pagination links
+        'querystring': querystring,  # use stored filters or current
     }
     
     if request.htmx:
@@ -206,15 +236,17 @@ def esdados(request, pk):
     terminas = sterm.objects.filter(misid=sd.isid)
     can_edit = request.user.has_perm('sdados.change_sdados' or 'sdados.add_sdados')
     form = SdadosForm(instance=sd)
-    back_to_list = request.GET.urlencode()
+    # Get stored filters from session
+    back_to_list = request.session.get('sdados_filters', '')
+    
     if request.method == 'POST':
         #print(request.POST)
         form = SdadosForm(request.POST, instance=sd)
         if form.is_valid():
             form.save()
             messages.success(request, 'Serviço atualizado com sucesso.')
-            return redirect(request.path + f"?{back_to_list}")
-            #return render(request, 'sdados/esdados.html', context)
+            # Redirect back to same page, session will still have filters
+            return redirect('esdados', pk=pk)
     context = {'form': form,'can_edit': can_edit, 'terminas': terminas, "back_to_list": back_to_list} 
     return render(request, 'sdados/esdados.html', context)
 
@@ -235,12 +267,10 @@ def csdados(request):
 @group_required(('DADOS',))
 def csterm(request):
     misid = request.GET.get('misid')
-    back_to_list = request.GET.get('back_to_list', '')
     form = StermForm()
     form.fields['misid'].initial = misid
     if request.method == 'POST':
         misid = request.POST.get('misid')
-        back_to_list = request.POST.get('back_to_list', '')
         form = StermForm(request.POST)
         if form.is_valid():
             form.save()
@@ -248,11 +278,9 @@ def csterm(request):
             sd = sdados.objects.filter(isid=smisid).get()
 
             messages.success(request, 'Terminal adicionado com sucesso.')
-            request.method = "GET"
-            if back_to_list:
-                return redirect(reverse('esdados', kwargs={'pk': sd.id}) + f'?{back_to_list}')
+            # Redirect back to esdados - session still has filter info
             return redirect('esdados', pk=sd.id)
-    context = {'form': form, 'serv': misid, 'back_to_list': back_to_list} 
+    context = {'form': form, 'serv': misid} 
     return render(request, 'partials/csterm.html', context)
 
 @login_required(login_url='userlogin')
@@ -263,16 +291,13 @@ def esterm(request, pk):
     s = form.instance.misid
     sd = sdados.objects.filter(isid=s).get()
     can_edit = request.user.has_perm('sterm.change_sdados' or 'sterm.add_sdados')
-    back_to_list = request.GET.get('back_to_list', '')
     if request.method == 'POST' and can_edit:
         form = StermForm(request.POST, instance=term)
-        back_to_list = request.POST.get('back_to_list', '')
         if form.is_valid():
             form.save()
             smisid = form.instance.misid
             sd = sdados.objects.filter(isid=smisid).get()
-            if back_to_list:
-                return redirect(reverse('esdados', kwargs={'pk': sd.id}) + f'?{back_to_list}')
+            # Redirect back to esdados - session still has filter info
             return redirect('esdados', pk=sd.id)
-    context = {'form': form, 'serv': sd.id, 'back_to_list': back_to_list} 
+    context = {'form': form, 'serv': sd.id} 
     return render(request, 'partials/esterm.html', context)

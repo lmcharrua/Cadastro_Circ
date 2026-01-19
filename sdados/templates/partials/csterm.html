@@ -14,13 +14,7 @@
             {% csrf_token %}
 
             <h1 class="from-group text-2xl text-center font-semibold text-gray-700 mb-6">RFD0{{serv}} criar terminação</h1>
-            {% if back_to_list %}
-                <div class="mb-4 p-3 bg-blue-100 border border-blue-400 text-blue-700 rounded">
-                    <p class="text-sm"><strong>ℹ️ Filtros da lista preservados</strong> - Ao cancelar, voltará à lista com os mesmos filtros/ordenação.</p>
-                </div>
-            {% endif %}
             <input type="hidden" id="misid" name="misid" value="{{serv}}" class="hidden">
-            <input type="hidden" id="back_to_list" name="back_to_list" value="{{back_to_list}}" class="hidden">
             <!-- General Fields (Full-width) -->
             <div class="border rounded-t-lg p-1">
                 <div class=" grid grid-cols-2 rounded-b-lg py-1 gap-1.5">

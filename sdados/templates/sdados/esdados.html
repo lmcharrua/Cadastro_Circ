@@ -159,7 +159,7 @@
                                                 {{term.local}}
                                             </td>
                                             <td class="px-3 py-1 text-sm">
-                                                {% if sdad.estado == "A" %}
+                                                {% if term.estado == "A" %}
                                                     Activo
                                                 {% elif term.estado == "C" %}
                                                     Em Configuração
@@ -187,7 +187,7 @@
             <div class="w-full flex justify-end">
                 {% if can_edit %}
                     <button type="submit" value="Submit" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main">Gravar</button>
-                    <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'csterm' %}?misid={{form.isid.value}}&{{ back_to_list }}">+ Terminação</a></button>
+                    <button type="button" class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a href="{% url 'csterm' %}?misid={{form.isid.value}}">+ Terminação</a></button>
                 {% endif %}
                 <button type="button"
                     class="m-2 px-6 py-2 bg-ipt-main text-white rounded-md hover:bg-ip-main"><a
