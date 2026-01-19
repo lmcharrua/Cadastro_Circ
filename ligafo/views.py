@@ -9,6 +9,7 @@ from .forms import LigafoForm, criarligafoForm
 from cmain.decorators import group_required 
 from django.db.models import Q
 from django.core.paginator import Paginator
+from urllib.parse import parse_qs
 
 # Create your views here.
 
@@ -43,23 +44,39 @@ def criar_ligafo(request):
 @login_required(login_url='userlogin')
 @group_required(('FOE',))
 def desligados_ligafo(request):
-    pesquisar = request.POST.get('search', '')
+    current_query = request.POST.urlencode()
+    stored_query = request.session.get('ligafo_desligados_filters', '')
+
+    if current_query:
+        request.session['ligafo_desligados_filters'] = current_query
+        querystring = current_query
+        current_params = dict(request.POST.lists())
+        filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in current_params.items()}
+    else:
+        querystring = stored_query
+        if stored_query:
+            parsed = parse_qs(stored_query)
+            filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in parsed.items()}
+        else:
+            filter_query = {}
+
+    pesquisar = filter_query.get('search', '')
     filtros = {
-        "referencia__icontains": request.POST.get('referencia', ''),
-        "cliente__icontains": request.POST.get('cliente', ''),
-        "dist_optica__icontains": request.POST.get('dist_optica', ''),
-        "dist_iet__icontains": request.POST.get('dist_iet', ''),
-        "data_pedido__icontains": request.POST.get('data_pedido', ''),
-        "data_entrega__icontains": request.POST.get('data_entrega', ''),
+        "referencia__icontains": filter_query.get('referencia', ''),
+        "cliente__icontains": filter_query.get('cliente', ''),
+        "dist_optica__icontains": filter_query.get('dist_optica', ''),
+        "dist_iet__icontains": filter_query.get('dist_iet', ''),
+        "data_pedido__icontains": filter_query.get('data_pedido', ''),
+        "data_entrega__icontains": filter_query.get('data_entrega', ''),
         "estado__exact": 'D',
-        "local_a__icontains": request.POST.get('local_a', ''),
-        "local_b__icontains": request.POST.get('local_b', ''),
-        "observacoes__icontains": request.POST.get('observacoes', ''),
+        "local_a__icontains": filter_query.get('local_a', ''),
+        "local_b__icontains": filter_query.get('local_b', ''),
+        "observacoes__icontains": filter_query.get('observacoes', ''),
         }
     
-    per_page = request.POST.get('per_page', 10)
-    sort = request.POST.get('sort', 'referencia')
-    direction = request.POST.get('direction', 'asc')
+    per_page = int(filter_query.get('per_page', 10))
+    sort = filter_query.get('sort', 'referencia')
+    direction = filter_query.get('direction', 'asc')
     
 
     lligafo = ligafo.objects.filter(
@@ -84,7 +101,7 @@ def desligados_ligafo(request):
     lligafo = lligafo.order_by(sort)
 
     pages = Paginator(lligafo, per_page)
-    page_number = request.POST.get('page', 1)
+    page_number = int(filter_query.get('page', request.POST.get('page', 1)))
  
     lligafo = pages.get_page(page_number)
    
@@ -95,8 +112,10 @@ def desligados_ligafo(request):
         'lligafo': lligafo,
         'per_page': per_page,
         'paginas': paginas,
-        'sort': request.POST.get('sort', 'referencia'),
+        'sort': sort,
         'direction': direction,
+        'querystring': querystring,
+        'filter_query': filter_query,
     }
 
     if request.htmx:
@@ -107,23 +126,39 @@ def desligados_ligafo(request):
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'FOE', 'TX', 'DAT', 'DADOS'))
 def lista_ligafo(request):
-    pesquisar = request.POST.get('search', '')
+    current_query = request.POST.urlencode()
+    stored_query = request.session.get('ligafo_filters', '')
+
+    if current_query:
+        request.session['ligafo_filters'] = current_query
+        querystring = current_query
+        current_params = dict(request.POST.lists())
+        filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in current_params.items()}
+    else:
+        querystring = stored_query
+        if stored_query:
+            parsed = parse_qs(stored_query)
+            filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in parsed.items()}
+        else:
+            filter_query = {}
+
+    pesquisar = filter_query.get('search', '')
     filtros = {
-        "referencia__icontains": request.POST.get('referencia', ''),
-        "cliente__icontains": request.POST.get('cliente', ''),
-        "dist_optica__icontains": request.POST.get('dist_optica', ''),
-        "dist_iet__icontains": request.POST.get('dist_iet', ''),
-        "data_pedido__icontains": request.POST.get('data_pedido', ''),
-        "data_entrega__icontains": request.POST.get('data_entrega', ''),
-        "estado__icontains": request.POST.get('estado', ''),
-        "local_a__icontains": request.POST.get('local_a', ''),
-        "local_b__icontains": request.POST.get('local_b', ''),
-        "observacoes__icontains": request.POST.get('observacoes', ''),
+        "referencia__icontains": filter_query.get('referencia', ''),
+        "cliente__icontains": filter_query.get('cliente', ''),
+        "dist_optica__icontains": filter_query.get('dist_optica', ''),
+        "dist_iet__icontains": filter_query.get('dist_iet', ''),
+        "data_pedido__icontains": filter_query.get('data_pedido', ''),
+        "data_entrega__icontains": filter_query.get('data_entrega', ''),
+        "estado__icontains": filter_query.get('estado', ''),
+        "local_a__icontains": filter_query.get('local_a', ''),
+        "local_b__icontains": filter_query.get('local_b', ''),
+        "observacoes__icontains": filter_query.get('observacoes', ''),
         }
     
-    per_page = request.POST.get('per_page', 10)
-    sort = request.POST.get('sort', 'referencia')
-    direction = request.POST.get('direction', 'asc')
+    per_page = int(filter_query.get('per_page', 10))
+    sort = filter_query.get('sort', 'referencia')
+    direction = filter_query.get('direction', 'asc')
     
 
     lligafo = ligafo.objects.filter(
@@ -148,7 +183,7 @@ def lista_ligafo(request):
     lligafo = lligafo.order_by(sort)
 
     pages = Paginator(lligafo, per_page)
-    page_number = request.POST.get('page', 1)
+    page_number = int(filter_query.get('page', request.POST.get('page', 1)))
  
     lligafo = pages.get_page(page_number)
    
@@ -159,8 +194,10 @@ def lista_ligafo(request):
         'lligafo': lligafo,
         'per_page': per_page,
         'paginas': paginas,
-        'sort': request.POST.get('sort', 'referencia'),
+        'sort': sort,
         'direction': direction,
+        'querystring': querystring,
+        'filter_query': filter_query,
     }
 
     if request.htmx:

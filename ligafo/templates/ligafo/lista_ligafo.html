@@ -20,7 +20,7 @@
         {% csrf_token %}
         <div>
         <span class=" items-center justify-center">
-        <input type="text" name="search" placeholder="Pesquisar..." class="text-xs items-center border justify-center border-gray-300 rounded-md p-2 w-1/3" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner">
+        <input type="text" name="search" value="{{ filter_query.search|default:'' }}" placeholder="Pesquisar..." class="text-xs items-center border justify-center border-gray-300 rounded-md p-2 w-1/3" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form">
         </span>
         </div>
         <div>
@@ -29,11 +29,12 @@
                 hx-target="#list_lfo" 
                 hx-swap="innerHTML"
                 hx-trigger="change"
-                hx-indicator="#spinner">
-                <option class="text-xs" value="10" {% if request.GET.per_page == "10" %}selected{% endif %}>10 por página</option>
-                <option class="text-xs" value="25" {% if request.GET.per_page == "25" %}selected{% endif %}>25 por página</option>
-                <option class="text-xs" value="50" {% if request.GET.per_page == "50" %}selected{% endif %}>50 por página</option>
-                <option class="text-xs" value="100" {% if request.GET.per_page == "100" %}selected{% endif %}>100 por página</option>
+                hx-indicator="#spinner"
+                hx-include="#lfo-form">
+                <option class="text-xs" value="10" {% if per_page == 10 %}selected{% endif %}>10 por página</option>
+                <option class="text-xs" value="25" {% if per_page == 25 %}selected{% endif %}>25 por página</option>
+                <option class="text-xs" value="50" {% if per_page == 50 %}selected{% endif %}>50 por página</option>
+                <option class="text-xs" value="100" {% if per_page == 100 %}selected{% endif %}>100 por página</option>
             </select>
         </div>
     </div>
@@ -44,34 +45,34 @@
         <table class="p-1" style="width: 100%;">
                 <tr>
                     <td class="p-1">
-                        <input type="text" name="referencia" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Referência" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="referencia" value="{{ filter_query.referencia|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Referência" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="cliente" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="cliente" value="{{ filter_query.cliente|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="dist_optica" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Distância Ótica" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="dist_optica" value="{{ filter_query.dist_optica|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Distância Ótica" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="dist_iet" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Distância IET" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="dist_iet" value="{{ filter_query.dist_iet|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Distância IET" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="data_pedido" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Pedido" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="data_pedido" value="{{ filter_query.data_pedido|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Pedido" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="data_entrega" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Entrega" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="data_entrega" value="{{ filter_query.data_entrega|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Entrega" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </th>
                     <td class="p-1">
-                        <input type="text" name="estado" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="estado" value="{{ filter_query.estado|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>                   
                     <td class="p-1">
-                        <input type="text" name="local_a" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Local A" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="local_a" value="{{ filter_query.local_a|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Local A" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="local_b" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Local B" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="local_b" value="{{ filter_query.local_b|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Local B" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>                  
                     <td class="p-1">
-                        <input type="text" name="observacoes" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Observações" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="observacoes" value="{{ filter_query.observacoes|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Observações" hx-post="{% url 'lista_ligafo' %}" hx-target="#list_lfo" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#lfo-form" />
                     </td>                      
                 </tr>
             </table>

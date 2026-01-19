@@ -12,6 +12,7 @@ from django.conf import settings
 from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
+from urllib.parse import parse_qs
 
 
 @login_required(login_url='userlogin')
@@ -103,21 +104,44 @@ def download(request):
 @login_required(login_url='userlogin')
 @group_required(('NOC', 'TX', 'DAT', 'DADOS', 'VOZ'))
 def lista_cct(request):
-    pesquisar = request.POST.get('search', '')
+    # Handle POST-based filters but persist them in session so navigating away and back
+    # preserves the full set of filters.
+    current_query = request.POST.urlencode()
+    stored_query = request.session.get('circuitos_filters', '')
+
+    if current_query:
+        # New filters applied in this request: use them and store
+        request.session['circuitos_filters'] = current_query
+        querystring = current_query
+        # Build a dict of values from POST
+        current_params = dict(request.POST.lists())
+        filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in current_params.items()}
+    else:
+        # No new POST: fall back to stored filters
+        querystring = stored_query
+        if stored_query:
+            parsed = parse_qs(stored_query)
+            filter_query = {k: v[0] if isinstance(v, list) and len(v) > 0 else v for k, v in parsed.items()}
+        else:
+            filter_query = {}
+
+    pesquisar = filter_query.get('search', '')
+    # Support both template field names and model field names where necessary
     filtros = {
-        "N_Circuito__icontains": request.POST.get('N_Circuito', ''),
-        "Data_Rate__icontains": request.POST.get('Data_Rate', ''),
-        "User_Cct__icontains": request.POST.get('User_Cct', ''),
-        "Estado_Cct__icontains": request.POST.get('Estado_Cct', ''),
-        "Entidade_PTR1__icontains": request.POST.get('Entidade_PTR1', ''),
-        "Morada_PTR1__icontains": request.POST.get('Morada_PTR1', ''),
-        "Entidade_PTR2__icontains": request.POST.get('Entidade_PTR2', ''),
-        "Morada_PTR2__icontains": request.POST.get('Morada_PTR2', ''),
+        "N_Circuito__icontains": filter_query.get('N_Circuito', ''),
+        "Data_Rate__icontains": filter_query.get('Data_Rate', ''),
+        "User_Cct__icontains": filter_query.get('User_Cct', ''),
+        # template uses 'Estado' while model field is 'Estado_Cct'
+        "Estado_Cct__icontains": filter_query.get('Estado', '') or filter_query.get('Estado_Cct', ''),
+        "Entidade_PTR1__icontains": filter_query.get('Entidade_PTR1', ''),
+        "Morada_PTR1__icontains": filter_query.get('Morada_PTR1', ''),
+        "Entidade_PTR2__icontains": filter_query.get('Entidade_PTR2', ''),
+        "Morada_PTR2__icontains": filter_query.get('Morada_PTR2', ''),
     }
 
-    per_page = int(request.POST.get('per_page', 10))
-    sort = request.POST.get('sort', 'N_Circuito')
-    direction = request.POST.get('direction', 'asc')
+    per_page = int(filter_query.get('per_page', 10))
+    sort = filter_query.get('sort', 'N_Circuito')
+    direction = filter_query.get('direction', 'asc')
 
     l_circuitos = Circuitos.objects.all().exclude(Estado_Cct="Desligado")
 
@@ -141,7 +165,7 @@ def lista_cct(request):
     l_circuitos = l_circuitos.order_by(sort)
 
     pages = Paginator(l_circuitos, per_page)
-    page_number = request.POST.get('page', 1)
+    page_number = int(filter_query.get('page', request.POST.get('page', 1)))
 
     l_circuitos = pages.get_page(page_number)
 
@@ -150,8 +174,10 @@ def lista_cct(request):
         'circuitos': l_circuitos,
         'per_page': per_page,
         'paginas': paginas,
-        "sort": request.POST.get("sort", ""),
+        "sort": sort,
         "direction": direction,
+        'querystring': querystring,
+        'filter_query': filter_query,
     }
 
     if request.htmx:

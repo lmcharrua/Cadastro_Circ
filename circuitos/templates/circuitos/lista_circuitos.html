@@ -20,7 +20,7 @@
         {% csrf_token %}
         <div>
         <span class=" items-center justify-center">
-        <input type="text" name="search" placeholder="Pesquisar..." class="text-xs items-center border justify-center border-gray-300 rounded-md p-2 w-1/3" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner">
+        <input type="text" name="search" value="{{ filter_query.search|default:'' }}" placeholder="Pesquisar..." class="text-xs items-center border justify-center border-gray-300 rounded-md p-2 w-1/3" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form">
         </span>
         </div>
         <div>
@@ -29,11 +29,12 @@
                 hx-target="#lista_circuitos" 
                 hx-swap="innerHTML"
                 hx-trigger="change"
-                hx-indicator="#spinner">
-                <option class="text-xs" value="10" {% if request.GET.per_page == "10" %}selected{% endif %}>10 por página</option>
-                <option class="text-xs" value="25" {% if request.GET.per_page == "25" %}selected{% endif %}>25 por página</option>
-                <option class="text-xs" value="50" {% if request.GET.per_page == "50" %}selected{% endif %}>50 por página</option>
-                <option class="text-xs" value="100" {% if request.GET.per_page == "100" %}selected{% endif %}>100 por página</option>
+                hx-indicator="#spinner"
+                hx-include="#circuitos-form">
+                <option class="text-xs" value="10" {% if per_page == 10 %}selected{% endif %}>10 por página</option>
+                <option class="text-xs" value="25" {% if per_page == 25 %}selected{% endif %}>25 por página</option>
+                <option class="text-xs" value="50" {% if per_page == 50 %}selected{% endif %}>50 por página</option>
+                <option class="text-xs" value="100" {% if per_page == 100 %}selected{% endif %}>100 por página</option>
             </select>
         </div>
     </div>
@@ -44,28 +45,28 @@
         <table class="p-1" style="width: 100%;">
                 <tr>
                     <td class="p-1">
-                        <input type="text" name="N_Circuito" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar N. Circuito" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="N_Circuito" value="{{ filter_query.N_Circuito|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar N. Circuito" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="Data_Rate" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Rate" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="Data_Rate" value="{{ filter_query.Data_Rate|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Data Rate" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="User_Cct" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="User_Cct" value="{{ filter_query.User_Cct|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Cliente" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="Estado" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="Estado" value="{{ filter_query.Estado|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Estado" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="Entidade_PTR1" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Entidade PTR1" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="Entidade_PTR1" value="{{ filter_query.Entidade_PTR1|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Entidade PTR1" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="Morada_PTR1" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Morada PTR1" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="Morada_PTR1" value="{{ filter_query.Morada_PTR1|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Morada PTR1" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                     <td class="p-1">
-                        <input type="text" name="Entidade_PTR2" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Entidade PTR2" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="Entidade_PTR2" value="{{ filter_query.Entidade_PTR2|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Entidade PTR2" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </th>
                     <td class="p-1">
-                        <input type="text" name="Morada_PTR2" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Morada PTR2" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" />
+                        <input type="text" name="Morada_PTR2" value="{{ filter_query.Morada_PTR2|default:'' }}" class="text-xs w-full border-ipt-main rounded-sm" placeholder="Pesquisar Morada PTR2" hx-post="{% url 'lista_cct' %}" hx-target="#lista_circuitos" hx-swap="innerHTML" hx-trigger="keyup changed delay:500ms" hx-indicator="#spinner" hx-include="#circuitos-form" />
                     </td>
                 </tr>
             </table>
